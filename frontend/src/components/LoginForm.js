@@ -15,23 +15,48 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
+import axios from "axios";
 
 export default function LoginForm({ handleOpenClose, open }) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const handleEmailChange = (e) => {
+    e.preventDefault();
+    setEmail(e.target.value);
+  };
+  const handlePassChange = (e) => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  };
+  const handleSubmit = async () => {
+    const res = await axios.post("http://localhost:3000/auth/user/login", {
+      email,
+      password,
+    });
+    if (res.data.valid) {
+      console.log("LOG IN SUCCESSFULLY !!!!!!!!!");
+    } else {
+      console.log("Wrong password or email");
+    }
+  };
   const classes = useStyles();
   return (
     <div className={classes.formContainer}>
       <ThemeProvider theme={theme}>
-        <Button variant="outlined" color="primary" onClick={handleOpenClose}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => handleOpenClose(false)}>
           Open form dialog
         </Button>
         <Dialog
           open={open}
-          onClose={handleOpenClose}
+          onClose={() => handleOpenClose(false)}
           aria-labelledby="form-dialog-title">
           <IconButton
             aria-label="close"
             className={classes.closeButton}
-            onClick={handleOpenClose}>
+            onClick={() => handleOpenClose(false)}>
             <CloseIcon color="secondary" />
           </IconButton>
           <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
@@ -53,6 +78,8 @@ export default function LoginForm({ handleOpenClose, open }) {
                     <InputAdornment position="start"></InputAdornment>
                   ),
                 }}
+                value={email}
+                onChange={handleEmailChange}
               />
             </div>
             <div className={classes.dialogRow}>
@@ -68,6 +95,8 @@ export default function LoginForm({ handleOpenClose, open }) {
                     <InputAdornment position="start"></InputAdornment>
                   ),
                 }}
+                value={password}
+                onChange={handlePassChange}
               />
             </div>
             <div className={classes.dialogRow}>
@@ -92,14 +121,19 @@ export default function LoginForm({ handleOpenClose, open }) {
                 type="submit"
                 variant="contained"
                 className={classes.regBtn}
-                color="primary">
+                color="primary"
+                onClick={handleSubmit}>
                 Log in
               </Button>
             </div>
             <div className={(classes.dialogRow, classes.logIn)}>
               <Typography variant="body3">
                 Don't have an account?{" "}
-                <Link color="primary" underline="always" href="#">
+                <Link
+                  color="primary"
+                  underline="always"
+                  onClick={() => handleOpenClose(true)}
+                  href="#">
                   <span className={classes.bold}>Register</span>
                 </Link>
               </Typography>

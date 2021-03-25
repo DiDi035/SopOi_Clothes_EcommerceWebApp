@@ -38,19 +38,21 @@ export default function RegistrationForm({ handleOpenClose, open }) {
       email,
       password,
     });
-    console.log({ name, email, password });
+    if (res) {
+      handleOpenClose(true);
+    }
   };
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
       <Dialog
         open={open}
-        onClose={handleOpenClose}
+        onClose={() => handleOpenClose(false)}
         aria-labelledby="form-dialog-title">
         <IconButton
           aria-label="close"
           className={classes.closeButton}
-          onClick={handleOpenClose}>
+          onClick={() => handleOpenClose(false)}>
           <CloseIcon color="secondary" />
         </IconButton>
         <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>
@@ -141,7 +143,7 @@ export default function RegistrationForm({ handleOpenClose, open }) {
           <div className={(classes.dialogRow, classes.logIn)}>
             <Typography variant="body3">
               Do you have an account?{" "}
-              <Link color="primary" underline="always" href="#">
+              <Link color="primary" onClick={() => handleOpenClose(true)} underline="always" href="#">
                 <span className={classes.bold}>Log in</span>
               </Link>
             </Typography>

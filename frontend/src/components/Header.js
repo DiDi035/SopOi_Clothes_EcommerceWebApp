@@ -21,11 +21,17 @@ import LoginForm from "./LoginForm";
 const Header = () => {
   const [regOpen, setRegOpen] = React.useState(false);
   const [logOpen, setLogOpen] = React.useState(false);
-  const handleRegFormToggle = () => {
+  const handleRegFormToggle = (openLogForm) => {
     setRegOpen(!regOpen);
+    if (openLogForm) {
+      setLogOpen(true);
+    }
   };
-  const handleLogFormToggle = () => {
+  const handleLogFormToggle = (openRegForm) => {
     setLogOpen(!logOpen);
+    if (openRegForm) {
+      setRegOpen(true);
+    }
   };
   const classes = useStyles();
   return (
@@ -51,11 +57,11 @@ const Header = () => {
                 className={classes.buttonContainer}>
                 <Button
                   className={(classes.buttonGroup, classes.regBtn)}
-                  onClick={handleRegFormToggle}>
+                  onClick={() => handleRegFormToggle(false)}>
                   Register
                 </Button>
                 <Button
-                  onClick={handleLogFormToggle}
+                  onClick={() => handleLogFormToggle(false)}
                   variant="outlined"
                   className={(classes.buttonGroup, classes.loginBtn)}>
                   Log in
