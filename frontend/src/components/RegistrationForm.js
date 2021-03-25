@@ -2,9 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import {
   makeStyles,
@@ -15,10 +13,33 @@ import { Typography } from "@material-ui/core";
 import Link from "@material-ui/core/Link";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import axios from "axios";
 
 export default function RegistrationForm({ handleOpenClose, open }) {
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const handleNameChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+  const handleEmailChange = (e) => {
+    e.preventDefault();
+    setEmail(e.target.value);
+  };
+  const handlePassChange = (e) => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  };
+  const handleSubmit = async () => {
+    const res = await axios.post("http://localhost:3000/auth/register", {
+      name,
+      email,
+      password,
+    });
+    console.log({ name, email, password });
+  };
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
@@ -51,6 +72,8 @@ export default function RegistrationForm({ handleOpenClose, open }) {
                   <InputAdornment position="start"></InputAdornment>
                 ),
               }}
+              value={name}
+              onChange={handleNameChange}
             />
           </div>
           <div className={classes.dialogRow}>
@@ -66,6 +89,8 @@ export default function RegistrationForm({ handleOpenClose, open }) {
                   <InputAdornment position="start"></InputAdornment>
                 ),
               }}
+              value={email}
+              onChange={handleEmailChange}
             />
           </div>
           <div className={classes.dialogRow}>
@@ -81,6 +106,8 @@ export default function RegistrationForm({ handleOpenClose, open }) {
                   <InputAdornment position="start"></InputAdornment>
                 ),
               }}
+              value={password}
+              onChange={handlePassChange}
             />
           </div>
           <div className={classes.dialogRow}>
@@ -106,7 +133,8 @@ export default function RegistrationForm({ handleOpenClose, open }) {
               variant="contained"
               className={classes.regBtn}
               color="primary"
-              type="submit">
+              type="submit"
+              onClick={handleSubmit}>
               Register
             </Button>
           </div>

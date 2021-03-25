@@ -22,6 +22,7 @@ router.post("/register", async (req, res) => {
     email: email,
     password: await bcrypt.hash(password, 12),
   });
+  console.log(user);
   await user.save();
   res.end();
 });
