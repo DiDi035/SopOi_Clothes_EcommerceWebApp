@@ -6,6 +6,7 @@ var logger = require("morgan");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const session = require("express-session");
 
 var authRouter = require("./routes/auth");
 
@@ -17,8 +18,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
+app.use(
+  session({ secret: "notagoodsecret", resave: true, saveUninitialized: true })
+);
 
 app.use("/auth", authRouter);
+app.get("/", (req, res) => {
+  res.send("asdasd");
+});
 
 // connect to mongodb
 mongoose

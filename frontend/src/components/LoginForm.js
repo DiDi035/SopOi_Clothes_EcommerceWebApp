@@ -17,11 +17,19 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
 
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+};
+
 export default function LoginForm({ handleOpenClose, open }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const handleEmailChange = (e) => {
     e.preventDefault();
+    if (!validateEmail(e.target.value)) {
+      console.log("Invalid email");
+    }
     setEmail(e.target.value);
   };
   const handlePassChange = (e) => {
@@ -29,12 +37,19 @@ export default function LoginForm({ handleOpenClose, open }) {
     setPassword(e.target.value);
   };
   const handleSubmit = async () => {
-    const res = await axios.post("http://localhost:3000/auth/user/login", {
+    const res = await axios.post("http://localhost:3000/auth/login", {
       email,
       password,
     });
+    if (email === "") {
+      console.log("Please type in your email");
+    }
+    if (password === "") {
+      console.log("Please type in your password");
+    }
     if (res.data.valid) {
       console.log("LOG IN SUCCESSFULLY !!!!!!!!!");
+      handleOpenClose(false);
     } else {
       console.log("Wrong password or email");
     }
@@ -43,12 +58,6 @@ export default function LoginForm({ handleOpenClose, open }) {
   return (
     <div className={classes.formContainer}>
       <ThemeProvider theme={theme}>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => handleOpenClose(false)}>
-          Open form dialog
-        </Button>
         <Dialog
           open={open}
           onClose={() => handleOpenClose(false)}
