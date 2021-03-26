@@ -47,8 +47,11 @@ const Header = () => {
                 item
                 lg={4}
                 justify="center"
+                alignContent="center"
                 className={classes.brandContainer}>
-                <Typography className={classes.brand}>Sop oi...</Typography>
+                <a href="#">
+                  <img className={classes.brand} src="/logo.png" alt=""></img>
+                </a>
               </Grid>
               <Grid
                 item
@@ -114,6 +117,9 @@ const useStyles = makeStyles({
     borderRadius: "2rem",
     padding: "0 1rem",
   },
+  brand: {
+    marginTop: "0.7rem"
+  }
 });
 
 export default Header;
