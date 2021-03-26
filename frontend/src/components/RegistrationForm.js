@@ -26,6 +26,8 @@ const validatePassword = (pass) => {
 };
 
 export default function RegistrationForm({ handleOpenClose, open }) {
+  const [validRegistration, setValidRegistration] = React.useState(true);
+
   const [emailValidation, setEmailValidation] = React.useState(false);
   const [emailMess, setEmailMess] = React.useState("");
   const [passValidation, setPassValidation] = React.useState(false);
@@ -70,6 +72,19 @@ export default function RegistrationForm({ handleOpenClose, open }) {
       handleOpenClose(true);
     }
   };
+  React.useEffect(() => {
+    if (
+      email !== "" &&
+      !emailValidation &&
+      password !== "" &&
+      !passValidation &&
+      name !== ""
+    ) {
+      setValidRegistration(false);
+    } else {
+      setValidRegistration(true);
+    }
+  }, [name, email, password]);
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
@@ -164,6 +179,7 @@ export default function RegistrationForm({ handleOpenClose, open }) {
           </div>
           <div className={classes.dialogRow}>
             <Button
+              disabled={validRegistration}
               variant="contained"
               className={classes.regBtn}
               color="primary"

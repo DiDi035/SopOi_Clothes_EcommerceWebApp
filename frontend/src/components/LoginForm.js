@@ -23,6 +23,8 @@ const validateEmail = (email) => {
 };
 
 export default function LoginForm({ handleOpenClose, open }) {
+  const [validRegistration, setValidRegistration] = React.useState(true);
+
   const [emailValidation, setEmailValidation] = React.useState(false);
   const [emailMess, setEmailMess] = React.useState("");
 
@@ -63,6 +65,13 @@ export default function LoginForm({ handleOpenClose, open }) {
       setMessage(true);
     }
   };
+  React.useEffect(() => {
+    if (email !== "" && !emailValidation && password !== "") {
+      setValidRegistration(false);
+    } else {
+      setValidRegistration(true);
+    }
+  }, [email, password]);
   const classes = useStyles();
   return (
     <div className={classes.formContainer}>
@@ -130,9 +139,7 @@ export default function LoginForm({ handleOpenClose, open }) {
               <div className={classes.checkBoxContainer}>
                 <div className={classes.checkBox}>
                   <Checkbox value="remember" color="primary" size="small" />
-                  <Typography className={classes.checkBoxLable}>
-                    Remember me
-                  </Typography>
+                  <p className={classes.checkBoxLable}>Remember me</p>
                 </div>
                 <Link
                   color="secondary"
@@ -149,7 +156,8 @@ export default function LoginForm({ handleOpenClose, open }) {
                 variant="contained"
                 className={classes.regBtn}
                 color="primary"
-                onClick={handleSubmit}>
+                onClick={handleSubmit}
+                disabled={validRegistration}>
                 Log in
               </Button>
             </div>
@@ -223,8 +231,10 @@ const useStyles = makeStyles({
     marginLeft: "88%",
   },
   checkBoxLable: {
-    fontSize: "12px",
+    fontSize: "13px",
     marginTop: "0.7rem",
+    color: "#4d4d4d",
+    fontWeight: "500",
   },
   checkBoxContainer: {
     width: "22rem",
@@ -238,7 +248,7 @@ const useStyles = makeStyles({
     flex: 1,
     fontSize: "12px",
     marginTop: "0.7rem",
-    fontWeight: "bold",
+    fontWeight: "1000",
     marginLeft: "4.5rem",
   },
   message: {
