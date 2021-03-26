@@ -23,12 +23,21 @@ const validateEmail = (email) => {
 };
 
 export default function LoginForm({ handleOpenClose, open }) {
+  const [emailValidation, setEmailValidation] = React.useState(false);
+  const [emailMess, setEmailMess] = React.useState("");
+
+  const [message, setMessage] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
   const handleEmailChange = (e) => {
     e.preventDefault();
     if (!validateEmail(e.target.value)) {
-      console.log("Invalid email");
+      setEmailValidation(true);
+      setEmailMess("Invalid email");
+    } else {
+      setEmailValidation(false);
+      setEmailMess("");
     }
     setEmail(e.target.value);
   };
@@ -48,10 +57,10 @@ export default function LoginForm({ handleOpenClose, open }) {
       console.log("Please type in your password");
     }
     if (res.data.valid) {
-      console.log("LOG IN SUCCESSFULLY !!!!!!!!!");
       handleOpenClose(false);
+      setMessage(false);
     } else {
-      console.log("Wrong password or email");
+      setMessage(true);
     }
   };
   const classes = useStyles();
@@ -72,10 +81,19 @@ export default function LoginForm({ handleOpenClose, open }) {
             <div className={classes.bold}>
               <h2>Log in</h2>
             </div>
+            {message ? (
+              <p className={classes.message}>
+                Your email/password is incorrect!
+              </p>
+            ) : (
+              ""
+            )}
           </DialogTitle>
           <DialogContent>
             <div className={classes.dialogRow}>
               <TextField
+                error={emailValidation}
+                helperText={emailMess}
                 className={classes.dialogInput}
                 margin="dense"
                 id="email"
@@ -175,9 +193,8 @@ const useStyles = makeStyles({
   },
   dialogRow: {
     paddingLeft: "2rem",
-    paddingRight: "2rem",
+    paddingRight: "1.5rem",
     paddingBottom: "2rem",
-    display: "flex",
     justifyContent: "center",
     width: "80%",
   },
@@ -185,7 +202,7 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   dialogInput: {
-    width: "20rem",
+    width: "21.3rem",
     background: "#f6f6f6",
   },
   link: {
@@ -194,7 +211,7 @@ const useStyles = makeStyles({
   regBtn: {
     textTransform: "none",
     color: "white",
-    width: "99%",
+    width: "105%",
   },
   logIn: {
     paddingTop: "2rem",
@@ -223,5 +240,9 @@ const useStyles = makeStyles({
     marginTop: "0.7rem",
     fontWeight: "bold",
     marginLeft: "4.5rem",
+  },
+  message: {
+    color: "red",
+    fontSize: "0.8rem",
   },
 });

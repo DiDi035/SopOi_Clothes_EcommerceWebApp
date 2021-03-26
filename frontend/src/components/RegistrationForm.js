@@ -16,7 +16,21 @@ import CloseIcon from "@material-ui/icons/Close";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import axios from "axios";
 
+const validateEmail = (email) => {
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+};
+
+const validatePassword = (pass) => {
+  return pass.length >= 8;
+};
+
 export default function RegistrationForm({ handleOpenClose, open }) {
+  const [emailValidation, setEmailValidation] = React.useState(false);
+  const [emailMess, setEmailMess] = React.useState("");
+  const [passValidation, setPassValidation] = React.useState(false);
+  const [passMess, setPassMess] = React.useState("");
+
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -26,10 +40,24 @@ export default function RegistrationForm({ handleOpenClose, open }) {
   };
   const handleEmailChange = (e) => {
     e.preventDefault();
+    if (!validateEmail(e.target.value)) {
+      setEmailValidation(true);
+      setEmailMess("Invalid email");
+    } else {
+      setEmailValidation(false);
+      setEmailMess("");
+    }
     setEmail(e.target.value);
   };
   const handlePassChange = (e) => {
     e.preventDefault();
+    if (!validatePassword(e.target.value)) {
+      setPassValidation(true);
+      setPassMess("Password must be at least 8 characters");
+    } else {
+      setPassValidation(false);
+      setPassMess("");
+    }
     setPassword(e.target.value);
   };
   const handleSubmit = async () => {
@@ -93,6 +121,8 @@ export default function RegistrationForm({ handleOpenClose, open }) {
               }}
               value={email}
               onChange={handleEmailChange}
+              error={emailValidation}
+              helperText={emailMess}
             />
           </div>
           <div className={classes.dialogRow}>
@@ -110,6 +140,8 @@ export default function RegistrationForm({ handleOpenClose, open }) {
               }}
               value={password}
               onChange={handlePassChange}
+              error={passValidation}
+              helperText={passMess}
             />
           </div>
           <div className={classes.dialogRow}>
@@ -143,7 +175,11 @@ export default function RegistrationForm({ handleOpenClose, open }) {
           <div className={(classes.dialogRow, classes.logIn)}>
             <Typography variant="body3">
               Do you have an account?{" "}
-              <Link color="primary" onClick={() => handleOpenClose(true)} underline="always" href="#">
+              <Link
+                color="primary"
+                onClick={() => handleOpenClose(true)}
+                underline="always"
+                href="#">
                 <span className={classes.bold}>Log in</span>
               </Link>
             </Typography>
@@ -177,7 +213,6 @@ const useStyles = makeStyles({
     paddingLeft: "3rem",
     paddingRight: "3rem",
     paddingBottom: "2rem",
-    display: "flex",
     justifyContent: "center",
     width: "80%",
   },
@@ -194,11 +229,11 @@ const useStyles = makeStyles({
   regBtn: {
     textTransform: "none",
     color: "white",
-    width: "99%",
+    width: "96%",
   },
   logIn: {
     paddingTop: "2rem",
-    paddingLeft: "5rem",
+    paddingLeft: "6rem",
     paddingBottom: "1rem",
   },
   closeButton: {
