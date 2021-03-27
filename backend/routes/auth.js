@@ -9,11 +9,9 @@ router.post("/login", async (req, res) => {
   const { type } = req.params;
   const { email, password } = req.body;
   const { valid, foundUser } = await User.isAuthenticated(email, password);
-  // if (valid) {
-  //   req.session.user_id = foundUser._id;
-  //   req.session.user_type = type;
-  //   console.log("WEEEEEEEEEE")
-  // }
+  if (valid) {
+    
+  }
   res.json({ valid });
 });
 

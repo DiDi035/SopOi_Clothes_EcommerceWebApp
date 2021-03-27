@@ -1,0 +1,59 @@
+@import "../../assets/fonts/Fonts.css";
+@import "../../assets/colors/Colors.css";
+
+* {
+  font-family: Montserrat-Regular;
+}
+
+.navCoin {
+    height: 69px;
+    border-bottom: 1px var(--greyish-two) solid;
+}
+
+input {
+  border-radius: 30px;
+  width: 181px;
+  height: 35px;
+  border: 1px var(--greyish-two) solid;
+  padding: 0 1rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+    padding: 0.2rem 2rem;
+    font-size: 14px;
+}
+
+.regBtn {
+  border: none;
+  background-color: white;
+  transition: 0.2s ease;
+}
+
+.regBtn:hover {
+  background-color: var(--greyish-two);
+  color: white;
+}
+
+.logBtn {
+  border: none;
+  background-color: white;
+  border: 2px var(--primary) solid;
+  color: var(--primary);
+  font-weight: bolder;
+  border-radius: 30px;
+  transition: 0.2s ease;
+}
+
+.logBtn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.cartBtn {
+    border: none;
+    background-color: white;
+}
