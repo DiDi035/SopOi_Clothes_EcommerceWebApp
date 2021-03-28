@@ -1,0 +1,11 @@
+@import "../assets/fonts/Fonts.css";
+@import "../assets/colors/Colors.css";
+
+.link {
+    color: var(--primary);
+    text-underline-offset: 3px;
+}
+
+.link:hover {
+    color: var(--primary);
+}

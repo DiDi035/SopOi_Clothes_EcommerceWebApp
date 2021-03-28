@@ -1,0 +1,6 @@
+@import "../assets/fonts/Fonts.css";
+@import "../assets/colors/Colors.css";
+
+.textPara {
+  font-family: Montserrat;
+}

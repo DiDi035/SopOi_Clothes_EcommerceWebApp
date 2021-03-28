@@ -1,0 +1,22 @@
+@import "../../assets/fonts/Fonts.css";
+@import "../../assets/colors/Colors.css";
+
+.formModalContainer {
+  width: 555px;
+  margin: 110px 198px 0 55px;
+  padding: 16px 23px;
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.03);
+  background-color: var(--white);
+}
+
+.formModalContainer input {
+  width: 395px;
+  height: 46px;
+  padding: 12px 12px;
+  background-color: var(--white-two);
+  border: none;
+}
+
+.formModalContainer input::placeholder {
+    color: var(--greyish-two);
+}

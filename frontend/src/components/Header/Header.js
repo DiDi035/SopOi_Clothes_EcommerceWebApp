@@ -1,9 +1,8 @@
 import React from "react";
-// import components
-// import styles
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
-// import image
+
 import brandIcon from "../../assets/images/logo.svg";
 import cartIcon from "../../assets/images/cart.svg";
 
@@ -16,14 +15,20 @@ const Header = () => {
         </div>
         <div class="d-none col-sm-6 col-lg-4 d-sm-flex flex-row justify-content-center">
           <a className="mb-2" href="#">
-            <img src={brandIcon} />
+            <img src={brandIcon} alt="" />
           </a>
         </div>
         <div class="col-12 col-sm-6 col-lg-4 d-flex flex-row justify-content-center">
-          <button className="regBtn">Register</button>
+          <button
+            className="regBtn"
+            data-bs-toggle="modal"
+            data-bs-target="#formModal"
+            type="button">
+            Register
+          </button>
           <button className="mx-3 logBtn">Log In</button>
           <button className=" cartBtn">
-            <img src={cartIcon} />
+            <img src={cartIcon} alt="" />
           </button>
         </div>
       </div>

@@ -1,13 +1,9 @@
 @import "../../assets/fonts/Fonts.css";
 @import "../../assets/colors/Colors.css";
 
-* {
-  font-family: Montserrat-Regular;
-}
-
 .navCoin {
-    height: 69px;
-    border-bottom: 1px var(--greyish-two) solid;
+  height: 69px;
+  border-bottom: 1px var(--greyish-two) solid;
 }
 
 input {
@@ -23,8 +19,10 @@ input:focus {
 }
 
 button {
-    padding: 0.2rem 2rem;
-    font-size: 14px;
+  padding: 0.2rem 2rem;
+  font-size: 14px;
+  font-family: Montserrat;
+  font-weight: normal;
 }
 
 .regBtn {
@@ -49,11 +47,11 @@ button {
 }
 
 .logBtn:hover {
-    background-color: var(--primary);
-    color: white;
+  background-color: var(--primary);
+  color: white;
 }
 
 .cartBtn {
-    border: none;
-    background-color: white;
+  border: none;
+  background-color: white;
 }

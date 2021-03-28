@@ -1,11 +1,15 @@
-import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css"
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import Header from "./components/Header/Header"
+import Header from "./components/Header/Header";
+import RegisterForm from "./components/RegisterForm";
 
 function App() {
   return (
-    <Header />
+    <div>
+      <Header />
+      <RegisterForm />
+    </div>
   );
 }
 
