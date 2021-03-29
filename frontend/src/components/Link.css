@@ -7,5 +7,5 @@
 }
 
 .link:hover {
-    color: var(--primary);
+    text-decoration: none;
 }

@@ -1,6 +1,10 @@
 @import "../../assets/fonts/Fonts.css";
 @import "../../assets/colors/Colors.css";
 
+*:focus {
+  outline: none !important;
+}
+
 .formModalContainer {
   width: 555px;
   margin: 110px 198px 0 55px;
@@ -17,6 +21,16 @@
   border: none;
 }
 
+.formModalContainer input[type="checkbox"] {
+  width: auto;
+  height: auto;
+}
+
 .formModalContainer input::placeholder {
-    color: var(--greyish-two);
+  color: var(--greyish-two);
+}
+
+.errorInput {
+  border: 2px var(--strawberry) solid !important;
+  background-color: rgba(246, 63, 69, 0.04) !important;
 }
