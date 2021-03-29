@@ -7,15 +7,23 @@
 }
 
 input {
+  border: none;
+  width: 130px;
+  padding-top: 2px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.searchCon {
   border-radius: 30px;
   width: 181px;
   height: 35px;
   border: 1px var(--greyish-two) solid;
   padding: 0 1rem;
-}
-
-input:focus {
-  outline: none;
+  display: flex;
+  flex-direction: row;
 }
 
 button {

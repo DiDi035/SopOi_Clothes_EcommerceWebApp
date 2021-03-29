@@ -5,9 +5,11 @@ import Text from "./Text";
 import SubmitFormBtn from "./SubmitFormBtn";
 import Link from "./Link";
 
+import "../assets/stylesheets/Forms.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/colors/Colors.css";
 import Colors from "../assets/colors/Colors";
+import crossLogo from "../assets/images/cross.svg";
 
 const ValidateEmail = (mail) => {
   if (
@@ -24,7 +26,7 @@ const ValidatePassword = (pass) => {
   return pass.length >= 10;
 };
 
-const RegisterForm = () => {
+const RegisterForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
     "form-control shadow-none"
   );
@@ -75,9 +77,14 @@ const RegisterForm = () => {
       setDisableBtn(true);
     }
   }, [emailValue, passValue, nameValue]);
-  return (
+  return trigger ? (
     <FormModal>
-      <form>
+      <form className="logForm">
+        <div className="d-flex flex-row justify-content-end w-100">
+          <button type="button" className="crossBtn" onClick={() => triggerFunc(false)}>
+            <img src={crossLogo} />
+          </button>
+        </div>
         <div className="d-flex flex-row justify-content-center py-4">
           <Text textDecoration="none" fontWeight="bold" fontSize="32px">
             Register
@@ -97,7 +104,7 @@ const RegisterForm = () => {
             </Text>
           </div>
         )}
-        <div class="mb-3">
+        <div class="mb-4">
           <label for="exampleInputEmail1" class="form-label">
             <Text textDecoration="none" fontWeight="bold" fontSize="12px">
               NAME
@@ -114,7 +121,7 @@ const RegisterForm = () => {
             class="form-control shadow-none"
           />
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
           <label for="exampleInputEmail1" class="form-label">
             <Text textDecoration="none" fontWeight="bold" fontSize="12px">
               E-MAIL
@@ -167,6 +174,8 @@ const RegisterForm = () => {
         </SubmitFormBtn>
       </form>
     </FormModal>
+  ) : (
+    ""
   );
 };
 

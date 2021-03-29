@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./SubmitFormBtn.css";
+import "../assets/stylesheets/SubmitFormBtn.css";
 
 const SubmitFormBtn = ({ children, onClick, disabled }) => {
   return (

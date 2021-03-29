@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../assets/fonts/Fonts.css";
-import "./Link.css";
+import "../assets/stylesheets/Link.css";
 import "../assets/colors/Colors.css";
 import Text from "./Text";
 

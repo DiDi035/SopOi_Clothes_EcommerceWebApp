@@ -1,5 +1,5 @@
-@import "../assets/fonts/Fonts.css";
-@import "../assets/colors/Colors.css";
+@import "../fonts/Fonts.css";
+@import "../colors/Colors.css";
 
 .link {
     color: var(--primary);

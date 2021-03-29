@@ -5,8 +5,10 @@ import Text from "./Text";
 import SubmitFormBtn from "./SubmitFormBtn";
 import Link from "./Link";
 
+import "../assets/stylesheets/Forms.css";
 import "../assets/colors/Colors.css";
 import Colors from "../assets/colors/Colors";
+import crossLogo from "../assets/images/cross.svg";
 
 const ValidateEmail = (mail) => {
   if (
@@ -23,7 +25,7 @@ const ValidatePassword = (pass) => {
   return pass.length >= 10;
 };
 
-const LogInForm = () => {
+const LogInForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
     "form-control shadow-none"
   );
@@ -67,10 +69,15 @@ const LogInForm = () => {
       setDisableBtn(true);
     }
   }, [emailValue, passValue]);
-  return (
+  return trigger ? (
     <FormModal>
-      <form action="" method="GET">
-        <div className="d-flex flex-row justify-content-center py-4">
+      <form className="logForm" action="" method="GET">
+        <div className="d-flex flex-row justify-content-end w-100">
+          <button type="button" className="crossBtn" onClick={() => triggerFunc(false)}>
+            <img src={crossLogo} />
+          </button>
+        </div>
+        <div className="d-flex flex-row justify-content-center py-4 mb-4">
           <Text textDecoration="none" fontWeight="bold" fontSize="32px">
             Log In
           </Text>
@@ -82,7 +89,7 @@ const LogInForm = () => {
             </Text>
           </div>
         )}
-        <div class="mb-3">
+        <div class="mb-5">
           <label for="exampleInputEmail1" class="form-label">
             <Text textDecoration="none" fontWeight="bold" fontSize="12px">
               E-MAIL
@@ -100,7 +107,7 @@ const LogInForm = () => {
             onChange={emailValidation}
           />
         </div>
-        <div class="mb-3">
+        <div class="mb-5">
           <label for="exampleInputPassword1" class="form-label">
             <Text textDecoration="none" fontWeight="bold" fontSize="12px">
               PASSWORD
@@ -117,7 +124,7 @@ const LogInForm = () => {
             onChange={passwordValidation}
           />
         </div>
-        <div className="mb-5 d-flex flex-row w-90">
+        <div className="d-flex flex-row w-90 mb-5">
           <div className="ml-4">
             <input type="checkbox" className="form-check-input" />
             <label class="form-check-label" for="exampleCheck1">
@@ -137,7 +144,7 @@ const LogInForm = () => {
             Log In
           </Text>
         </SubmitFormBtn>
-        <div className="mt-5 pt-5 d-flex flex-row justify-content-center">
+        <div className="d-flex flex-row justify-content-center register">
           <p>
             <Text>
               Don't have an account?{" "}
@@ -149,6 +156,8 @@ const LogInForm = () => {
         </div>
       </form>
     </FormModal>
+  ) : (
+    ""
   );
 };
 

@@ -1,16 +1,12 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Header from "./components/Header/Header";
-import RegisterForm from "./components/RegisterForm";
-import LogInForm from "./components/LogInForm"
+import ListingScreen from "./screens/ListingScreen"
 
 function App() {
   return (
     <div>
-      <Header />
-      {/* <RegisterForm /> */}
-      <LogInForm />
+      <ListingScreen />
     </div>
   );
 }

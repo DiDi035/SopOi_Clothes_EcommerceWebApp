@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../assets/fonts/Fonts.css";
-import "./Text.css";
+import "../assets/stylesheets/Text.css";
 
 const Text = ({ children, fontWeight, textDecoration, fontSize, color }) => {
   return (
