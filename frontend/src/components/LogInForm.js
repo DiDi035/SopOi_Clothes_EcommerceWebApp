@@ -1,14 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import FormModal from "./Container/FormModal";
 import Text from "./Text";
 import SubmitFormBtn from "./SubmitFormBtn";
 import Link from "./Link";
-
 import "../assets/stylesheets/Forms.css";
 import "../assets/colors/Colors.css";
 import Colors from "../assets/colors/Colors";
 import crossLogo from "../assets/images/cross.svg";
+import userStore from "../stores/user";
+import * as userActions from "../actions/user";
+import axios from "axios";
 
 const ValidateEmail = (mail) => {
   if (
@@ -40,6 +41,29 @@ const LogInForm = ({ trigger, triggerFunc }) => {
   const password = useRef("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    const res = axios.post("http://localhost:3000/auth/user/login", {
+      email: emailValue,
+      password: passValue,
+    });
+    res
+      .then((response) => {
+        if (response.data.valid) {
+          userStore.dispatch(
+            userActions.addCurUser({
+              ...response.data.curUser,
+              token: response.data.accessToken,
+            })
+          );
+          console.log(userStore.getState());
+          setValidLogin(true);
+          triggerFunc(false, false);
+        } else {
+          setValidLogin(false);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
   const emailValidation = () => {
     setEmailValue(email.current.value);
@@ -70,26 +94,29 @@ const LogInForm = ({ trigger, triggerFunc }) => {
     }
   }, [emailValue, passValue]);
   return trigger ? (
-    <FormModal>
+    <FormModal height="568px">
       <form className="logForm" action="" method="GET">
         <div className="d-flex flex-row justify-content-end w-100">
-          <button type="button" className="crossBtn" onClick={() => triggerFunc(false)}>
+          <button
+            type="button"
+            className="crossBtn"
+            onClick={() => triggerFunc(false, false)}>
             <img src={crossLogo} />
           </button>
         </div>
-        <div className="d-flex flex-row justify-content-center py-4 mb-4">
+        <div className="d-flex flex-row justify-content-center pb-2 mb-2">
           <Text textDecoration="none" fontWeight="bold" fontSize="32px">
             Log In
           </Text>
         </div>
         {validLogin ? null : (
-          <div class="mb-3 d-flex flex-row justify-content-center">
+          <div class="mb-1 d-flex flex-row justify-content-center">
             <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal">
               Your e-mail/password is invalid!
             </Text>
           </div>
         )}
-        <div class="mb-5">
+        <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
             <Text textDecoration="none" fontWeight="bold" fontSize="12px">
               E-MAIL
@@ -107,7 +134,7 @@ const LogInForm = ({ trigger, triggerFunc }) => {
             onChange={emailValidation}
           />
         </div>
-        <div class="mb-5">
+        <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">
             <Text textDecoration="none" fontWeight="bold" fontSize="12px">
               PASSWORD
@@ -139,12 +166,14 @@ const LogInForm = ({ trigger, triggerFunc }) => {
             </Link>
           </div>
         </div>
-        <SubmitFormBtn disabled={disableBtn} onClick={handleSubmit}>
-          <Text textDecoration="none" fontWeight="bold" fontSize="16px">
-            Log In
-          </Text>
-        </SubmitFormBtn>
-        <div className="d-flex flex-row justify-content-center register">
+        <div className="mb-4">
+          <SubmitFormBtn disabled={disableBtn} onClick={handleSubmit}>
+            <Text textDecoration="none" fontWeight="bold" fontSize="16px">
+              Log In
+            </Text>
+          </SubmitFormBtn>
+        </div>
+        <div className="d-flex flex-row justify-content-center mt-5">
           <p>
             <Text>
               Don't have an account?{" "}

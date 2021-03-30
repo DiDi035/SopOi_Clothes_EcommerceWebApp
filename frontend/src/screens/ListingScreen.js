@@ -1,14 +1,8 @@
 import React from "react";
 import HeaderAndForms from "./HeaderAndForms";
 
-import HeaderAndForm from "./HeaderAndForms";
-
 const ListingScreen = () => {
-  return (
-    <div>
-      <HeaderAndForms />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default ListingScreen;

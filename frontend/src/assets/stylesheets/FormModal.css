@@ -19,9 +19,8 @@
 
 .formModalContainer {
   width: 555px;
-  height: 703px;
   padding: 16px 23px;
-  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
   background-color: var(--white);
 }
 

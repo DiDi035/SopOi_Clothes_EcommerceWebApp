@@ -1,13 +1,19 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import ListingScreen from "./screens/ListingScreen"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ListingScreen from "./screens/ListingScreen";
+import HeaderAndForm from "./screens/HeaderAndForms";
 
 function App() {
   return (
-    <div>
-      <ListingScreen />
-    </div>
+    <Router>
+      <HeaderAndForm />
+      <Switch>
+        <Route path="/" exact>
+          <ListingScreen />
+        </Route>
+        <Route path="*"></Route>
+      </Switch>
+    </Router>
   );
 }
 

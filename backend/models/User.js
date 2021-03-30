@@ -14,6 +14,10 @@ const userSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  type: {
+    type: String,
+    enum: ["user", "seller"],
+  },
 });
 
 userSchema.statics.isAuthenticated = async function (email, password) {
