@@ -9,10 +9,14 @@ class Login {
       user &&
       (await this.authentication.isMatched(password, user.password))
     ) {
-      user = JSON.stringify(user);
-      return this.authentication.sign(user);
+      const stringUser = JSON.stringify(user);
+      return {
+        valid: true,
+        token: this.authentication.sign(stringUser),
+        curUser: user,
+      };
     }
-    return null;
+    return { valid: false };
   }
 }
 

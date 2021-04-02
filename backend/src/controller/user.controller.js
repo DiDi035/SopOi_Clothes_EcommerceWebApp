@@ -13,15 +13,14 @@ class UserController {
     const { email, password } = req.body;
     const result = await this.loginService.execute(email, password);
     try {
-      if (!result) throw new Error("Cant find this user");
+      if (!result.valid) throw new Error("Cant find this user");
       res.header("auth-token", result).send(result);
     } catch (err) {
-      res.status(400).send({ message: err.message });
+      res.send({ valid: false });
     }
   }
 
   async register(req, res) {
-    console.log(req.body)
     const { name, email, password } = req.body;
     const { type } = req.params;
     const result = await this.registerService.execute(
@@ -31,10 +30,10 @@ class UserController {
       type
     );
     try {
-      if (!result) throw new Error("Email has been taken!");
-      res.status(200).json(result);
+      if (!result.valid) throw new Error(result.mess);
+      res.json(result);
     } catch (err) {
-      res.status(400).send({ message: err.message });
+      res.send({ valid: false, mess: err.message });
     }
   }
 

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import FormModal from "./Container/FormModal";
+import FormModal from "../Container/FormModal";
 import Text from "./Text";
 import SubmitFormBtn from "./SubmitFormBtn";
 import Link from "./Link";
@@ -8,22 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/colors/Colors.css";
 import Colors from "../assets/colors/Colors";
 import crossLogo from "../assets/images/cross.svg";
-import axios from "axios";
-
-const ValidateEmail = (mail) => {
-  if (
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      mail
-    )
-  ) {
-    return true;
-  }
-  return false;
-};
-
-const ValidatePassword = (pass) => {
-  return pass.length >= 10;
-};
+import Validation from "../utils/Validation";
+import Fetch from "../utils/Fetch";
+import * as Common from "../common/index";
 
 const RegisterForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
@@ -41,37 +28,36 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
   const name = useRef("");
   const email = useRef("");
   const password = useRef("");
-  const handleSubmit = (e) => {
-    console.log("CLICKED");
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = axios.post("http://localhost:3000/auth/user/register", {
-      name: nameValue,
-      email: emailValue,
-      password: passValue,
-    });
-    res.then((response) => {
-      console.log(response);
-      if (!response.data.valid) {
-        if (response.data.mess === "email") {
-          setValidEmailReg(false);
-          setValidNameReg(true);
-        } else if (response.data.mess === "name") {
-          setValidNameReg(false);
-          setValidEmailReg(true);
-        }
-      } else {
-        setValidNameReg(true);
-        setValidEmailReg(true);
-        triggerFunc(false, true);
+    const res = await Fetch.post(
+      `${Common.DOMAIN}${Common.PORT}/auth/customer/register`,
+      {
+        name: nameValue,
+        email: emailValue,
+        password: passValue,
       }
-    });
+    );
+    if (!res.data.valid) {
+      if (res.data.mess === "name") {
+        setValidNameReg(false);
+        setValidEmailReg(true);
+      } else if (res.data.mess === "email") {
+        setValidEmailReg(false);
+        setValidNameReg(true);
+      }
+    } else {
+      setValidNameReg(true);
+      setValidEmailReg(true);
+      triggerFunc(false, true);
+    }
   };
   const nameOnChange = () => {
     setNameValue(name.current.value);
   };
   const emailValidation = () => {
     setEmailValue(email.current.value);
-    if (!ValidateEmail(email.current.value)) {
+    if (!Validation.ValidateEmail(email.current.value)) {
       setEmailInputClasses("form-control shadow-none errorInput");
     } else {
       setEmailInputClasses("form-control shadow-none");
@@ -79,7 +65,7 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
   };
   const passwordValidation = () => {
     setPassValue(password.current.value);
-    if (!ValidatePassword(password.current.value)) {
+    if (!Validation.ValidatePassword(password.current.value)) {
       setPassInputClasses("form-control shadow-none errorInput");
     } else {
       setPassInputClasses("form-control shadow-none");

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import FormModal from "./Container/FormModal";
+import FormModal from "../Container/FormModal";
 import Text from "./Text";
 import SubmitFormBtn from "./SubmitFormBtn";
 import Link from "./Link";
@@ -9,22 +9,9 @@ import Colors from "../assets/colors/Colors";
 import crossLogo from "../assets/images/cross.svg";
 import userStore from "../stores/user";
 import * as userActions from "../actions/user";
-import axios from "axios";
-
-const ValidateEmail = (mail) => {
-  if (
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      mail
-    )
-  ) {
-    return true;
-  }
-  return false;
-};
-
-const ValidatePassword = (pass) => {
-  return pass.length >= 10;
-};
+import Validation from "../utils/Validation";
+import Fetch from "../utils/Fetch";
+import * as Common from "../common/index";
 
 const LogInForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
@@ -39,35 +26,26 @@ const LogInForm = ({ trigger, triggerFunc }) => {
   const [passValue, setPassValue] = useState("");
   const email = useRef("");
   const password = useRef("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = axios.post("http://localhost:3000/auth/user/login", {
+    const res = await Fetch.post(`${Common.DOMAIN}${Common.PORT}/auth/login`, {
       email: emailValue,
       password: passValue,
     });
-    res
-      .then((response) => {
-        if (response.data.valid) {
-          userStore.dispatch(
-            userActions.addCurUser({
-              ...response.data.curUser,
-              token: response.data.accessToken,
-            })
-          );
-          console.log(userStore.getState());
-          setValidLogin(true);
-          triggerFunc(false, false);
-        } else {
-          setValidLogin(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (!res.data.valid) {
+      setValidLogin(false);
+    } else {
+      userStore.dispatch(
+        userActions.addCurUser({ ...res.data.curUser, token: res.data.token })
+      );
+      console.log(userStore.getState());
+      setValidLogin(true);
+      triggerFunc(false, false);
+    }
   };
   const emailValidation = () => {
     setEmailValue(email.current.value);
-    if (!ValidateEmail(email.current.value)) {
+    if (!Validation.ValidateEmail(email.current.value)) {
       setEmailInputClasses("form-control shadow-none errorInput");
     } else {
       setEmailInputClasses("form-control shadow-none");
@@ -75,7 +53,7 @@ const LogInForm = ({ trigger, triggerFunc }) => {
   };
   const passwordValidation = () => {
     setPassValue(password.current.value);
-    if (!ValidatePassword(password.current.value)) {
+    if (!Validation.ValidatePassword(password.current.value)) {
       setPassInputClasses("form-control shadow-none errorInput");
     } else {
       setPassInputClasses("form-control shadow-none");

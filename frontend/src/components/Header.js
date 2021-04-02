@@ -1,9 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/stylesheets/Header.css";
-import brandIcon from "../../assets/images/logo.svg";
-import cartIcon from "../../assets/images/cart.svg";
-import searchIcon from "../../assets/images/search.svg";
+import "../assets/stylesheets/Header.css";
+import brandIcon from "../assets/images/logo.svg";
+import cartIcon from "../assets/images/cart.svg";
+import searchIcon from "../assets/images/search.svg";
 import { Link } from "react-router-dom";
 
 const Header = ({ triggerForms }) => {
@@ -13,7 +13,8 @@ const Header = ({ triggerForms }) => {
         <div class="d-none col-lg-4 d-lg-flex flex-row justify-content-center w-25">
           <div className="searchCon">
             <input type="text" />
-            <img src={searchIcon} />
+            {/* <img src={searchIcon} /> */}
+            <span className="icon-search"></span>
           </div>
         </div>
         <div class="d-none col-sm-6 col-lg-4 pb-2 d-sm-flex flex-row justify-content-center">

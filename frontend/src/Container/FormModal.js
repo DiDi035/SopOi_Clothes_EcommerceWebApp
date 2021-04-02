@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/stylesheets/FormModal.css";
+import "../assets/stylesheets/FormModal.css";
 
 const FormModal = ({ children, height }) => {
   return (

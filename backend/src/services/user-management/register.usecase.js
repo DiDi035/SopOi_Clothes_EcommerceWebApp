@@ -9,7 +9,8 @@ class Register {
   async execute(name, email, password, type) {
     const check1 = await this.userGateway.findByUsername(name);
     const check2 = await this.userGateway.findByEmail(email);
-    if (check2 || check1) return false;
+    if (check1) return { valid: false, mess: "name" };
+    if (check2) return { valid: false, mess: "email" };
     const entity = new User(
       null,
       name,
@@ -20,7 +21,7 @@ class Register {
     );
     const dbItem = await this.userMapper.toDatabase(entity);
     const user = await this.userGateway.insert(dbItem);
-    return this.userMapper.toEntity(user);
+    return { valid: true, data: this.userMapper.toEntity(user) };
   }
 }
 
