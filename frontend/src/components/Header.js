@@ -13,7 +13,6 @@ const Header = ({ triggerForms }) => {
         <div class="d-none col-lg-4 d-lg-flex flex-row justify-content-center w-25">
           <div className="searchCon">
             <input type="text" />
-            {/* <img src={searchIcon} /> */}
             <span className="icon-search"></span>
           </div>
         </div>
@@ -37,7 +36,7 @@ const Header = ({ triggerForms }) => {
             Log In
           </button>
           <button className=" cartBtn">
-            <img src={cartIcon} alt="" />
+            <span class="icon-cart"></span>
           </button>
         </div>
       </div>

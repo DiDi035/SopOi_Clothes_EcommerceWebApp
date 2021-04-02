@@ -64,9 +64,10 @@ button {
   background-color: white;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: "icomoon" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -80,10 +81,22 @@ button {
 }
 
 .icon-search:before {
-  content: "\e900";
+  content: "\1f32a";
   font-weight: bold;
   font-size: 22px;
   margin-top: 20px;
   opacity: 0.6;
 }
 
+.icon-cart:before {
+  content: "\1f32c";
+  font-size: 24px;
+}
+
+.icon-cart {
+  transition: ease 0.2s;
+}
+
+.icon-cart:hover {
+  color: var(--primary);
+}
