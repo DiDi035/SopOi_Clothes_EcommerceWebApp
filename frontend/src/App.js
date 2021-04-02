@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ListingScreen from "./screens/ListingScreen";
 import HeaderAndForm from "./screens/HeaderAndForms";
+import HomePage from "./screens/HomePage";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <HeaderAndForm />
       <Switch>
         <Route path="/" exact>
-          <ListingScreen />
+          <HomePage />
         </Route>
         <Route path="*"></Route>
       </Switch>

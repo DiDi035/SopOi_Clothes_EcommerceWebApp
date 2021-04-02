@@ -96,27 +96,27 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
           </button>
         </div>
         <div className="d-flex flex-row justify-content-center py-3">
-          <Text textDecoration="none" fontWeight="bold" fontSize="32px">
+          <Text textDecoration="none" fontWeight="bold" fontSize="32px" fontFam="Montserrat">
             Register
           </Text>
         </div>
         {validEmailReg ? null : (
           <div class="mb-3 d-flex flex-row justify-content-center">
-            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal">
+            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal" fontFam="Montserrat">
               This e-mail has been used for another account!
             </Text>
           </div>
         )}
         {validNameReg ? null : (
           <div class="mb-3 d-flex flex-row justify-content-center">
-            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal">
+            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal" fontFam="Montserrat">
               This name has been used for another account!
             </Text>
           </div>
         )}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text textDecoration="none" fontWeight="bold" fontSize="12px" fontFam="Montserrat">
               NAME
             </Text>
           </label>
@@ -133,7 +133,7 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text textDecoration="none" fontWeight="bold" fontSize="12px" fontFam="Montserrat">
               E-MAIL
             </Text>
           </label>
@@ -151,7 +151,7 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-5">
           <label for="exampleInputPassword1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text textDecoration="none" fontWeight="bold" fontSize="12px" fontFam="Montserrat">
               PASSWORD
             </Text>
           </label>
@@ -168,10 +168,10 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-4 d-flex flex-column align-items-center">
           <p className="mb-1">
-            <Text>By creating the account you agree to the</Text>
+            <Text fontFam="Montserrat">By creating the account you agree to the</Text>
           </p>
           <p>
-            <Text>
+            <Text fontFam="Montserrat">
               <Link linkTo="#">Terms of Service</Link> and{" "}
               <Link linkTo="#">Privacy Policy</Link>
             </Text>
@@ -179,14 +179,14 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div className="mt-2">
           <SubmitFormBtn disabled={disableBtn} onClick={handleSubmit}>
-            <Text textDecoration="none" fontWeight="bold" fontSize="16px">
+            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="16px">
               Register
             </Text>
           </SubmitFormBtn>
         </div>
         <div className="d-flex flex-row justify-content-center mt-5 pt-2">
           <p>
-            <Text>
+            <Text fontFam="Montserrat">
               Do you have an account?{" "}
               <Link underlined={true} linkTo="#">
                 Log In

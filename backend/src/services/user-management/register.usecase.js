@@ -8,8 +8,8 @@ class Register {
 
   async execute(name, email, password, type) {
     const check1 = await this.userGateway.findByUsername(name);
-    const check2 = await this.userGateway.findByEmail(email);
     if (check1) return { valid: false, mess: "name" };
+    const check2 = await this.userGateway.findByEmail(email);
     if (check2) return { valid: false, mess: "email" };
     const entity = new User(
       null,

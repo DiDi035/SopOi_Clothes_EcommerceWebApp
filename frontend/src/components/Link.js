@@ -6,8 +6,8 @@ import "../assets/colors/Colors.css";
 import Text from "./Text";
 
 const Link = ({ children, fontSize, linkTo, color, underlined }) => {
-  let Color = "#ffa15f";
-  let under = "underline";
+  // let Color = "#ffa15f";
+  // let under = "underline";
   if (color === "second") {
     Color = "#4d4d4d";
   }

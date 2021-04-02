@@ -38,7 +38,6 @@ const LogInForm = ({ trigger, triggerFunc }) => {
       userStore.dispatch(
         userActions.addCurUser({ ...res.data.curUser, token: res.data.token })
       );
-      console.log(userStore.getState());
       setValidLogin(true);
       triggerFunc(false, false);
     }
@@ -83,20 +82,24 @@ const LogInForm = ({ trigger, triggerFunc }) => {
           </button>
         </div>
         <div className="d-flex flex-row justify-content-center pb-2 mb-2">
-          <Text textDecoration="none" fontWeight="bold" fontSize="32px">
+          <Text
+            textDecoration="none"
+            fontWeight="bold"
+            fontSize="32px"
+            fontFam="Montserrat">
             Log In
           </Text>
         </div>
         {validLogin ? null : (
           <div class="mb-1 d-flex flex-row justify-content-center">
-            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal">
+            <Text fontFam="Montserrat" fontSize="12px" color={Colors.strawberry} fontWeight="normal">
               Your e-mail/password is invalid!
             </Text>
           </div>
         )}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="12px">
               E-MAIL
             </Text>
           </label>
@@ -114,7 +117,7 @@ const LogInForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="12px">
               PASSWORD
             </Text>
           </label>
@@ -133,7 +136,7 @@ const LogInForm = ({ trigger, triggerFunc }) => {
           <div className="ml-4">
             <input type="checkbox" className="form-check-input" />
             <label class="form-check-label" for="exampleCheck1">
-              <Text fontSize="14px" textDecoration="none" fontWeight="normal">
+              <Text fontFam="Montserrat" fontSize="14px" textDecoration="none" fontWeight="normal">
                 Remember password
               </Text>
             </label>
@@ -146,14 +149,14 @@ const LogInForm = ({ trigger, triggerFunc }) => {
         </div>
         <div className="mb-4">
           <SubmitFormBtn disabled={disableBtn} onClick={handleSubmit}>
-            <Text textDecoration="none" fontWeight="bold" fontSize="16px">
+            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="16px">
               Log In
             </Text>
           </SubmitFormBtn>
         </div>
         <div className="d-flex flex-row justify-content-center mt-5">
           <p>
-            <Text>
+            <Text fontFam="Montserrat">
               Don't have an account?{" "}
               <Link underlined={true} linkTo="#">
                 Register
