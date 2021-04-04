@@ -19,7 +19,7 @@ const Text = ({
         fontSize: fontSize,
         color: color,
         fontFamily: fontFam,
-      }}>
+      }} className="textPara">
       {children}
     </span>
   );

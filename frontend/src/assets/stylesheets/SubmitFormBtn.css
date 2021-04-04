@@ -17,3 +17,7 @@
 .submitFormBtn:hover {
   box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
 }
+
+.submitFormBtn:disabled:hover {
+  box-shadow: none;
+}

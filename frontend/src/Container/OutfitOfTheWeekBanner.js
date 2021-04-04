@@ -1,7 +1,7 @@
 import React from "react";
-import Text from "./Text";
+import Text from "../components/Text";
 import ootwImg from "../assets/images/outfitOfTheWeek.jpg";
-import SubmitFormBtn from "./SubmitFormBtn";
+import PrimaryButton from "../components/PrimaryButton";
 
 const OutfitOfTheWeekBanner = ({ img }) => {
   return (
@@ -22,11 +22,11 @@ const OutfitOfTheWeekBanner = ({ img }) => {
           marginTop: "310px",
           marginRight: "60px"
       }}>
-        <SubmitFormBtn width="180px" height="49px">
+        <PrimaryButton width="180px" height="49px">
           <Text fontFam="Montserrat" fontSize="16px" fontWeight="bold">
             Shop now
           </Text>
-        </SubmitFormBtn>
+        </PrimaryButton>
       </div>
     </div>
   );

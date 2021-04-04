@@ -4,6 +4,7 @@
 .link {
     color: var(--primary);
     text-underline-offset: 3px;
+    font-size: 14px;
 }
 
 .link:hover {

@@ -1,14 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
-import FormModal from "../Container/FormModal";
-import Text from "./Text";
-import SubmitFormBtn from "./SubmitFormBtn";
-import Link from "./Link";
+import FormModal from "../components/FormModal";
+import Text from "../components/Text";
+import PrimaryButton from "../components/PrimaryButton";
+import Link from "../components/Link";
 import "../assets/stylesheets/Forms.css";
 import "../assets/colors/Colors.css";
 import Colors from "../assets/colors/Colors";
 import crossLogo from "../assets/images/cross.svg";
-import userStore from "../stores/user";
-import * as userActions from "../actions/user";
 import Validation from "../utils/Validation";
 import Fetch from "../utils/Fetch";
 import * as Common from "../common/index";
@@ -35,9 +33,6 @@ const LogInForm = ({ trigger, triggerFunc }) => {
     if (!res.data.valid) {
       setValidLogin(false);
     } else {
-      userStore.dispatch(
-        userActions.addCurUser({ ...res.data.curUser, token: res.data.token })
-      );
       setValidLogin(true);
       triggerFunc(false, false);
     }
@@ -77,7 +72,8 @@ const LogInForm = ({ trigger, triggerFunc }) => {
           <button
             type="button"
             className="crossBtn"
-            onClick={() => triggerFunc(false, false)}>
+            onClick={() => triggerFunc(false, false)}
+          >
             <img src={crossLogo} />
           </button>
         </div>
@@ -86,20 +82,33 @@ const LogInForm = ({ trigger, triggerFunc }) => {
             textDecoration="none"
             fontWeight="bold"
             fontSize="32px"
-            fontFam="Montserrat">
+            fontFam="Montserrat"
+            color="black"
+          >
             Log In
           </Text>
         </div>
         {validLogin ? null : (
           <div class="mb-1 d-flex flex-row justify-content-center">
-            <Text fontFam="Montserrat" fontSize="12px" color={Colors.strawberry} fontWeight="normal">
+            <Text
+              fontFam="Montserrat"
+              fontSize="12px"
+              color={Colors.strawberry}
+              fontWeight="normal"
+            >
               Your e-mail/password is invalid!
             </Text>
           </div>
         )}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
-            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text
+              fontFam="Montserrat"
+              textDecoration="none"
+              fontWeight="bold"
+              fontSize="12px"
+              color="black"
+            >
               E-MAIL
             </Text>
           </label>
@@ -117,7 +126,13 @@ const LogInForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">
-            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="12px">
+            <Text
+              fontFam="Montserrat"
+              textDecoration="none"
+              fontWeight="bold"
+              fontSize="12px"
+              color="black"
+            >
               PASSWORD
             </Text>
           </label>
@@ -136,29 +151,38 @@ const LogInForm = ({ trigger, triggerFunc }) => {
           <div className="ml-4">
             <input type="checkbox" className="form-check-input" />
             <label class="form-check-label" for="exampleCheck1">
-              <Text fontFam="Montserrat" fontSize="14px" textDecoration="none" fontWeight="normal">
+              <Text
+                fontFam="Montserrat"
+                fontSize="14px"
+                textDecoration="none"
+                fontWeight="normal"
+                color={Colors["greyish-brown"]}
+              >
                 Remember password
               </Text>
             </label>
           </div>
           <div className="w-90 pl-4 ml-4">
-            <Link fontSize="14px" underlined={false} color="second" linkTo="#">
+            <Link
+              fontSize="14px"
+              underlined={false}
+              color={Colors["greyish-brown"]}
+              linkTo="#"
+            >
               Forgot your password?
             </Link>
           </div>
         </div>
         <div className="mb-4">
-          <SubmitFormBtn disabled={disableBtn} onClick={handleSubmit}>
-            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="16px">
-              Log In
-            </Text>
-          </SubmitFormBtn>
+          <PrimaryButton disabled={disableBtn} onClick={handleSubmit}>
+            Log In
+          </PrimaryButton>
         </div>
         <div className="d-flex flex-row justify-content-center mt-5">
           <p>
-            <Text fontFam="Montserrat">
+            <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
               Don't have an account?{" "}
-              <Link underlined={true} linkTo="#">
+              <Link underlined={true} linkTo="#" color={Colors.primary}>
                 Register
               </Link>
             </Text>

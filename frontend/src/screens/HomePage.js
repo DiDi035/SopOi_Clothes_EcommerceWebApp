@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/stylesheets/HomePage.css";
-import OutfitOfTheWeekBanner from "../components/OutfitOfTheWeekBanner";
-import BelowOOTW from "../components/BelowOOTW"
+import OutfitOfTheWeekBanner from "../Container/OutfitOfTheWeekBanner";
+import BelowOOTW from "../Container/BelowOOTW";
 const HomePage = () => {
   return (
     <div className="d-flex justify-content-center">

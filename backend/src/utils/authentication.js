@@ -19,6 +19,7 @@ module.exports = class Authentication {
     if (!token) return res.status(401).send("Acess denined");
     return jwt.verify(token, config.Server.SECRET_KEY, (err, decoded) => {
       if (err) return res.status(401).send("Invalid token");
+      req.curUser = decoded;
       return next();
     });
   }

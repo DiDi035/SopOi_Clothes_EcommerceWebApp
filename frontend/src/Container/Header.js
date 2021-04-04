@@ -12,7 +12,7 @@ const Header = ({ triggerForms }) => {
       <div className="container-fluid row navCoin">
         <div class="d-none col-lg-4 d-lg-flex flex-row justify-content-center w-25">
           <form method="POST" action="#" className="searchCon">
-            <input type="text" />
+            <input type="text" placeholder="Search" />
             <span className="icon-search"></span>
           </form>
         </div>

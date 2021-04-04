@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
-import FormModal from "../Container/FormModal";
-import Text from "./Text";
-import SubmitFormBtn from "./SubmitFormBtn";
-import Link from "./Link";
+import FormModal from "../components/FormModal";
+import Text from "../components/Text";
+import PrimaryButton from "../components/PrimaryButton";
+import Link from "../components/Link";
 import "../assets/stylesheets/Forms.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/colors/Colors.css";
@@ -91,32 +91,55 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
           <button
             type="button"
             className="crossBtn"
-            onClick={() => triggerFunc(false, false)}>
+            onClick={() => triggerFunc(false, false)}
+          >
             <img src={crossLogo} />
           </button>
         </div>
         <div className="d-flex flex-row justify-content-center py-3">
-          <Text textDecoration="none" fontWeight="bold" fontSize="32px" fontFam="Montserrat">
+          <Text
+            textDecoration="none"
+            fontWeight="bold"
+            fontSize="32px"
+            fontFam="Montserrat"
+            color="black"
+          >
             Register
           </Text>
         </div>
         {validEmailReg ? null : (
           <div class="mb-3 d-flex flex-row justify-content-center">
-            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal" fontFam="Montserrat">
+            <Text
+              fontSize="12px"
+              color={Colors.strawberry}
+              fontWeight="normal"
+              fontFam="Montserrat"
+            >
               This e-mail has been used for another account!
             </Text>
           </div>
         )}
         {validNameReg ? null : (
           <div class="mb-3 d-flex flex-row justify-content-center">
-            <Text fontSize="12px" color={Colors.strawberry} fontWeight="normal" fontFam="Montserrat">
+            <Text
+              fontSize="12px"
+              color={Colors.strawberry}
+              fontWeight="normal"
+              fontFam="Montserrat"
+            >
               This name has been used for another account!
             </Text>
           </div>
         )}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px" fontFam="Montserrat">
+            <Text
+              textDecoration="none"
+              fontWeight="bold"
+              fontSize="12px"
+              fontFam="Montserrat"
+              color="black"
+            >
               NAME
             </Text>
           </label>
@@ -133,7 +156,13 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px" fontFam="Montserrat">
+            <Text
+              textDecoration="none"
+              fontWeight="bold"
+              fontSize="12px"
+              fontFam="Montserrat"
+              color="black"
+            >
               E-MAIL
             </Text>
           </label>
@@ -151,7 +180,13 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-5">
           <label for="exampleInputPassword1" class="form-label">
-            <Text textDecoration="none" fontWeight="bold" fontSize="12px" fontFam="Montserrat">
+            <Text
+              textDecoration="none"
+              fontWeight="bold"
+              fontSize="12px"
+              fontFam="Montserrat"
+              color="black"
+            >
               PASSWORD
             </Text>
           </label>
@@ -168,27 +203,32 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
         </div>
         <div class="mb-4 d-flex flex-column align-items-center">
           <p className="mb-1">
-            <Text fontFam="Montserrat">By creating the account you agree to the</Text>
+            <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
+              By creating the account you agree to the
+            </Text>
           </p>
           <p>
-            <Text fontFam="Montserrat">
-              <Link linkTo="#">Terms of Service</Link> and{" "}
-              <Link linkTo="#">Privacy Policy</Link>
+            <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
+              <Link color={Colors.primary} linkTo="#">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link color={Colors.primary} linkTo="#">
+                Privacy Policy
+              </Link>
             </Text>
           </p>
         </div>
         <div className="mt-2">
-          <SubmitFormBtn disabled={disableBtn} onClick={handleSubmit}>
-            <Text fontFam="Montserrat" textDecoration="none" fontWeight="bold" fontSize="16px">
-              Register
-            </Text>
-          </SubmitFormBtn>
+          <PrimaryButton disabled={disableBtn} onClick={handleSubmit}>
+            Register
+          </PrimaryButton>
         </div>
         <div className="d-flex flex-row justify-content-center mt-5 pt-2">
           <p>
-            <Text fontFam="Montserrat">
+            <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
               Do you have an account?{" "}
-              <Link underlined={true} linkTo="#">
+              <Link underlined={true} linkTo="#" color={Colors.primary}>
                 Log In
               </Link>
             </Text>

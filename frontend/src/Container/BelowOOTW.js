@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/stylesheets/BelowOOTW.css";
-import Text from "./Text";
-import SubmitFormBtn from "./SubmitFormBtn";
+import Text from "../components/Text";
+import PrimaryButton from "../components/PrimaryButton";
 import itemImg1 from "../assets/images/homePg_item_1.jpg";
 import itemImg2 from "../assets/images/homePg_item_2.jpg";
 import itemImg3 from "../assets/images/homePg_item_3.jpg";
@@ -17,17 +17,17 @@ const Item = ({ imgUrl, text }) => {
       }}
       className="item d-flex flex-column justify-content-end align-items-lg-center">
       <div className="pb-0">
-        <Text fontFam="Domine" fontWeight="bold" color="white">
+        <Text fontFam="Domine" fontWeight="bold" fontSize="24px" color="white">
           {text}
         </Text>
       </div>
       <hr/>
       <div className="mb-4">
-        <SubmitFormBtn width="140px" height="40px">
+        <PrimaryButton width="140px" height="40px">
           <Text fontWeight="bold" fontSize="14px">
             Shop now
           </Text>
-        </SubmitFormBtn>
+        </PrimaryButton>
       </div>
     </div>
   );

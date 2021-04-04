@@ -5,12 +5,8 @@ import "../assets/stylesheets/Link.css";
 import "../assets/colors/Colors.css";
 import Text from "./Text";
 
-const Link = ({ children, fontSize, linkTo, color, underlined }) => {
-  // let Color = "#ffa15f";
-  // let under = "underline";
-  if (color === "second") {
-    Color = "#4d4d4d";
-  }
+const Link = ({ children, fontSize, linkTo, color, underlined, fontFam }) => {
+  let under = "underline";
   if (!underlined) {
     under = "none";
   }
@@ -19,10 +15,16 @@ const Link = ({ children, fontSize, linkTo, color, underlined }) => {
       href={linkTo}
       style={{
         fontSize: fontSize,
-        color: Color,
       }}
-      className="link">
-      <Text fontWeight="bold" fontSize={fontSize} textDecoration={under}>
+      className="link"
+    >
+      <Text
+        fontWeight="bold"
+        fontSize={fontSize}
+        textDecoration={under}
+        fontFam={fontFam}
+        color={color}
+      >
         {children}
       </Text>
     </a>

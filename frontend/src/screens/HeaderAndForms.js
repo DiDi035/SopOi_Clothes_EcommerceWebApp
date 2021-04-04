@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Header from "../components/Header";
-import LogInForm from "../components/LogInForm";
-import RegisterForm from "../components/RegisterForm";
+import Header from "../Container/Header";
+import LogInForm from "../Container/LogInForm";
+import RegisterForm from "../Container/RegisterForm";
 
 const HeaderAndForms = () => {
   const [triggerReg, setTriggerReg] = useState(false);

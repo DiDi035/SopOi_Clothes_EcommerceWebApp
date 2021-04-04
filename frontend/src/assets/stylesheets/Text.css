@@ -1,6 +1,10 @@
 @import "../fonts/Fonts.css";
 @import "../colors/Colors.css";
 
-/* .textPara {
+.textPara {
   font-family: Montserrat;
-} */
+  font-weight: normal;
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+}
