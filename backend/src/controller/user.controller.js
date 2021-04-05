@@ -14,11 +14,13 @@ class UserController {
     const result = await this.loginService.execute(email, password);
     try {
       if (!result.valid) throw new Error("Cant find this user");
-      res
-        .header("auth-token", result.token)
-        .send({ valid: result.valid, curUser: result.curUser });
+      res.send({
+        valid: result.valid,
+        curUser: result.curUser,
+        token: result.token,
+      });
     } catch (err) {
-      res.send({ valid: false, curUser: {} });
+      res.send({ valid: false, curUser: {}, token: "" });
     }
   }
 

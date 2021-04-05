@@ -9,8 +9,8 @@ import "../assets/colors/Colors.css";
 import Colors from "../assets/colors/Colors";
 import crossLogo from "../assets/images/cross.svg";
 import Validation from "../utils/Validation";
-import Fetch from "../utils/Fetch";
 import * as Common from "../common/index";
+import * as Fetch from "../utils/Fetch";
 
 const RegisterForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(

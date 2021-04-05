@@ -13,7 +13,7 @@ import Fetch from "../utils/Fetch";
 import * as Common from "../common/index";
 import * as UserTypes from "../states/user/type";
 import * as UserActions from "../states/user/action";
-import Store from "../states/store";
+import store from "../states/store";
 
 const LogInForm = (props) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
@@ -23,7 +23,6 @@ const LogInForm = (props) => {
     "form-control shadow-none"
   );
   const [disableBtn, setDisableBtn] = useState(true);
-  const [validLogin, setValidLogin] = useState(true);
   const [emailValue, setEmailValue] = useState("");
   const [passValue, setPassValue] = useState("");
   const email = useRef("");
@@ -31,11 +30,7 @@ const LogInForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await props.authenCurUser(emailValue, passValue);
-    console.log(Store.getState());
-    if (!props.curUserValid) {
-      setValidLogin(false);
-    } else {
-      setValidLogin(true);
+    if (props.validLogin) {
       props.triggerFunc(false, false);
     }
   };
@@ -90,7 +85,7 @@ const LogInForm = (props) => {
             Log In
           </Text>
         </div>
-        {validLogin ? null : (
+        {props.validLogin ? null : (
           <div class="mb-1 d-flex flex-row justify-content-center">
             <Text
               fontFam="Montserrat"
@@ -197,18 +192,20 @@ const LogInForm = (props) => {
   );
 };
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    curUserValid: state.user.curUser.valid,
-    curUser: state.user.curUser.data,
+    validLogin: state.user.validLogin,
+    curUser: state.user.curUser,
   };
 };
 
-const MapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    authenCurUser: async (email, password) =>
-      await dispatch(UserActions.authenCurUser(email, password)),
+    authenCurUser: async (email, password) => {
+      const action = await UserActions.authenCurUser(email, password);
+      return dispatch(action);
+    },
   };
 };
 
-export default connect(MapStateToProps, MapDispatchToProps)(LogInForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);
