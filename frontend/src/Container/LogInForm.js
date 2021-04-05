@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { connect } from "react-redux";
 import FormModal from "../components/FormModal";
 import Text from "../components/Text";
 import PrimaryButton from "../components/PrimaryButton";
@@ -13,7 +12,7 @@ import Fetch from "../utils/Fetch";
 import * as Common from "../common/index";
 import * as UserTypes from "../states/user/type";
 import * as UserActions from "../states/user/action";
-import store from "../states/store";
+import { useSelector, useDispatch } from "react-redux";
 
 const LogInForm = (props) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
@@ -27,10 +26,12 @@ const LogInForm = (props) => {
   const [passValue, setPassValue] = useState("");
   const email = useRef("");
   const password = useRef("");
-  const handleSubmit = async (e) => {
+  const validLogin = useSelector((state) => state.user.validLogin);
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await props.authenCurUser(emailValue, passValue);
-    if (props.validLogin) {
+    dispatch(UserActions.authenCurUser(emailValue, passValue));
+    if (validLogin) {
       props.triggerFunc(false, false);
     }
   };
@@ -85,7 +86,7 @@ const LogInForm = (props) => {
             Log In
           </Text>
         </div>
-        {props.validLogin ? null : (
+        {validLogin ? null : (
           <div class="mb-1 d-flex flex-row justify-content-center">
             <Text
               fontFam="Montserrat"
@@ -192,20 +193,4 @@ const LogInForm = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    validLogin: state.user.validLogin,
-    curUser: state.user.curUser,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authenCurUser: async (email, password) => {
-      const action = await UserActions.authenCurUser(email, password);
-      return dispatch(action);
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);
+export default LogInForm;

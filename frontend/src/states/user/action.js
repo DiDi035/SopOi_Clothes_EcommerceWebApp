@@ -21,10 +21,11 @@ export const authenCurUser = (email, password) => {
       email: email,
       password: password,
     });
-    if (res.data.valid)
-      dispatch(
-        addCuruserAction(res.data.curUser, res.data.valid, res.data.token)
-      );
-    else dispatch(loginFailed());
+    console.log(res);
+    if (res.data.valid) {
+      const token = res.headers["auth-token"];
+      console.log(token);
+      dispatch(addCuruserAction(res.data.curUser, res.data.valid, token));
+    } else dispatch(loginFailed());
   };
 };

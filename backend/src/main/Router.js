@@ -3,7 +3,7 @@ const cors = require("cors");
 
 module.exports = ({ userRouter, authentication, authRouter }) => {
   const router = express.Router();
-  router.use(cors());
+  router.use(cors({ exposedHeaders: "auth-token" }));
   router.use(express.json());
   router.use(express.urlencoded({ extended: true }));
   router.use("/auth", authRouter);
