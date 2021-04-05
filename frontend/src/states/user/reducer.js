@@ -1,9 +1,24 @@
-import * as types from "../types/user";
+import * as types from "./type";
+import ReduxUtils from "../utils";
 
-const userReducer = (state = {}, action) => {
+let initState = {
+  curUser: {
+    valid: false,
+    data: {},
+  },
+};
+
+const userReducer = (state = initState, action) => {
   switch (action.type) {
     case types.ADD_CUR_USER:
-      return { ...action.payload.user };
+      console.log("vo day roi na");
+      console.log(action);
+      return ReduxUtils.updateObject(state, {
+        curUser: {
+          valid: action.payload.curUser.valid,
+          data: action.payload.curUser.data,
+        },
+      });
       break;
     default:
       return state;

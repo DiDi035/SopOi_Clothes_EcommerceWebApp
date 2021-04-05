@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { connect } from "react-redux";
 import FormModal from "../components/FormModal";
 import Text from "../components/Text";
 import PrimaryButton from "../components/PrimaryButton";
@@ -10,8 +11,11 @@ import crossLogo from "../assets/images/cross.svg";
 import Validation from "../utils/Validation";
 import Fetch from "../utils/Fetch";
 import * as Common from "../common/index";
+import * as UserTypes from "../states/user/type";
+import * as UserActions from "../states/user/action";
+import Store from "../states/store";
 
-const LogInForm = ({ trigger, triggerFunc }) => {
+const LogInForm = (props) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
     "form-control shadow-none"
   );
@@ -26,15 +30,13 @@ const LogInForm = ({ trigger, triggerFunc }) => {
   const password = useRef("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await Fetch.post(`${Common.DOMAIN}${Common.PORT}/auth/login`, {
-      email: emailValue,
-      password: passValue,
-    });
-    if (!res.data.valid) {
+    await props.authenCurUser(emailValue, passValue);
+    console.log(Store.getState());
+    if (!props.curUserValid) {
       setValidLogin(false);
     } else {
       setValidLogin(true);
-      triggerFunc(false, false);
+      props.triggerFunc(false, false);
     }
   };
   const emailValidation = () => {
@@ -65,14 +67,14 @@ const LogInForm = ({ trigger, triggerFunc }) => {
       setDisableBtn(true);
     }
   }, [emailValue, passValue]);
-  return trigger ? (
+  return props.trigger ? (
     <FormModal height="568px">
       <form className="logForm" action="" method="GET">
         <div className="d-flex flex-row justify-content-end w-100">
           <button
             type="button"
             className="crossBtn"
-            onClick={() => triggerFunc(false, false)}
+            onClick={() => props.triggerFunc(false, false)}
           >
             <img src={crossLogo} />
           </button>
@@ -195,4 +197,18 @@ const LogInForm = ({ trigger, triggerFunc }) => {
   );
 };
 
-export default LogInForm;
+const MapStateToProps = (state) => {
+  return {
+    curUserValid: state.user.curUser.valid,
+    curUser: state.user.curUser.data,
+  };
+};
+
+const MapDispatchToProps = (dispatch) => {
+  return {
+    authenCurUser: async (email, password) =>
+      await dispatch(UserActions.authenCurUser(email, password)),
+  };
+};
+
+export default connect(MapStateToProps, MapDispatchToProps)(LogInForm);

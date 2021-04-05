@@ -16,7 +16,7 @@ class Login {
         curUser: user,
       };
     }
-    return { valid: false };
+    return { valid: false, curUser: {}, token: "" };
   }
 }
 

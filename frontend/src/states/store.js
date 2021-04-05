@@ -1,6 +1,15 @@
-import { createStore } from "redux";
-import userReducer from "../reducer/user";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import userReducer from "./user/reducer";
 
-const userStore = createStore(userReducer);
+const rootReducer = combineReducers({
+  user: userReducer,
+});
+
+const userStore = createStore(rootReducer, applyMiddleware(thunk));
+
+userStore.subscribe(() => {
+  console.log(`[SUBSCRIBE]: ${userStore.getState()}`);
+});
 
 export default userStore;
