@@ -27,12 +27,14 @@ const Header = ({ triggerForms }) => {
             data-bs-toggle="modal"
             data-bs-target="#formModal"
             type="button"
-            onClick={() => triggerForms(true, false)}>
+            onClick={() => triggerForms(true, false)}
+          >
             Register
           </button>
           <button
             onClick={() => triggerForms(false, true)}
-            className="mx-3 logBtn">
+            className="mx-3 logBtn"
+          >
             Log In
           </button>
           <button className=" cartBtn">

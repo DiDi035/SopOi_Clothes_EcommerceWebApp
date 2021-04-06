@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import FormModal from "../components/FormModal";
 import Text from "../components/Text";
 import PrimaryButton from "../components/PrimaryButton";
@@ -12,7 +12,8 @@ import Fetch from "../utils/Fetch";
 import * as Common from "../common/index";
 import * as UserTypes from "../states/user/type";
 import * as UserActions from "../states/user/action";
-import { useSelector, useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import store from "../states/store";
 
 const LogInForm = (props) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
@@ -24,16 +25,20 @@ const LogInForm = (props) => {
   const [disableBtn, setDisableBtn] = useState(true);
   const [emailValue, setEmailValue] = useState("");
   const [passValue, setPassValue] = useState("");
+  const [validLogin, setValidLogin] = useState(true);
   const email = useRef("");
   const password = useRef("");
-  const validLogin = useSelector((state) => state.user.validLogin);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(UserActions.authenCurUser(emailValue, passValue));
-    if (validLogin) {
-      props.triggerFunc(false, false);
-    }
+    dispatch(UserActions.authenCurUser(emailValue, passValue))
+      .then(() => {
+        setValidLogin(true);
+        props.triggerFunc(false, false);
+      })
+      .catch((err) => {
+        setValidLogin(false);
+      });
   };
   const emailValidation = () => {
     setEmailValue(email.current.value);
@@ -193,4 +198,17 @@ const LogInForm = (props) => {
   );
 };
 
-export default LogInForm;
+const mapStateToProps = (state) => {
+  return {
+    curUser: state.user.curUser,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authenUser: (email, password) =>
+      dispatch(UserActions.authenCurUser(email, password)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

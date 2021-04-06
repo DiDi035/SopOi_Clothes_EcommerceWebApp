@@ -9,23 +9,17 @@ export const addCuruserAction = (user, valid, token) => {
   };
 };
 
-export const loginFailed = () => {
-  return {
-    type: types.LOGIN_FAILED,
-  };
-};
-
 export const authenCurUser = (email, password) => {
-  return async (dispatch, getState) => {
-    const res = await Fetch.post(`${Common.DOMAIN}${Common.PORT}/auth/login`, {
+  return (dispatch) => {
+    return Fetch.post(`${Common.DOMAIN}${Common.PORT}/auth/login`, {
       email: email,
       password: password,
+    }).then((res) => {
+      if (res.data.valid) {
+        const token = res.headers["auth-token"];
+        console.log(token);
+        dispatch(addCuruserAction(res.data.curUser, res.data.valid, token));
+      } else throw new Error("invalid login");
     });
-    console.log(res);
-    if (res.data.valid) {
-      const token = res.headers["auth-token"];
-      console.log(token);
-      dispatch(addCuruserAction(res.data.curUser, res.data.valid, token));
-    } else dispatch(loginFailed());
   };
 };

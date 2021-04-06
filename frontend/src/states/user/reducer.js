@@ -2,7 +2,6 @@ import * as types from "./type";
 import ReduxUtils from "../utils";
 
 let initState = {
-  validLogin: true,
   curUser: {},
 };
 
@@ -15,9 +14,6 @@ const userReducer = (state = initState, action) => {
         validLogin: action.payload.valid,
         curUser: action.payload.curUser,
       });
-      break;
-    case types.LOGIN_FAILED:
-      return ReduxUtils.updateObject(state, { validLogin: false });
       break;
     default:
       return state;
