@@ -1,3 +1,68 @@
+@import url("../../assets/colors/Colors.css");
+@import url("../../assets/fonts/Fonts.css");
+
 .sidebar {
   height: 100%;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wrapper {
+  box-sizing: border-box;
+  width: 185px;
+}
+
+.cateList {
+  padding-top: 2rem;
+}
+
+.linebreak {
+  height: 0.1px;
+  background-color: var(--brown-grey);
+}
+
+.headerLinebreak {
+  width: 20px;
+}
+
+.listLinebreak {
+  width: 101px;
+}
+
+.filterBtn {
+  background: white;
+  text-align: left;
+  width: 180px;
+}
+
+.filterBtn:hover {
+  cursor: pointer;
+}
+
+.filterLinebreak {
+  width: 185px;
+  background-color: var(--pinkish-grey);
+}
+
+.icon-downArrow:before {
+  content: "\e903";
+}
+
+.icon-downArrow {
+  font-size: 24px;
+  opacity: 0.8;
 }

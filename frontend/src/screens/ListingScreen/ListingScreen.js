@@ -9,7 +9,7 @@ const ListingScreen = () => {
       <div className="col-3 d-flex flex-row justify-content-end pt-5">
         <StickySideBar />
       </div>
-      <div className="col-9">
+      <div className="col-9 pt-5">
         <ProductListing />
       </div>
     </div>

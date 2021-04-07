@@ -1,8 +1,16 @@
 import React from "react";
-import "./ProductListing.css"
+import "./ProductListing.css";
+
+const Item = () => {
+  
+}
 
 const ProductListing = () => {
-  return <div className="list">Product listing</div>;
+  return (
+    <div className="list">
+      
+    </div>
+  );
 };
 
 export default ProductListing;
