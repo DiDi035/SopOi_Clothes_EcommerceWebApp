@@ -100,3 +100,8 @@ button {
 .icon-cart:hover {
   color: var(--primary);
 }
+
+.downMenuCoin {
+  height: 43px;
+  border-bottom: 1px var(--greyish-two) solid;
+}

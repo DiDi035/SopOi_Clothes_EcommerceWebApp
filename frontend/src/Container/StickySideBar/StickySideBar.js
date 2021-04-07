@@ -2,22 +2,14 @@ import React from "react";
 import "./StickySideBar.css";
 import Text from "../../components/Text";
 import Link from "../../components/Link";
-import DownArrow from "../../assets/images/downArrow.svg";
+import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
+import { filters, categories } from "../../common/index";
 
 const StickySideBar = ({
+  typeCustomer = "Ladies",
   typeClothes = "Dresses",
   chosen = "Rompers / Jumpsuits",
 }) => {
-  const cate = [
-    "Rompers / Jumpsuits",
-    "Casual dresses",
-    "Going out dresses",
-    "Party / Ocassion dresses",
-    "Mini dresses",
-    "Maxi / Midi dresses",
-    "Sets",
-  ];
-  const filters = ["Size", "Color", "Brand", "Price", "Available"];
   return (
     <div className="sidebar d-flex flex-column">
       <div className="wrapper">
@@ -29,7 +21,7 @@ const StickySideBar = ({
             All {typeClothes.toLowerCase()}
           </Text>
           <hr className="linebreak headerLinebreak mt-2 ml-0 mb-0" />
-          {cate.map((item) => {
+          {categories[typeCustomer][typeClothes].map((item) => {
             let color = "greyish-brown";
             if (item === chosen) {
               color = "bright-orange";
@@ -54,15 +46,8 @@ const StickySideBar = ({
         </Text>
         <div className="cateList d-flex flex-column">
           {filters.map((item) => (
-            <div className="filterBtn row">
-              <div className="col-10">
-                <Text color="greyish-brown" fontWeight="normal" fontSize="14px">
-                  {item}
-                </Text>
-              </div>
-              <div className="col-2">
-                <span className="icon-downArrow"></span>
-              </div>
+            <div>
+              <DropdownMenuItem>{item}</DropdownMenuItem>
               <hr className="linebreak filterLinebreak mt-2" />
             </div>
           ))}

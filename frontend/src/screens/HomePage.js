@@ -5,7 +5,7 @@ import BelowOOTW from "../Container/BelowOOTW";
 const HomePage = () => {
   return (
     <div className="d-flex justify-content-center">
-      <div className="homePgCon mt-5">
+      <div className="homePgCon mt-3">
         <OutfitOfTheWeekBanner />
         <BelowOOTW />
       </div>
