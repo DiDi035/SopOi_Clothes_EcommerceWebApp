@@ -5,7 +5,15 @@ import "../assets/stylesheets/Link.css";
 import "../assets/colors/Colors.css";
 import Text from "./Text";
 
-const Link = ({ children, fontSize, linkTo, color, underlined, fontFam }) => {
+const Link = ({
+  children,
+  fontSize,
+  linkTo,
+  color,
+  underlined,
+  fontFam,
+  fontWeight,
+}) => {
   let under = "underline";
   if (!underlined) {
     under = "none";
@@ -24,6 +32,7 @@ const Link = ({ children, fontSize, linkTo, color, underlined, fontFam }) => {
         textDecoration={under}
         fontFam={fontFam}
         color={color}
+        fontWeight={fontWeight}
       >
         {children}
       </Text>

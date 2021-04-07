@@ -81,7 +81,7 @@ button {
 }
 
 .icon-search:before {
-  content: "\1f32a";
+  content: "\e902";
   font-weight: bold;
   font-size: 22px;
   margin-top: 20px;
@@ -89,7 +89,7 @@ button {
 }
 
 .icon-cart:before {
-  content: "\1f32c";
+  content: "\e900";
   font-size: 24px;
 }
 

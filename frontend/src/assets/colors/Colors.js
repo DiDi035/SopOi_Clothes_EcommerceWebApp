@@ -9,6 +9,10 @@ const Colors = {
   "white-four": "#d4d3d3",
   strawberry: "#f63f45",
   "white-six": "#eaeaea",
+  "dark-grey": "#202124",
+  "brown-grey": "#979797",
+  "bright-orange": "#ff6900",
+  "pinkish-grey": "#cccccc",
 };
 
 export default Colors;

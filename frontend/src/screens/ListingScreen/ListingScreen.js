@@ -5,11 +5,11 @@ import ProductListing from "../../Container/ProductListing/ProductListing";
 
 const ListingScreen = () => {
   return (
-    <div className="row Container">
-      <div className="col-3 bg-dark d-flex flex-row justify-content-end pt-5">
+    <div className="row">
+      <div className="col-3 d-flex flex-row justify-content-end pt-5">
         <StickySideBar />
       </div>
-      <div className="col-9">  
+      <div className="col-9">
         <ProductListing />
       </div>
     </div>

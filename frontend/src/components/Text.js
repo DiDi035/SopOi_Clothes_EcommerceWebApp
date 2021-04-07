@@ -2,6 +2,7 @@ import React from "react";
 
 import "../assets/fonts/Fonts.css";
 import "../assets/stylesheets/Text.css";
+import Colors from "../assets/colors/Colors";
 
 const Text = ({
   children,
@@ -17,9 +18,11 @@ const Text = ({
         fontWeight: fontWeight,
         textDecoration: textDecoration,
         fontSize: fontSize,
-        color: color,
+        color: Colors[color] || color,
         fontFamily: fontFam,
-      }} className="textPara">
+      }}
+      className="textPara"
+    >
       {children}
     </span>
   );
