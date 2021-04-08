@@ -29,11 +29,6 @@ const userReducer = (state = initState, action) => {
         isSuccess: false,
         error: action.payload.error,
       });
-    case types.ADD_CUR_USER:
-      return ReduxUtils.updateObject(state, {
-        validLogin: action.payload.valid,
-        curUser: action.payload.curUser,
-      });
       break;
     default:
       return state;

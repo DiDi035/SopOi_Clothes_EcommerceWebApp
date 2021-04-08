@@ -6,8 +6,9 @@ import itemImg1 from "../../assets/images/homePg_item_1.jpg";
 import itemImg2 from "../../assets/images/homePg_item_2.jpg";
 import itemImg3 from "../../assets/images/homePg_item_3.jpg";
 import itemImg4 from "../../assets/images/homePg_item_4.jpg";
+import { useHistory } from "react-router-dom";
 
-const Item = ({ imgUrl, text }) => {
+const Item = ({ imgUrl, text, onClick }) => {
   return (
     <div
       style={{
@@ -15,7 +16,7 @@ const Item = ({ imgUrl, text }) => {
         backgroundPositionY: "center",
         backgroundSize: "cover",
       }}
-      className="item d-flex flex-column justify-content-end align-items-lg-center"
+      className="item"
     >
       <div className="pb-0">
         <Text fontFam="Domine" fontWeight="bold" fontSize="24px" color="white">
@@ -24,7 +25,7 @@ const Item = ({ imgUrl, text }) => {
       </div>
       <hr />
       <div className="mb-4">
-        <PrimaryButton width="140px" height="40px">
+        <PrimaryButton onClick={onClick} width="140px" height="40px">
           <Text fontWeight="bold" fontSize="14px">
             Shop now
           </Text>
@@ -34,17 +35,15 @@ const Item = ({ imgUrl, text }) => {
   );
 };
 
-const BelowOOTW = () => {
+const BelowOOTW = (props) => {
+  const history = useHistory();
+  const handleLadies = () => {
+    history.push(`/Ladies/Dresses`);
+  };
   return (
-    <div
-      className="w-100 d-flex flex-row justify-content-between align-items-end"
-      style={{
-        height: "405px",
-        marginTop: "30px",
-      }}
-    >
+    <div className="con">
       <Item imgUrl={itemImg1} text="Men" />
-      <Item imgUrl={itemImg2} text="Ladies" />
+      <Item imgUrl={itemImg2} text="Ladies" onClick={handleLadies} />
       <Item imgUrl={itemImg3} text="Girls" />
       <Item imgUrl={itemImg4} text="Boys" />
     </div>

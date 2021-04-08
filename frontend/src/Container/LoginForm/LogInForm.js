@@ -8,14 +8,11 @@ import "../../assets/colors/Colors.css";
 import Colors from "../../assets/colors/Colors";
 import crossLogo from "../../assets/images/cross.svg";
 import Validation from "../../utils/Validation";
-import Fetch from "../../utils/Fetch";
-import * as Common from "../../common/index";
-import * as UserTypes from "../../states/user/type";
+import { useDispatch, useSelector } from "react-redux";
+import * as UserStates from "../../states/user/states";
 import * as UserActions from "../../states/user/action";
-import { connect, useDispatch, useSelector } from "react-redux";
-import store from "../../states/store";
 
-const LogInForm = ({ authenUser, ...props }) => {
+const LogInForm = ({ triggerFunc, trigger }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
     "form-control shadow-none"
   );
@@ -29,12 +26,12 @@ const LogInForm = ({ authenUser, ...props }) => {
   const email = useRef("");
   const password = useRef("");
   const dispatch = useDispatch();
-
-  const { isLoading, curUser, error, isSuccess } = props;
+  const isSuccess = useSelector(UserStates.getIsSuccess);
+  const error = useSelector(UserStates.getError);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    authenUser(emailValue, passValue);
+    dispatch(UserActions.authenCurUser(emailValue, passValue));
   };
   const emailValidation = () => {
     setEmailValue(email.current.value);
@@ -63,15 +60,16 @@ const LogInForm = ({ authenUser, ...props }) => {
     } else {
       setDisableBtn(true);
     }
-  }, [emailValue, passValue]);
-  return props.trigger ? (
+    if (isSuccess) triggerFunc(false, false);
+  }, [emailValue, passValue, isSuccess]);
+  return trigger ? (
     <FormModal height="568px">
       <form className="logForm" action="" method="GET">
         <div className="d-flex flex-row justify-content-end w-100">
           <button
             type="button"
             className="crossBtn"
-            onClick={() => props.triggerFunc(false, false)}
+            onClick={() => triggerFunc(false, false)}
           >
             <img src={crossLogo} />
           </button>
@@ -98,8 +96,6 @@ const LogInForm = ({ authenUser, ...props }) => {
               Your e-mail/password is invalid!
             </Text>
           </div>
-        ) : isSuccess ? (
-          props.triggerFunc(false, false)
         ) : null}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
@@ -196,19 +192,4 @@ const LogInForm = ({ authenUser, ...props }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    authenUser: (email, password) =>
-      dispatch(UserActions.authenCurUser(email, password)),
-  };
-};
-
-export const getCurrentUser = (state) => state.user.curUser;
-
-export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);
+export default LogInForm;

@@ -12,7 +12,7 @@ function App() {
         <Route path="/homepage" exact>
           <HomePage />
         </Route>
-        <Route path="/">
+        <Route path="/:typePer/:typeClothes">
           <ListingScreen />
         </Route>
       </Switch>

@@ -1,0 +1,23 @@
+.OOTWcon {
+  background-image: url("../../assets/images/outfitOfTheWeek.jpg");
+  height: "513px";
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-position-y: -170px;
+  background-size: cover;
+  background-position: center;
+}
+
+.btn {
+  margin-top: 310px;
+  margin-right: 60px;
+  margin-bottom: 20px;
+}
+
+@media all and (max-width: 1185px) {
+  .OOTWcon {
+    display: none;
+  }
+}
