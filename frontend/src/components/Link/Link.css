@@ -7,6 +7,10 @@
   font-size: 14px;
 }
 
-.link:hover {
+a:hover {
   text-decoration: none;
+}
+
+a:hover span {
+  color: var(--bright-orange) !important;
 }

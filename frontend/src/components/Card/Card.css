@@ -1,5 +1,44 @@
-.card {
-  width: 180px;
-  height: 269px;
-  background-color: yellow;
+@import url("../../assets/colors/Colors.css");
+
+.cardCon {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  align-content: center;
+  box-shadow: rgba(0, 0, 0, 0.8);
+}
+
+.proImg {
+  width: 100%;
+  height: 78%;
+  background-image: url("../../assets/images/listingItem.jpg");
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-direction: column-reverse;
+  position: relative;
+}
+
+.popup {
+  display: flex;
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  position: absolute;
+  background-color: var(--primary);
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.proImg:hover .popup {
+  margin-top: 221px;
+  height: 20%;
 }

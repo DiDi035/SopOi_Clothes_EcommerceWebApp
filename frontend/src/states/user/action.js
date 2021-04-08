@@ -10,16 +10,24 @@ export const addCuruserAction = (user, valid, token) => {
 };
 
 export const authenCurUser = (email, password) => {
-  return (dispatch) => {
-    return Fetch.post(`${Common.DOMAIN}${Common.PORT}/auth/login`, {
-      email: email,
-      password: password,
-    }).then((res) => {
-      if (res.data.valid) {
-        const token = res.headers["auth-token"];
-        console.log(token);
-        dispatch(addCuruserAction(res.data.curUser, res.data.valid, token));
-      } else throw new Error("invalid login");
-    });
+  return async (dispatch) => {
+    try {
+      dispatch({ type: "start_login" });
+      const res = await Fetch.post(
+        `${Common.DOMAIN}${Common.PORT}/auth/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
+      if (!res || !res.data || !res.data.valid) throw "Login INVALID";
+      const token = res.headers["auth-token"];
+      dispatch({
+        type: "login_success",
+        payload: { curUser: res.data.curUser, token: token },
+      });
+    } catch (error) {
+      dispatch({ type: "login_fail", payload: { error } });
+    }
   };
 };

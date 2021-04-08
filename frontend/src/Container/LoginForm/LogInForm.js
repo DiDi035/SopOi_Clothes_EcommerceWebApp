@@ -12,10 +12,10 @@ import Fetch from "../../utils/Fetch";
 import * as Common from "../../common/index";
 import * as UserTypes from "../../states/user/type";
 import * as UserActions from "../../states/user/action";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import store from "../../states/store";
 
-const LogInForm = (props) => {
+const LogInForm = ({ authenUser, ...props }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
     "form-control shadow-none"
   );
@@ -29,16 +29,12 @@ const LogInForm = (props) => {
   const email = useRef("");
   const password = useRef("");
   const dispatch = useDispatch();
+
+  const { isLoading, curUser, error, isSuccess } = props;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(UserActions.authenCurUser(emailValue, passValue))
-      .then(() => {
-        setValidLogin(true);
-        props.triggerFunc(false, false);
-      })
-      .catch((err) => {
-        setValidLogin(false);
-      });
+    authenUser(emailValue, passValue);
   };
   const emailValidation = () => {
     setEmailValue(email.current.value);
@@ -91,7 +87,7 @@ const LogInForm = (props) => {
             Log In
           </Text>
         </div>
-        {validLogin ? null : (
+        {!isSuccess && error ? (
           <div class="mb-1 d-flex flex-row justify-content-center">
             <Text
               fontFam="Montserrat"
@@ -102,7 +98,9 @@ const LogInForm = (props) => {
               Your e-mail/password is invalid!
             </Text>
           </div>
-        )}
+        ) : isSuccess ? (
+          props.triggerFunc(false, false)
+        ) : null}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
             <Text
@@ -200,7 +198,7 @@ const LogInForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    curUser: state.user.curUser,
+    ...state.user,
   };
 };
 
@@ -210,5 +208,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(UserActions.authenCurUser(email, password)),
   };
 };
+
+export const getCurrentUser = (state) => state.user.curUser;
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

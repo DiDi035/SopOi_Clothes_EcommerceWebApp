@@ -2,7 +2,7 @@ import React from "react";
 
 import "../../assets/fonts/Fonts.css";
 import "./Link.css";
-import "../../assets/colors/Colors.css";
+import Colors from "../../assets/colors/Colors";
 import Text from "../Text/Text";
 
 const Link = ({
@@ -13,19 +13,14 @@ const Link = ({
   underlined,
   fontFam,
   fontWeight,
+  pointerEvent = "none",
 }) => {
   let under = "underline";
   if (!underlined) {
     under = "none";
   }
   return (
-    <a
-      href={linkTo}
-      style={{
-        fontSize: fontSize,
-      }}
-      className="link"
-    >
+    <a style={{ pointerEvents: pointerEvent }} href={linkTo} className="link">
       <Text
         fontWeight="bold"
         fontSize={fontSize}

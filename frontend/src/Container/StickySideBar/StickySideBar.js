@@ -33,6 +33,7 @@ const StickySideBar = ({
                   fontSize="14px"
                   color={color}
                   linkTo="#"
+                  pointerEvent="visible"
                 >
                   {item}
                 </Link>
