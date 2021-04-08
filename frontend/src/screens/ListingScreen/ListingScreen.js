@@ -6,10 +6,10 @@ import ProductListing from "../../Container/ProductListing/ProductListing";
 const ListingScreen = () => {
   return (
     <div className="row">
-      <div className="col-3 d-flex flex-row justify-content-end mt-5">
+      <div className="col-3 d-flex flex-row justify-content-end">
         <StickySideBar />
       </div>
-      <div className="col-9 mt-5 proListCon">
+      <div className="col-9 proListCon">
         <ProductListing />
       </div>
     </div>

@@ -3,7 +3,7 @@
 
 .navCoin {
   height: 69px;
-  border-bottom: 1px var(--greyish-two) solid;
+  width: 100%;
 }
 
 input {
@@ -103,5 +103,10 @@ button {
 
 .downMenuCoin {
   height: 43px;
-  border-bottom: 1px var(--greyish-two) solid;
+  width: 100%;
+}
+
+.bottomBorder {
+  width: 100%;
+  border-bottom: 1px #ececec solid;
 }
