@@ -1,9 +1,9 @@
 import React from "react";
 
-import "../assets/fonts/Fonts.css";
-import "../assets/stylesheets/Link.css";
-import "../assets/colors/Colors.css";
-import Text from "./Text";
+import "../../assets/fonts/Fonts.css";
+import "./Link.css";
+import "../../assets/colors/Colors.css";
+import Text from "../Text/Text";
 
 const Link = ({
   children,

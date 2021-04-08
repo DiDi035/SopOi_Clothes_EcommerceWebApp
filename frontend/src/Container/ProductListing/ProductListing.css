@@ -1,3 +1,5 @@
-.list {
-    flex: 1;
+.listCon {
+  width: 87%;
+  height: 100%;
+  background-color: turquoise;
 }

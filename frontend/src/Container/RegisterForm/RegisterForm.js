@@ -1,16 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
-import FormModal from "../components/FormModal";
-import Text from "../components/Text";
-import PrimaryButton from "../components/PrimaryButton";
-import Link from "../components/Link";
-import "../assets/stylesheets/Forms.css";
+import FormModal from "../../components/FormModal/FormModal";
+import Text from "../../components/Text/Text";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import Link from "../../components/Link/Link";
+import "../../assets/stylesheets/Forms.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/colors/Colors.css";
-import Colors from "../assets/colors/Colors";
-import crossLogo from "../assets/images/cross.svg";
-import Validation from "../utils/Validation";
-import * as Common from "../common/index";
-import * as Fetch from "../utils/Fetch";
+import "../../assets/colors/Colors.css";
+import Colors from "../../assets/colors/Colors";
+import crossLogo from "../../assets/images/cross.svg";
+import Validation from "../../utils/Validation";
+import * as Common from "../../common/index";
+import * as Fetch from "../../utils/Fetch";
 
 const RegisterForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(

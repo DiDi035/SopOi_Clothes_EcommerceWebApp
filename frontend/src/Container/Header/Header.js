@@ -1,11 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../assets/stylesheets/Header.css";
-import brandIcon from "../assets/images/logo.svg";
-import cartIcon from "../assets/images/cart.svg";
-import searchIcon from "../assets/images/search.svg";
+import "./Header.css";
+import brandIcon from "../../assets/images/logo.svg";
+import cartIcon from "../../assets/images/cart.svg";
+import searchIcon from "../../assets/images/search.svg";
 import { Link } from "react-router-dom";
-import DropdownMenuItem from "./DropdownMenuItem/DropdownMenuItem";
+import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 
 const Header = ({ triggerForms }) => {
   return (

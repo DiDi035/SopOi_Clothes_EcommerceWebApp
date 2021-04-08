@@ -1,8 +1,8 @@
 import React from "react";
 
-import "../assets/fonts/Fonts.css";
-import "../assets/stylesheets/Text.css";
-import Colors from "../assets/colors/Colors";
+import "../../assets/fonts/Fonts.css";
+import "./Text.css";
+import Colors from "../../assets/colors/Colors";
 
 const Text = ({
   children,

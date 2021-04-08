@@ -1,6 +1,6 @@
 import React from "react";
-import Text from "./Text";
-import "../assets/stylesheets/SubmitFormBtn.css";
+import Text from "../Text/Text";
+import "./PrimaryButton.css";
 
 const SubmitFormBtn = ({
   children,

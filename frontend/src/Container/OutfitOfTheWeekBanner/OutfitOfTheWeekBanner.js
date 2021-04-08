@@ -1,7 +1,7 @@
 import React from "react";
-import Text from "../components/Text";
-import ootwImg from "../assets/images/outfitOfTheWeek.jpg";
-import PrimaryButton from "../components/PrimaryButton";
+import Text from "../../components/Text/Text";
+import ootwImg from "../../assets/images/outfitOfTheWeek.jpg";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 
 const OutfitOfTheWeekBanner = ({ img }) => {
   return (
@@ -12,16 +12,19 @@ const OutfitOfTheWeekBanner = ({ img }) => {
         backgroundSize: "cover",
         height: "513px",
       }}
-      className="w-100 d-flex flex-column align-items-end">
+      className="w-100 d-flex flex-column align-items-end"
+    >
       <div className="mr-5 mt-5">
         <Text fontFam="Domine" fontSize="48px" fontWeight="bold" color="white">
           OUTFIT OF THE WEEK
         </Text>
       </div>
-      <div style={{
+      <div
+        style={{
           marginTop: "310px",
-          marginRight: "60px"
-      }}>
+          marginRight: "60px",
+        }}
+      >
         <PrimaryButton width="180px" height="49px">
           <Text fontFam="Montserrat" fontSize="16px" fontWeight="bold">
             Shop now

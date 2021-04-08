@@ -1,6 +1,6 @@
 import React from "react";
-import Text from "../../components/Text";
-import Link from "../../components/Link";
+import Text from "../../components/Text/Text";
+import Link from "../../components/Link/Link";
 import "./DropdownMenuItem.css";
 
 const DropdownMenuItem = ({

@@ -1,19 +1,19 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import FormModal from "../components/FormModal";
-import Text from "../components/Text";
-import PrimaryButton from "../components/PrimaryButton";
-import Link from "../components/Link";
-import "../assets/stylesheets/Forms.css";
-import "../assets/colors/Colors.css";
-import Colors from "../assets/colors/Colors";
-import crossLogo from "../assets/images/cross.svg";
-import Validation from "../utils/Validation";
-import Fetch from "../utils/Fetch";
-import * as Common from "../common/index";
-import * as UserTypes from "../states/user/type";
-import * as UserActions from "../states/user/action";
+import FormModal from "../../components/FormModal/FormModal";
+import Text from "../../components/Text/Text";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import Link from "../../components/Link/Link";
+import "../../assets/stylesheets/Forms.css";
+import "../../assets/colors/Colors.css";
+import Colors from "../../assets/colors/Colors";
+import crossLogo from "../../assets/images/cross.svg";
+import Validation from "../../utils/Validation";
+import Fetch from "../../utils/Fetch";
+import * as Common from "../../common/index";
+import * as UserTypes from "../../states/user/type";
+import * as UserActions from "../../states/user/action";
 import { connect, useDispatch } from "react-redux";
-import store from "../states/store";
+import store from "../../states/store";
 
 const LogInForm = (props) => {
   const [emailInputClasses, setEmailInputClasses] = useState(

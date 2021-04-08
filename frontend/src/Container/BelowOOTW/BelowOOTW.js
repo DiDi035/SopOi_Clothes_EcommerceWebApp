@@ -1,11 +1,11 @@
 import React from "react";
-import "../assets/stylesheets/BelowOOTW.css";
-import Text from "../components/Text";
-import PrimaryButton from "../components/PrimaryButton";
-import itemImg1 from "../assets/images/homePg_item_1.jpg";
-import itemImg2 from "../assets/images/homePg_item_2.jpg";
-import itemImg3 from "../assets/images/homePg_item_3.jpg";
-import itemImg4 from "../assets/images/homePg_item_4.jpg";
+import "./BelowOOTW.css";
+import Text from "../../components/Text/Text";
+import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import itemImg1 from "../../assets/images/homePg_item_1.jpg";
+import itemImg2 from "../../assets/images/homePg_item_2.jpg";
+import itemImg3 from "../../assets/images/homePg_item_3.jpg";
+import itemImg4 from "../../assets/images/homePg_item_4.jpg";
 
 const Item = ({ imgUrl, text }) => {
   return (
@@ -15,13 +15,14 @@ const Item = ({ imgUrl, text }) => {
         backgroundPositionY: "center",
         backgroundSize: "cover",
       }}
-      className="item d-flex flex-column justify-content-end align-items-lg-center">
+      className="item d-flex flex-column justify-content-end align-items-lg-center"
+    >
       <div className="pb-0">
         <Text fontFam="Domine" fontWeight="bold" fontSize="24px" color="white">
           {text}
         </Text>
       </div>
-      <hr/>
+      <hr />
       <div className="mb-4">
         <PrimaryButton width="140px" height="40px">
           <Text fontWeight="bold" fontSize="14px">
@@ -40,7 +41,8 @@ const BelowOOTW = () => {
       style={{
         height: "405px",
         marginTop: "30px",
-      }}>
+      }}
+    >
       <Item imgUrl={itemImg1} text="Men" />
       <Item imgUrl={itemImg2} text="Ladies" />
       <Item imgUrl={itemImg3} text="Girls" />
