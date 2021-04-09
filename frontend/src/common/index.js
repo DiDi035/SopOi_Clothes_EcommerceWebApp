@@ -1,3 +1,5 @@
+import DropdownMenuItem from "../Container/DropdownMenuItem/DropdownMenuItem";
+
 export const AUTHEN_TOKEN = "auth-token";
 export const PORT = "4000";
 export const DOMAIN = "http://localhost:";
@@ -17,3 +19,11 @@ export const categories = {
 };
 
 export const filters = ["Size", "Color", "Brand", "Price", "Available"];
+
+export const SubMenuForLadies = ({ width }) => {
+  return (
+    <DropdownMenuItem width={width} haveIcon={false}>
+      Dresses
+    </DropdownMenuItem>
+  );
+};

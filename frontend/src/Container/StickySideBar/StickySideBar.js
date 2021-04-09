@@ -6,8 +6,8 @@ import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 import { filters, categories } from "../../common/index";
 
 const StickySideBar = ({
-  typeCustomer = "Ladies",
-  typeClothes = "Dresses",
+  typeCustomer,
+  typeClothes,
   chosen = "Rompers / Jumpsuits",
 }) => {
   return (
@@ -23,7 +23,7 @@ const StickySideBar = ({
           <hr className="linebreak headerLinebreak mt-2 ml-0 mb-0" />
           {categories[typeCustomer][typeClothes].map((item) => {
             let color = "greyish-brown";
-            if (item === chosen) {
+            if (item.replace("-", " / ") === chosen) {
               color = "bright-orange";
             }
             return (

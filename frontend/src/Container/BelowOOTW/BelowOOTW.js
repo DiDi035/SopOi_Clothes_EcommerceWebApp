@@ -38,7 +38,7 @@ const Item = ({ imgUrl, text, onClick }) => {
 const BelowOOTW = (props) => {
   const history = useHistory();
   const handleLadies = () => {
-    history.push(`/Ladies/Dresses`);
+    history.push(`/Ladies/Dresses/Rompers-Jumpsuits`);
   };
   return (
     <div className="con">

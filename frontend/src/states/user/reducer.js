@@ -11,19 +11,19 @@ let initState = {
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case "start_login":
+    case types.START_LOGIN:
       return ReduxUtils.updateObject(state, {
         isLoading: true,
         isSuccess: false,
       });
-    case "login_success":
+    case types.LOGIN_SUCCESS:
       return ReduxUtils.updateObject(state, {
         isLoading: false,
         isSuccess: true,
         curUser: action.payload.curUser,
         token: action.payload.token,
       });
-    case "login_fail":
+    case types.LOGIN_FAIL:
       return ReduxUtils.updateObject(state, {
         isLoading: false,
         isSuccess: false,

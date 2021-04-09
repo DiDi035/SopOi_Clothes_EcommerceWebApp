@@ -6,11 +6,15 @@ import Text from "../../components/Text/Text";
 import { useParams } from "react-router-dom";
 
 const ListingScreen = () => {
-  const { typePer, typeClothes } = useParams();
+  const { typePer, typeClothes, types } = useParams();
   return (
     <div className="row">
       <div className="col-3 d-flex flex-row justify-content-end sidebar">
-        <StickySideBar typeClothes={typeClothes} typeCustomer={typePer} />
+        <StickySideBar
+          typeClothes={typeClothes}
+          typeCustomer={typePer}
+          chosen={types}
+        />
       </div>
       <div className="col-9 proListCon">
         <div className="title">
@@ -18,7 +22,11 @@ const ListingScreen = () => {
             {`${typePer} / ${typeClothes}`}
           </Text>
         </div>
-        <ProductListing />
+        <ProductListing
+          typeClothes={typeClothes}
+          typeCustomer={typePer}
+          types={types}
+        />
       </div>
     </div>
   );

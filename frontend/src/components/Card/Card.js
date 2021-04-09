@@ -2,7 +2,7 @@ import React from "react";
 import Text from "../Text/Text";
 import "./Card.css";
 
-const Card = () => {
+const Card = ({ name, price }) => {
   return (
     <div className="cardCon">
       <div className="proImg">
@@ -14,12 +14,12 @@ const Card = () => {
       </div>
       <div>
         <Text fontSize="14px" color="dark-grey">
-          Collete Stretch Line
+          {name}
         </Text>
       </div>
       <div>
         <Text fontSize="12px" color="greyish-brown">
-          $69.00
+          {price}
         </Text>
       </div>
     </div>

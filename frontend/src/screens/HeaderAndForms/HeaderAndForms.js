@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Header from "../../Container/Header/Header";
 import LogInForm from "../../Container/LoginForm/LogInForm";
 import RegisterForm from "../../Container/RegisterForm/RegisterForm";
 
 const HeaderAndForms = () => {
   const [triggerReg, setTriggerReg] = useState(false);
-  const [triggerLog, setTriggerLog] = useState(false);
+  const [triggerLog, setTriggerLog] = useState(true);
   const handleTrigger = (triggerReg, triggerLog) => {
     setTriggerLog(triggerLog);
     setTriggerReg(triggerReg);

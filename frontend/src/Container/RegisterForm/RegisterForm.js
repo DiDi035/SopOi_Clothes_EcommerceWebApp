@@ -11,7 +11,6 @@ import crossLogo from "../../assets/images/cross.svg";
 import Validation from "../../utils/Validation";
 import * as Common from "../../common/index";
 import * as Fetch from "../../utils/Fetch";
-
 const RegisterForm = ({ trigger, triggerFunc }) => {
   const [emailInputClasses, setEmailInputClasses] = useState(
     "form-control shadow-none"

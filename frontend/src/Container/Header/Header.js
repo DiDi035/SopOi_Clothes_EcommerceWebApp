@@ -6,6 +6,7 @@ import cartIcon from "../../assets/images/cart.svg";
 import searchIcon from "../../assets/images/search.svg";
 import { Link } from "react-router-dom";
 import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
+import { SubMenuForLadies } from "../../common/index";
 
 const Header = ({ triggerForms }) => {
   return (
@@ -54,7 +55,12 @@ const Header = ({ triggerForms }) => {
               <DropdownMenuItem width="50px">Men</DropdownMenuItem>
             </div>
             <div className="px-3">
-              <DropdownMenuItem width="70px">Ladies</DropdownMenuItem>
+              <DropdownMenuItem
+                width="70px"
+                subMenu={<SubMenuForLadies width="70px" />}
+              >
+                Ladies
+              </DropdownMenuItem>
             </div>
             <div className="px-3">
               <DropdownMenuItem width="50px">Boys</DropdownMenuItem>

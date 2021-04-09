@@ -7,7 +7,8 @@ const FormModal = ({ children, height }) => {
     <div className="popupContainer">
       <div
         className="d-flex flex-column justify-content-center align-items-center formModalContainer"
-        style={{ height: height }}>
+        style={{ height: height }}
+      >
         {children}
       </div>
     </div>
