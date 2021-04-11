@@ -15,6 +15,7 @@ export const authenCurUser = (email, password) => {
       );
       if (!res || !res.data || !res.data.valid) throw "Login INVALID";
       const token = res.headers["auth-token"];
+      localStorage.setItem("auth-token", token);
       dispatch({
         type: types.LOGIN_SUCCESS,
         payload: { curUser: res.data.curUser, token: token },
@@ -22,5 +23,12 @@ export const authenCurUser = (email, password) => {
     } catch (error) {
       dispatch({ type: types.LOGIN_FAIL, payload: { error } });
     }
+  };
+};
+
+export const checkValidUser = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("auth-token");
+    if (!token) dispatch({ type: types.LOGOUT });
   };
 };

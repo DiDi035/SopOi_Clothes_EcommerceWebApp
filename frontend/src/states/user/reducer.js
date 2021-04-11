@@ -30,6 +30,13 @@ const userReducer = (state = initState, action) => {
         error: action.payload.error,
       });
       break;
+    case types.LOGOUT:
+      return ReduxUtils.updateObject(state, {
+        isSuccess: false,
+        isLoading: false,
+        curUser: {},
+        token: undefined,
+      });
     default:
       return state;
   }

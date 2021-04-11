@@ -6,7 +6,7 @@ import RegisterForm from "../../Container/RegisterForm/RegisterForm";
 
 const HeaderAndForms = () => {
   const [triggerReg, setTriggerReg] = useState(false);
-  const [triggerLog, setTriggerLog] = useState(true);
+  const [triggerLog, setTriggerLog] = useState(false);
   const handleTrigger = (triggerReg, triggerLog) => {
     setTriggerLog(triggerLog);
     setTriggerReg(triggerReg);

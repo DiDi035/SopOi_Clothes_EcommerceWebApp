@@ -3,7 +3,8 @@
 
 .popupContainer {
   display: block;
-  position: fixed;
+  position: absolute;
+  z-index: 99 !important;
   top: 0;
   left: 0;
   width: 100%;

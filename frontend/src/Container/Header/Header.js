@@ -7,8 +7,15 @@ import searchIcon from "../../assets/images/search.svg";
 import { Link } from "react-router-dom";
 import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 import { SubMenuForLadies } from "../../common/index";
+import { useSelector } from "react-redux";
+import * as UserStates from "../../states/user/states";
 
 const Header = ({ triggerForms }) => {
+  const handleOpenDropDown = () => {
+    setOpenDropdown((prev) => !prev);
+  };
+  const [openDropdown, setOpenDropdown] = React.useState(false);
+  const isLogin = useSelector(UserStates.getIsSuccess);
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -21,26 +28,41 @@ const Header = ({ triggerForms }) => {
               </form>
             </div>
             <div class="d-none col-sm-6 col-lg-4 pb-2 d-sm-flex flex-row justify-content-center">
-              <Link to="/">
+              <Link to="/homepage">
                 <img src={brandIcon} alt="" />
               </Link>
             </div>
             <div class="col-12 col-sm-6 col-lg-4 d-flex flex-row justify-content-center">
-              <button
-                className="regBtn"
-                data-bs-toggle="modal"
-                data-bs-target="#formModal"
-                type="button"
-                onClick={() => triggerForms(true, false)}
-              >
-                Register
-              </button>
-              <button
-                onClick={() => triggerForms(false, true)}
-                className="mx-3 logBtn"
-              >
-                Log In
-              </button>
+              {!isLogin && (
+                <button
+                  className="regBtn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#formModal"
+                  type="button"
+                  onClick={() => triggerForms(true, false)}
+                >
+                  Register
+                </button>
+              )}
+              {!isLogin && (
+                <button
+                  onClick={() => triggerForms(false, true)}
+                  className="mx-3 logBtn"
+                >
+                  Log In
+                </button>
+              )}
+              {isLogin && (
+                <div>
+                  <div className="ava" onClick={handleOpenDropDown}></div>
+                  {openDropdown && (
+                    <div className="dropdown">
+                      <div className="dowpdownItem">Account setting</div>
+                      <div className="dowpdownItem">Log out</div>
+                    </div>
+                  )}
+                </div>
+              )}
               <button className=" cartBtn">
                 <span class="icon-cart"></span>
               </button>

@@ -4,15 +4,24 @@ import ListingScreen from "./screens/ListingScreen/ListingScreen";
 import HeaderAndForm from "./screens/HeaderAndForms/HeaderAndForms";
 import HomePage from "./screens/HomePage/HomePage";
 import { PrivateRoute } from "./private-route/PrivateRoute";
+import { useDispatch } from "react-redux";
+import * as UserStates from "./states/user/states";
+import * as UserActions from "./states/user/action";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(UserActions.checkValidUser);
+  }, []);
   return (
     <Router>
       <HeaderAndForm />
       <Switch>
         <Route path="/homepage" exact={true} component={HomePage} />
-        <PrivateRoute
+        <Route
           path="/:typePer/:typeClothes/:types"
+          exact={true}
           component={ListingScreen}
         />
       </Switch>
