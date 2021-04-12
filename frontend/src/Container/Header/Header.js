@@ -7,13 +7,18 @@ import searchIcon from "../../assets/images/search.svg";
 import { Link } from "react-router-dom";
 import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 import { SubMenuForLadies } from "../../common/index";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as UserStates from "../../states/user/states";
+import * as UserActions from "../../states/user/action";
 
 const Header = ({ triggerForms }) => {
   const handleOpenDropDown = () => {
     setOpenDropdown((prev) => !prev);
   };
+  const logout = () => {
+    dispatch(UserActions.logout());
+  };
+  const dispatch = useDispatch();
   const [openDropdown, setOpenDropdown] = React.useState(false);
   const isLogin = useSelector(UserStates.getIsSuccess);
   return (
@@ -58,7 +63,9 @@ const Header = ({ triggerForms }) => {
                   {openDropdown && (
                     <div className="dropdown">
                       <div className="dowpdownItem">Account setting</div>
-                      <div className="dowpdownItem">Log out</div>
+                      <div onClick={logout} className="dowpdownItem">
+                        Log out
+                      </div>
                     </div>
                   )}
                 </div>

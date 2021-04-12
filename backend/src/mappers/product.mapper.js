@@ -1,4 +1,4 @@
-const Product = require("../../entities/product.entity");
+const Product = require("../entities/product.entity");
 
 module.exports = class ProductMapper {
   constructor() {}
@@ -10,10 +10,9 @@ module.exports = class ProductMapper {
         name,
         stock,
         price,
-        isOccupied,
-        typePerson,
-        typeClothes,
-        types,
+        active,
+        deleteAt,
+        typeCustomer,
         img,
       } = item;
       listOfEntities.push(
@@ -22,9 +21,9 @@ module.exports = class ProductMapper {
           name,
           stock,
           price,
-          typePerson,
-          typeClothes,
-          types,
+          active,
+          deleteAt,
+          typeCustomer,
           img
         )
       );

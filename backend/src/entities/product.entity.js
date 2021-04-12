@@ -1,23 +1,12 @@
 class Product {
-  constructor(
-    id,
-    name,
-    stock,
-    price,
-    isOccupied,
-    typePerson,
-    typeClothes,
-    type,
-    img
-  ) {
+  constructor(id, name, stock, price, active, deleteAt, typeCustomer, img) {
     this.id = id;
     this.name = name;
     this.stock = stock;
     this.price = price;
-    this.isOccupied = isOccupied;
-    this.typePerson = typePerson;
-    this.typeClothes = typeClothes;
-    this.type = type;
+    this.active = active;
+    this.delateAt = deleteAt;
+    this.typeCustomer = typeCustomer;
     this.img = img;
   }
 }

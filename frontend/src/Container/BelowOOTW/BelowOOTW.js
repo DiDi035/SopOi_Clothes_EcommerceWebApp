@@ -23,7 +23,7 @@ const Item = ({ imgUrl, text, onClick }) => {
           {text}
         </Text>
       </div>
-      <hr />
+      <hr className="break" />
       <div className="mb-4">
         <PrimaryButton onClick={onClick} width="140px" height="40px">
           <Text fontWeight="bold" fontSize="14px">
@@ -38,14 +38,23 @@ const Item = ({ imgUrl, text, onClick }) => {
 const BelowOOTW = (props) => {
   const history = useHistory();
   const handleLadies = () => {
-    history.push(`/Ladies/Dresses/Rompers-Jumpsuits`);
+    history.push(`/Ladies/Dresses`);
+  };
+  const handleBoys = () => {
+    history.push(`/Boys`);
+  };
+  const handleGirls = () => {
+    history.push(`/Girls`);
+  };
+  const handleMen = () => {
+    history.push(`/Men`);
   };
   return (
     <div className="con">
-      <Item imgUrl={itemImg1} text="Men" />
+      <Item imgUrl={itemImg1} text="Men" onClick={handleMen} />
       <Item imgUrl={itemImg2} text="Ladies" onClick={handleLadies} />
-      <Item imgUrl={itemImg3} text="Girls" />
-      <Item imgUrl={itemImg4} text="Boys" />
+      <Item imgUrl={itemImg3} text="Girls" onClick={handleGirls} />
+      <Item imgUrl={itemImg4} text="Boys" onClick={handleBoys} />
     </div>
   );
 };

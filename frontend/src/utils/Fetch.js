@@ -1,11 +1,9 @@
 import axios from "axios";
-import store from "../states/store";
-import { getToken } from "../states/user/states";
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
   // Do something before request is sent
-  const token = getToken(store.getState());
+  const token = localStorage.getItem("auth-token");
   if (token) config.headers["auth-token"] = token;
   return config;
 });

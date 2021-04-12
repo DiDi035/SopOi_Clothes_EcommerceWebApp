@@ -1,4 +1,4 @@
-const User = require("../../entities/user.entity");
+const User = require("../entities/user.entity");
 
 module.exports = class UserMapper {
   constructor({ passwordHasher }) {

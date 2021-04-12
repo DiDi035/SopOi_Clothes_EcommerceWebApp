@@ -8,7 +8,7 @@
   flex-wrap: wrap;
 }
 
-hr {
+.break {
   width: 215px;
   height: 0.1px;
   border: 1px var(--white-six) solid;

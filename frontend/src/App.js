@@ -12,15 +12,21 @@ import { useEffect } from "react";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(UserActions.checkValidUser);
-  }, []);
+    console.log("adasdasdasdas");
+    dispatch(UserActions.checkValidUser());
+  });
   return (
     <Router>
       <HeaderAndForm />
       <Switch>
         <Route path="/homepage" exact={true} component={HomePage} />
         <Route
-          path="/:typePer/:typeClothes/:types"
+          path="/:typeCustomer/:typeClothes/:types"
+          exact={true}
+          component={ListingScreen}
+        />
+        <Route
+          path="/:typeCustomer/:typeClothes"
           exact={true}
           component={ListingScreen}
         />

@@ -13,7 +13,7 @@ class Login {
       return {
         valid: true,
         token: this.authentication.sign(stringUser),
-        curUser: user,
+        userId: user.id,
       };
     }
     return { valid: false, curUser: {} };

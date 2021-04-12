@@ -18,11 +18,11 @@ const productSchema = mongoose.Schema({
     default: true,
   },
   deleteAt: {
-    type: String,
-    default: new Date().toString(),
+    type: Date,
   },
-  categoryId: {
-    type: mongoose.Types.ObjectId,
+  typeCustomer: {
+    type: String,
+    required: true,
   },
   img: {
     type: String,

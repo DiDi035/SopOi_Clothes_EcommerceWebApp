@@ -4,8 +4,7 @@ import ReduxUtils from "../utils";
 let initState = {
   isLoading: false,
   isSuccess: false,
-  curUser: {},
-  token: undefined,
+  userId: null,
   error: undefined,
 };
 
@@ -17,11 +16,11 @@ const userReducer = (state = initState, action) => {
         isSuccess: false,
       });
     case types.LOGIN_SUCCESS:
+      console.log(action.type);
       return ReduxUtils.updateObject(state, {
         isLoading: false,
         isSuccess: true,
-        curUser: action.payload.curUser,
-        token: action.payload.token,
+        userId: action.payload.userId,
       });
     case types.LOGIN_FAIL:
       return ReduxUtils.updateObject(state, {
@@ -31,11 +30,11 @@ const userReducer = (state = initState, action) => {
       });
       break;
     case types.LOGOUT:
+      console.log(action.type);
       return ReduxUtils.updateObject(state, {
         isSuccess: false,
         isLoading: false,
-        curUser: {},
-        token: undefined,
+        userId: null,
       });
     default:
       return state;

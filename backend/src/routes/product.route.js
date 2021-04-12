@@ -1,7 +1,7 @@
 const express = require("express");
 
-module.exports = ({ productController }) => {
+module.exports = ({ productController, authentication }) => {
   const router = express.Router();
-  router.post("/:typePerson/:typeClothes/:types", productController.get);
+  router.post("/:typeCustomer", authentication.verify, productController.get);
   return router;
 };

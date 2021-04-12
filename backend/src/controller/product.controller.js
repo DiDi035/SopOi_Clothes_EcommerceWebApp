@@ -6,13 +6,23 @@ class ProductController {
   }
 
   async get(req, res) {
-    const { typePerson, typeClothes, types } = req.params;
-    const result = await this.getProductService(typePerson, typeClothes, types);
+    const { typeCustomer } = req.params;
+    const result = await this.getProductService.execute(typeCustomer);
     try {
       if (!result) throw new Error("Product not found");
-      res.status(200).json({ data: result, valid: true, message: "success" });
+      res.status(200).json({
+        products: result.products,
+        categories: result.categories,
+        valid: true,
+        message: "success",
+      });
     } catch (err) {
-      res.status(400).json({ message: err.message, data: {}, valid: false });
+      res.status(400).json({
+        message: err.message,
+        products: null,
+        categories: null,
+        valid: false,
+      });
     }
   }
 }

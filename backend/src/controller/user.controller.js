@@ -16,10 +16,10 @@ class UserController {
       if (!result.valid) throw new Error("Cant find this user");
       res.header("auth-token", result.token).send({
         valid: result.valid,
-        curUser: result.curUser,
+        userId: result.userId,
       });
     } catch (err) {
-      res.send({ valid: false, curUser: {} });
+      res.send({ valid: false, userId: null });
     }
   }
 

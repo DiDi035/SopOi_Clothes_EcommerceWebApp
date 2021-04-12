@@ -2,12 +2,8 @@ class GetProducts {
   constructor({ productGateway }) {
     this.productGateway = productGateway;
   }
-  async execute(typePerson, typeClothes, type) {
-    const product = await this.productGateway.findByType(
-      typePerson,
-      typeClothes,
-      type
-    );
+  async execute(typeCustomer) {
+    const product = await this.productGateway.findByType(typeCustomer);
     return product ? product : null;
   }
 }

@@ -4,11 +4,15 @@ import ReduxUtils from "../utils";
 const initState = {
   isFetching: false,
   isFetchingSucces: false,
-  data: [],
+  data: {
+    products: [],
+    categories: [],
+  },
   fetchingError: undefined,
 };
 
 const productReducer = (state = initState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case ProductTypes.FETCH_PRODUCT_START:
       return ReduxUtils.updateObject(state, {
