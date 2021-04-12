@@ -9,6 +9,7 @@ const loginService = require("./services/user-management/login.usecase");
 const registerService = require("./services/user-management/register.usecase");
 const getUserService = require("./services/user-management/getUser.usecase");
 const getProductService = require("./services/product-management/getProducts.usecase");
+const getCategoriesService = require("./services/product-management/getCategories.usecase");
 // Routes
 const userRouter = require("./routes/user.route");
 const authRouter = require("./routes/auth.route");
@@ -45,6 +46,7 @@ container.register({
   registerService: awilix.asClass(registerService),
   getUserService: awilix.asClass(getUserService),
   getProductService: awilix.asClass(getProductService),
+  getCategoriesService: awilix.asClass(getCategoriesService),
 
   // routes
   userRouter: awilix.asFunction(userRouter),

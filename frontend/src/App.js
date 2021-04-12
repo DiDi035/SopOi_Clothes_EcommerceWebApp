@@ -7,13 +7,14 @@ import { PrivateRoute } from "./private-route/PrivateRoute";
 import { useDispatch } from "react-redux";
 import * as UserStates from "./states/user/states";
 import * as UserActions from "./states/user/action";
+import * as ProductActions from "./states/product/action";
 import { useEffect } from "react";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("adasdasdasdas");
     dispatch(UserActions.checkValidUser());
+    dispatch(ProductActions.fetchCategories());
   });
   return (
     <Router>

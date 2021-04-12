@@ -10,19 +10,19 @@ class ProductGateway {
 
   async findByType(typeCustomer) {
     try {
-      const products = await this.productModel.find({ typeCustomer });
+      let products = await this.productModel.find({ typeCustomer });
       if (products.length <= 0) throw "Product not found";
-      let categories = [];
-      for (let i = 0; i < products.length; ++i) {
-        const cate = await this.categoryModel.findOne({
-          productId: new mongoose.Types.ObjectId(products[i]._id),
-        });
-        if (cate) categories.push(cate);
-      }
-      return {
-        products: this.productMapper.toManyEntity(products),
-        categories: this.categoryMapper.toManyEntity(categories),
-      };
+      return this.productMapper.toManyEntity(products);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  async getAllCategories() {
+    try {
+      const categories = await this.categoryModel.find();
+      if (categories.length <= 0) throw new Error("categories not found");
+      return this.categoryMapper.toManyEntity(categories);
     } catch (err) {
       return null;
     }

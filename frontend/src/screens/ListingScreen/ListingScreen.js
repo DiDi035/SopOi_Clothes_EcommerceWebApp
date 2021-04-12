@@ -14,9 +14,10 @@ const ListingScreen = () => {
   const categories = useSelector(ProductStates.getCategories);
   const isFetching = useSelector(ProductStates.getIsFetching);
   const isFetchingSuccess = useSelector(ProductStates.getIsFetchingSuccess);
+  const page = useSelector(ProductStates.getPage);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(ProductActions.fetchData(typeCustomer));
+    dispatch(ProductActions.fetchProduct(typeCustomer, page));
   }, []);
   return (
     <div className="row">

@@ -3,10 +3,11 @@ import Text from "../Text/Text";
 import "./Card.css";
 
 const Card = ({ name, price }) => {
+  const handleItemClick = () => {};
   return (
     <div className="cardCon">
       <div className="proImg">
-        <div className="popup">
+        <div onClick={handleItemClick} className="popup">
           <Text color="white" fontSize="14px">
             + Quick shop
           </Text>

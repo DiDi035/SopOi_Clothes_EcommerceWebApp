@@ -41,4 +41,5 @@
 .proImg:hover .popup {
   margin-top: 221px;
   height: 20%;
+  cursor: pointer;
 }
