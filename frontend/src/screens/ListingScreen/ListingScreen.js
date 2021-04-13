@@ -17,7 +17,8 @@ const ListingScreen = () => {
   const page = useSelector(ProductStates.getPage);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(ProductActions.fetchProduct(typeCustomer, page));
+    if (types === undefined)
+      dispatch(ProductActions.fetchProduct(typeCustomer, page));
   }, []);
   return (
     <div className="row">
@@ -32,9 +33,7 @@ const ListingScreen = () => {
       )}
       {!isFetching && (
         <div className="col-9 proListCon">
-          <div className="title">{`${typeCustomer} ${
-            types == undefined ? "/ " + typeClothes : ""
-          }`}</div>
+          <div className="title">{`${typeCustomer} / ${typeClothes}`}</div>
           <ProductListing
             typeClothes={typeClothes}
             typeCustomer={typeCustomer}

@@ -4,10 +4,11 @@ import Text from "../../components/Text/Text";
 import Link from "../../components/Link/Link";
 import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 import { filters, categories } from "../../common/index";
+import { useHistory } from "react-router-dom";
 
-const MenuItems = ({ children, chosen }) => {
+const MenuItems = ({ children, chosen, onClick }) => {
   return (
-    <div className="mt-2 mb-3" key={new Date().toString()}>
+    <div className="mt-2 mb-3" onClick={onClick}>
       <Link
         fontWeight="normal"
         fontSize="14px"
@@ -22,6 +23,10 @@ const MenuItems = ({ children, chosen }) => {
 };
 
 const StickySideBar = ({ typeCustomer, typeClothes, types }) => {
+  const history = useHistory();
+  const handleOnLickCategory = (item) => {
+    history.push(`/${typeCustomer}/${typeClothes}/${item.replace(" ", ".")}`);
+  };
   return (
     <div className="sidebar d-flex flex-column">
       <div className="wrapper">
@@ -29,29 +34,31 @@ const StickySideBar = ({ typeCustomer, typeClothes, types }) => {
           Category
         </Text>
         <div className="cateList d-flex flex-column">
-          <Text fontSize="14px" color="dark-grey">
-            All {types != undefined ? typeClothes.toLowerCase() : null}
+          <Text fontSize="14px" color="bright-orange" fontWeight="normal">
+            All {typeClothes}
           </Text>
           <hr className="linebreak headerLinebreak mt-2 ml-0 mb-0" />
-          {types == undefined
-            ? Object.entries(categories[typeCustomer]).map((item) => {
-                return (
-                  <MenuItems chosen={item[0] == typeClothes}>
-                    {item[0]}
-                  </MenuItems>
-                );
-              })
-            : categories[typeCustomer][typeClothes].map((item) => {
-                return <MenuItems chosen={item == types}>{item}</MenuItems>;
-              })}
+          {categories[typeCustomer][typeClothes].map((item, index) => {
+            return (
+              <MenuItems
+                key={index}
+                onClick={() => handleOnLickCategory(item)}
+                chosen={
+                  types === undefined ? false : item == types.replace(".", " ")
+                }
+              >
+                {item.replace("-", " / ")}
+              </MenuItems>
+            );
+          })}
         </div>
         <hr className="linebreak listLinebreak ml-0 mt-4 mb-4" />
         <Text fontWeight="bold" fontSize="16px" color="dark-grey">
           Filter
         </Text>
         <div className="cateList d-flex flex-column">
-          {filters.map((item) => (
-            <div key={new Date().toString()}>
+          {filters.map((item, index) => (
+            <div key={index}>
               <DropdownMenuItem>{item}</DropdownMenuItem>
               <hr className="linebreak filterLinebreak mt-2" />
             </div>

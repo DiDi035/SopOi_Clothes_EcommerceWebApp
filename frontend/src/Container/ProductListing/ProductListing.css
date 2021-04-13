@@ -27,3 +27,11 @@
     flex: 0 1 100%;
   }
 }
+
+.sortCon {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 1.8%;
+  padding-bottom: 1%;
+}

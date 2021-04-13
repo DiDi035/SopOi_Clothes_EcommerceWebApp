@@ -1,0 +1,48 @@
+@import "../../assets/fonts/Fonts.css";
+@import "../../assets/colors/Colors.css";
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-downArrow:before {
+  content: "\e903";
+}
+
+.arrowLeft {
+  -webkit-transform: rotate(90deg);
+  display: inline-block;
+}
+
+.arrowRight {
+  -webkit-transform: rotate(270deg);
+  display: inline-block;
+}
+
+.icon-downArrow:hover {
+  background-color: var(--white-four);
+}
+
+.icon-downArrow {
+  transition: 0.2s ease;
+}
+
+.pageCon {
+  display: inline-block;
+  position: relative;
+  bottom: 5px;
+  width: 60px;
+  padding-left: 13%;
+}

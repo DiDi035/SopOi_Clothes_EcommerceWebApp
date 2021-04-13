@@ -2,12 +2,11 @@ import React from "react";
 import Text from "../Text/Text";
 import "./Card.css";
 
-const Card = ({ name, price }) => {
-  const handleItemClick = () => {};
+const Card = ({ name, price, onClick }) => {
   return (
     <div className="cardCon">
       <div className="proImg">
-        <div onClick={handleItemClick} className="popup">
+        <div onClick={onClick} className="popup">
           <Text color="white" fontSize="14px">
             + Quick shop
           </Text>
