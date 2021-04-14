@@ -27,6 +27,16 @@ class ProductGateway {
       return null;
     }
   }
+
+  async findManyById(ids) {
+    try {
+      let products = await this.productModel.find({ _id: { $in: ids } });
+      if (products.length <= 0) throw "Product not found";
+      return this.productMapper.toManyEntity(products);
+    } catch (err) {
+      return null;
+    }
+  }
 }
 
 module.exports = ProductGateway;

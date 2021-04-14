@@ -1,83 +1,108 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { sortMenuTitle } from "../../common/index";
 import Card from "../../components/Card/Card";
-import * as ProductStates from "../../states/product/states";
-import "./ProductListing.css";
-import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
-import Text from "../../components/Text/Text";
 import Pagination from "../../components/Pagination/Pagination";
+import Text from "../../components/Text/Text";
+import * as ProductStates from "../../states/product/states";
+import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
+import "./ProductListing.css";
+import * as ProductActions from "../../states/product/action";
+
+const sortMenu = () => {
+  return (
+    <div>
+      {sortMenuTitle.map((item) => {
+        return (
+          <DropdownMenuItem haveIcon={false} width="179px">
+            {item}
+          </DropdownMenuItem>
+        );
+      })}
+    </div>
+  );
+};
 
 const ProductListing = ({ typeCustomer, typeClothes, types }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const products = useSelector(ProductStates.getProducts);
   const categories = useSelector(ProductStates.getCategories);
   const curPage = useSelector(ProductStates.getPage);
+  const [page, setPage] = React.useState(0);
   const [sort, setSort] = React.useState("Popularity");
-  const [totalPage, setTotalPage] = React.useState(
-    Math.trunc(products.length / 15) || 0
-  );
+  const isFetching = useSelector(ProductStates.getIsFetching);
   const handleItemClick = (id) => {
     console.log(id);
   };
-  const filterProductByTypeClothes = () => {
-    let mMap = new Map();
-    for (let i = 0; i < categories.length; ++i) {
-      if (categories[i].name == types) mMap.set(categories[i].productId, 1);
+  React.useEffect(() => {
+    if (types === undefined)
+      dispatch(ProductActions.fetchProduct(typeCustomer, page, "types"));
+    else {
+      let ids = [];
+      for (let i = 0; i < categories.length; ++i) {
+        if (categories[i].name == types) ids.push(categories[i].productId);
+      }
+      dispatch(ProductActions.fetchProduct(ids, page, "ids"));
     }
-    const chosenProducts = products.filter(
-      (item) => mMap.get(item.id) !== undefined
-    );
-    if (chosenProducts.length <= 0) return null;
-    return chosenProducts.map((item) => {
-      return (
-        <div className="listItem" key={item.id}>
-          <Card
-            onClick={() => handleItemClick(item.id)}
-            name={item.name}
-            price={item.price}
-          />
-        </div>
-      );
-    });
-  };
+  }, [page, types]);
   return (
     <div>
       <div className="sortCon">
         <DropdownMenuItem
+          subMenu={sortMenu}
           borderColor="white-four"
           fontSize="12px"
           width="179px"
           backgroundColor="white-five"
           focusBold={false}
         >
-          Sort by:
+          Sort by
           <Text color="dark-grey" fontWeight="bold" fontSize="12px">
             {"  " + sort}
           </Text>
         </DropdownMenuItem>
-        <div style={{ marginLeft: "auto", marginRight: "14%" }}>
-          <Pagination totalPage={totalPage} currentPage={curPage} />
+        <div
+          style={{
+            marginLeft: "auto",
+            marginRight: "10%",
+            width: "12%",
+          }}
+        >
+          <Pagination
+            totalPage={Math.trunc(products.length / 15)}
+            currentPage={curPage}
+          />
         </div>
       </div>
-      <div className="listCon">
-        {types == undefined
-          ? products.map((item) => {
-              return (
-                <div className="listItem" key={item.id}>
-                  <Card
-                    onClick={() => handleItemClick(item.id)}
-                    name={item.name}
-                    price={item.price}
-                  />
-                </div>
-              );
-            })
-          : filterProductByTypeClothes()}
-      </div>
+      {!isFetching && (
+        <div className="listCon">
+          {products.map((item) => {
+            return (
+              <div className="listItem" key={item.id}>
+                <Card
+                  onClick={() => handleItemClick(item.id)}
+                  name={item.name}
+                  price={item.price}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
       <div className="sortCon">
-        <div style={{ marginLeft: "auto", marginRight: "14%" }}>
-          <Pagination currentPage={curPage} totalPage={totalPage} />
+        <div
+          style={{
+            marginLeft: "auto",
+            marginRight: "10%",
+            width: "12%",
+          }}
+        >
+          <Pagination
+            currentPage={curPage}
+            totalPage={Math.trunc(products.length / 15)}
+          />
         </div>
       </div>
     </div>

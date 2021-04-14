@@ -7,9 +7,10 @@ class ProductController {
   }
 
   async get(req, res) {
-    const { typeCustomer, page } = req.params;
+    const { page } = req.params;
+    const { data, condition } = req.body;
     const pageNum = parseInt(page) * 15;
-    const products = await this.getProductService.execute(typeCustomer);
+    const products = await this.getProductService.execute(data, condition);
     try {
       if (!products) throw new Error("Product not found");
       res.status(200).json({

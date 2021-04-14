@@ -37,3 +37,10 @@ export const SubMenuForLadies = ({ width }) => {
     </DropdownMenuItem>
   );
 };
+
+export const sortMenuTitle = [
+  "Popularity",
+  "Name A-Z",
+  "Price: lowest to highest",
+  "Price: highest to lowest",
+];

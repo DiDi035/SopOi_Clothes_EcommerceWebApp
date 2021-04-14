@@ -30,6 +30,7 @@ const productReducer = (state = initState, action) => {
         isFetching: false,
         isFetchingSucces: false,
         fetchingError: action.error,
+        products: [],
       });
     case ProductTypes.FETCH_CATEGORIES_SUCCESS:
       return ReduxUtils.updateObject(state, {
