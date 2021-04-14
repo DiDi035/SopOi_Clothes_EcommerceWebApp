@@ -33,6 +33,14 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
   const [page, setPage] = React.useState(0);
   const [sort, setSort] = React.useState("Popularity");
   const isFetching = useSelector(ProductStates.getIsFetching);
+  const handleIncPage = () => {
+    setPage((prev) =>
+      prev < Math.trunc(products.length / 15) ? prev + 1 : prev
+    );
+  };
+  const handleDecPage = () => {
+    setPage((prev) => (prev > 0 ? prev - 1 : prev));
+  };
   const handleItemClick = (id) => {
     console.log(id);
   };
@@ -71,6 +79,8 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
           }}
         >
           <Pagination
+            inc={handleIncPage}
+            dec={handleDecPage}
             totalPage={Math.trunc(products.length / 15)}
             currentPage={curPage}
           />
@@ -100,6 +110,8 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
           }}
         >
           <Pagination
+            inc={handleIncPage}
+            dec={handleDecPage}
             currentPage={curPage}
             totalPage={Math.trunc(products.length / 15)}
           />

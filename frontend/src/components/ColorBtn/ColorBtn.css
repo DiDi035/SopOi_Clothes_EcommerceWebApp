@@ -1,0 +1,10 @@
+.corloBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 2rem;
+}
+
+.corloBtn:hover {
+  border: 2px solid var(--primary);
+  cursor: pointer;
+}

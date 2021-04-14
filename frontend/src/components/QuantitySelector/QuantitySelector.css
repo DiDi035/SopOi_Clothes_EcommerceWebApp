@@ -1,0 +1,56 @@
+@import "../../assets/fonts/Fonts.css";
+@import "../../assets/colors/Colors.css";
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.quantitySelec {
+  width: 108px;
+  height: 42px;
+  border: 1px var(--white-four) solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon-minus:before {
+  content: "\e905";
+  font-size: 24px;
+}
+
+.icon-plus:before {
+  content: "\e906";
+  font-size: 24px;
+}
+
+.icon-plus {
+  transition: 0.2s ease;
+}
+
+.icon-minus {
+  transition: 0.2s ease;
+}
+
+.icon-plus:hover {
+  background-color: var(--white-four);
+  cursor: pointer;
+}
+
+.icon-minus:hover {
+  background-color: var(--white-four);
+  cursor: pointer;
+}

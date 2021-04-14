@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ListingScreen from "./screens/ListingScreen/ListingScreen";
 import HeaderAndForm from "./screens/HeaderAndForms/HeaderAndForms";
 import HomePage from "./screens/HomePage/HomePage";
+import ProductPage from "./screens/ProductPage/ProductPage";
 import { PrivateRoute } from "./private-route/PrivateRoute";
 import { useDispatch } from "react-redux";
 import * as UserStates from "./states/user/states";
@@ -30,6 +31,10 @@ function App() {
           path="/:typeCustomer/:typeClothes"
           exact={true}
           component={ListingScreen}
+        />
+        <Route
+          path="/:typeCustomer/:typeClothes/:types/:id"
+          component={ProductPage}
         />
       </Switch>
     </Router>

@@ -1,0 +1,150 @@
+@import "../../assets/fonts/Fonts.css";
+@import "../../assets/colors/Colors.css";
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.proCon {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.breadCon {
+  padding-left: 17%;
+  width: 100%;
+}
+
+.detailCon {
+  height: 532px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.picture {
+  flex: 0 1 45%;
+  display: flex;
+  flex-direction: row;
+}
+
+.filter {
+  flex: 0 1 50%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+  justify-content: space-around;
+}
+
+.filter > hr {
+  width: 80%;
+  height: 0.1px;
+  border: solid 0.2px var(--brown-grey);
+  margin-left: 0px;
+}
+
+.recomend {
+  flex: 0 1 5%;
+}
+
+.minorPicture {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.minorItem {
+  flex: 0 1 20%;
+  background-color: chartreuse;
+  width: 80px;
+  background-image: url("../../assets/images/homePg_item_1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mainPicture {
+  flex: 4;
+  background-image: url("../../assets/images/homePg_item_1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.recomendImg {
+  flex: 0 1 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recomendImgItem {
+  flex: 0 1 20%;
+  background-image: url("../../assets/images/homePg_item_2.jpg");
+  width: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.recomend {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recomendText {
+  flex: 0 1 15%;
+  margin-bottom: 10px;
+}
+
+.icon-star:before {
+  content: "\e904";
+}
+
+.icon-star {
+  color: var(--white-four);
+  transition: 0.2s ease;
+  position: relative;
+  top: 2px;
+}
+
+.icon-star:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+.sizeBtns {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5rem;
+}
+
+.colorBtns {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.5rem;
+}
+
+.quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.modelInfo {
+  display: flex;
+  flex-direction: column;
+}

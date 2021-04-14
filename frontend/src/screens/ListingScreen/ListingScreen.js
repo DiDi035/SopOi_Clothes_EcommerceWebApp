@@ -5,6 +5,7 @@ import ProductListing from "../../Container/ProductListing/ProductListing";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import * as ProductStates from "../../states/product/states";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 const ListingScreen = () => {
   const { typeCustomer, typeClothes, types } = useParams();
@@ -21,7 +22,7 @@ const ListingScreen = () => {
       }
       {
         <div className="col-9 proListCon">
-          <div className="title">{`${typeCustomer} / ${typeClothes}`}</div>
+          <Breadcrumb cumbs={[typeCustomer, typeClothes]} />
           <ProductListing
             typeClothes={typeClothes}
             typeCustomer={typeCustomer}

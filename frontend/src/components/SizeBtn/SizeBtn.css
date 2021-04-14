@@ -1,0 +1,18 @@
+.sizeBtn {
+  width: 40px;
+  height: 40px;
+  border: solid 1px var(--white-four);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 14px;
+  color: var(--dark-grey);
+  transition: 0.2s ease;
+}
+
+.sizeBtn:hover {
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
+}

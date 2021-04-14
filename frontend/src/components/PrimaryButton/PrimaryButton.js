@@ -10,11 +10,12 @@ const SubmitFormBtn = ({
   width,
   fontSize,
   color,
+  bgColor,
 }) => {
   let fontsize = fontSize || "16px";
   return (
     <button
-      style={{ height: height, width: width }}
+      style={{ height: height, width: width, backgroundColor: bgColor }}
       onClick={onClick}
       disabled={disabled}
       type="submit"
