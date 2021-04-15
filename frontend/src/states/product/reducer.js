@@ -3,7 +3,7 @@ import ReduxUtils from "../utils";
 
 const initState = {
   isFetching: false,
-  isFetchingSucces: false,
+  isFetchingSuccess: false,
   isFetchingCateSuccess: false,
   fetchingError: undefined,
   products: [],
@@ -12,17 +12,15 @@ const initState = {
 };
 
 const productReducer = (state = initState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case ProductTypes.FETCH_START:
       return ReduxUtils.updateObject(state, {
         isFetching: true,
-        isFetchingSucces: false,
       });
     case ProductTypes.FETCH_PRODUCT_SUCCES:
       return ReduxUtils.updateObject(state, {
         isFetching: false,
-        isFetchingSucces: true,
+        isFetchingSuccess: true,
         products: action.payload,
       });
     case ProductTypes.FETCH_FAIL:

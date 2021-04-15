@@ -42,7 +42,7 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
     setPage((prev) => (prev > 0 ? prev - 1 : prev));
   };
   const handleItemClick = (id) => {
-    console.log(id);
+    history.push(`/${typeCustomer}/${typeClothes}/${types}/${id}`);
   };
   React.useEffect(() => {
     if (types === undefined)

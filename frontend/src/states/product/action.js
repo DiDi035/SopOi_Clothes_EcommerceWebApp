@@ -11,7 +11,7 @@ export const fetchProduct = (data, page, condition) => {
         { data, condition }
       );
       if (!resp || !resp.data || !resp.data.valid) throw "data not found";
-      // console.log(resp);
+      console.log(resp);
       dispatch({
         type: ProductTypes.FETCH_PRODUCT_SUCCES,
         payload: resp.data.products,

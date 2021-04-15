@@ -35,7 +35,6 @@ export const logout = () => {
 
 export const checkValidUser = () => {
   return (dispatch) => {
-    console.log("vo roi ne");
     const token = localStorage.getItem("auth-token");
     console.log(token);
     if (!token) dispatch(logout());

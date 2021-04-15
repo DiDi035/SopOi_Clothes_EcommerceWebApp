@@ -34,6 +34,7 @@ function App() {
         />
         <Route
           path="/:typeCustomer/:typeClothes/:types/:id"
+          exact={true}
           component={ProductPage}
         />
       </Switch>

@@ -30,7 +30,6 @@ const userReducer = (state = initState, action) => {
       });
       break;
     case types.LOGOUT:
-      console.log(action.type);
       return ReduxUtils.updateObject(state, {
         isSuccess: false,
         isLoading: false,
