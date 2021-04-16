@@ -156,3 +156,76 @@ button {
   background-color: white;
   cursor: pointer;
 }
+
+.oval {
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  color: white;
+  background-color: var(--primary);
+  border-radius: 2rem;
+  position: absolute;
+  bottom: 60%;
+  left: 53%;
+}
+
+.cartDropdown {
+  position: absolute;
+  z-index: 100 !important;
+  width: 270px;
+  background-color: var(--white-five);
+  box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+  border: solid 0.5px var(--white-six);
+  top: 85%;
+  right: 47%;
+}
+
+.cartDowpdownItem {
+  width: 100%;
+  height: 77.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.cartItems:hover {
+  background-color: var(--white-six);
+}
+
+.cartImg {
+  height: 100%;
+  flex: 0 1 25%;
+  background-image: url("../../assets/images/homePg_item_4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.cartInfo {
+  padding-left: 0.5rem;
+  height: 100%;
+  flex: 0 1 75%;
+}
+
+.viewCart {
+  color: var(--primary);
+}
+
+.viewCart:hover {
+  color: var(--bright-orange);
+}
+
+.cartPrice {
+  flex: 0 1 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cartFilter {
+  flex: 0 1 70%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 1rem;
+}

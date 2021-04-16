@@ -50,7 +50,7 @@ const BelowOOTW = (props) => {
     history.push(`/Men`);
   };
   return (
-    <div className="con">
+    <div className="Con">
       <Item imgUrl={itemImg1} text="Men" onClick={handleMen} />
       <Item imgUrl={itemImg2} text="Ladies" onClick={handleLadies} />
       <Item imgUrl={itemImg3} text="Girls" onClick={handleGirls} />

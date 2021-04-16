@@ -66,10 +66,7 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
           backgroundColor="white-five"
           focusBold={false}
         >
-          Sort by
-          <Text color="dark-grey" fontWeight="bold" fontSize="12px">
-            {"  " + sort}
-          </Text>
+          Sort by asdas
         </DropdownMenuItem>
         <div
           style={{

@@ -1,0 +1,128 @@
+.con {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.minorCon {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.total {
+  flex: 0 1 30%;
+  padding-left: 1rem;
+}
+
+.list {
+  flex: 0 1 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.totalTable {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 330px;
+  height: 148px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.totalTableRow {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.totalTableRowLeft {
+  flex: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.totalTableRowRight {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.totalLineBreak {
+  width: 271px;
+  height: 0.5px;
+  background-color: var(--brown-grey);
+}
+
+.ListItem {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.Product {
+  flex: 0 1 40%;
+  display: flex;
+  flex-direction: row;
+}
+
+.ProductImg {
+  flex: 0 1 30%;
+  background-image: url("../../assets/images/listingItem.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ProductName {
+  flex: 0 1 70%;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productBtn {
+  display: flex;
+  flex-direction: row;
+}
+
+.productBtn > a {
+  color: var(--dark-grey);
+  margin-left: 1rem;
+}
+
+.productBtn > a:hover {
+  text-decoration: underline;
+}
+
+.Color {
+  flex: 0 1 10%;
+}
+
+.Size {
+  flex: 0 1 10%;
+}
+
+.Quantity {
+  flex: 0 1 20%;
+}
+
+.Amount {
+  flex: 0 1 20%;
+}

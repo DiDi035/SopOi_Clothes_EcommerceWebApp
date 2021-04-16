@@ -11,7 +11,7 @@
 }
 
 .submitFormBtn:disabled {
-  background-color: var(--white-four);
+  background-color: var(--white-four) !important;
 }
 
 .submitFormBtn:hover {
@@ -19,5 +19,5 @@
 }
 
 .submitFormBtn:disabled:hover {
-  box-shadow: none;
+  box-shadow: none !important;
 }

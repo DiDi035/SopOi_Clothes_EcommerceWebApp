@@ -10,6 +10,8 @@ import { SubMenuForLadies } from "../../common/index";
 import { useSelector, useDispatch } from "react-redux";
 import * as UserStates from "../../states/user/states";
 import * as UserActions from "../../states/user/action";
+import * as CartStates from "../../states/cart/states";
+import Text from "../../components/Text/Text";
 
 const Header = ({ triggerForms }) => {
   const handleOpenDropDown = () => {
@@ -18,9 +20,14 @@ const Header = ({ triggerForms }) => {
   const logout = () => {
     dispatch(UserActions.logout());
   };
+  const handleCartClick = () => {
+    setCartList((prev) => !prev);
+  };
   const dispatch = useDispatch();
   const [openDropdown, setOpenDropdown] = React.useState(false);
   const isLogin = useSelector(UserStates.getIsSuccess);
+  const cartItems = useSelector(CartStates.getItems);
+  const [cartList, setCartList] = React.useState(false);
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -70,9 +77,63 @@ const Header = ({ triggerForms }) => {
                   )}
                 </div>
               )}
-              <button className=" cartBtn">
+              <button className=" cartBtn" onClick={handleCartClick}>
                 <span class="icon-cart"></span>
+                {cartItems.length > 0 && (
+                  <div className="oval">{cartItems.length}</div>
+                )}
               </button>
+              {cartList && (
+                <div className="cartDropdown">
+                  {cartItems.map((item) => {
+                    return (
+                      <div className="cartDowpdownItem cartItems">
+                        <div className="cartImg"></div>
+                        <div className="cartInfo">
+                          <Text
+                            color="greyish-brown"
+                            fontWeight="bold"
+                            fontSize="14px"
+                          >
+                            {item.name}
+                          </Text>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              paddingTop: "1rem",
+                            }}
+                          >
+                            <div className="cartPrice">
+                              <Text
+                                fontSize="12px"
+                                fontWeight="normal"
+                                color="greyish-brown"
+                              >
+                                ${item.price}
+                              </Text>
+                            </div>
+                            <div className="cartFilter">
+                              <Text
+                                fontSize="12px"
+                                fontWeight="normal"
+                                color="greyish-brown"
+                              >
+                                {item.size} . {item.quantity} pcs
+                              </Text>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="cartDowpdownItem">
+                    <Link to="/cart" className="viewCart">
+                      View cart
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

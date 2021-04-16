@@ -11,9 +11,12 @@ export const RemoveFromCart = (id) => {
   return { type: CartTypes.REMOVE_FROM_CART, payload: id };
 };
 
-export const UpdateCart = (id, data) => {
+export const UpdateCart = (id, data, index) => {
   return {
     type: CartTypes.UPDATE_CART,
-    payload: { ...data, id: id },
+    payload: {
+      update: { ...data, id: id },
+      index: index,
+    },
   };
 };
