@@ -19,7 +19,7 @@ const Card = ({ name, price, onClick }) => {
       </div>
       <div>
         <Text fontSize="12px" color="greyish-brown">
-          {price}
+          ${price}
         </Text>
       </div>
     </div>

@@ -9,6 +9,7 @@ const initState = {
   products: [],
   categories: [],
   page: 0,
+  totalPage: 0,
 };
 
 const productReducer = (state = initState, action) => {
@@ -21,7 +22,8 @@ const productReducer = (state = initState, action) => {
       return ReduxUtils.updateObject(state, {
         isFetching: false,
         isFetchingSuccess: true,
-        products: action.payload,
+        products: action.payload.products,
+        totalPage: action.payload.totalPage,
       });
     case ProductTypes.FETCH_FAIL:
       return ReduxUtils.updateObject(state, {
@@ -29,6 +31,7 @@ const productReducer = (state = initState, action) => {
         isFetchingSucces: false,
         fetchingError: action.error,
         products: [],
+        totalPage: 0,
       });
     case ProductTypes.FETCH_CATEGORIES_SUCCESS:
       return ReduxUtils.updateObject(state, {

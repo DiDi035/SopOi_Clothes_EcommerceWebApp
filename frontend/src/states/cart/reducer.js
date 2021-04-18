@@ -21,9 +21,8 @@ const cartReducer = (state = initState, action) => {
       });
     }
     case CartTypes.UPDATE_CART: {
-      const { id } = action.payload;
       let newItems = [...state.items];
-      newItems[action.payload.index] = action.payload.update;
+      newItems[action.payload.index].quantity += action.payload.update;
       return ReduxUtils.updateObject(state, {
         items: newItems,
       });

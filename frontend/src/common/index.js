@@ -44,3 +44,5 @@ export const sortMenuTitle = [
   "Price: lowest to highest",
   "Price: highest to lowest",
 ];
+
+export const PAGE_LIMIT = 15;

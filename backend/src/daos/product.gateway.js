@@ -8,11 +8,20 @@ class ProductGateway {
     this.categoryMapper = categoryMapper;
   }
 
-  async findByType(typeCustomer) {
+  async findByType(typeCustomer, startPoint, limit) {
     try {
-      let products = await this.productModel.find({ typeCustomer });
+      console.log(startPoint, limit);
+      let products = await this.productModel
+        .find({ typeCustomer })
+        .skip(startPoint)
+        .limit(limit);
+      let total = await this.productModel.count({ typeCustomer });
       if (products.length <= 0) throw "Product not found";
-      return this.productMapper.toManyEntity(products);
+
+      return {
+        products: this.productMapper.toManyEntity(products),
+        total: total,
+      };
     } catch (err) {
       return null;
     }
@@ -28,11 +37,18 @@ class ProductGateway {
     }
   }
 
-  async findManyById(ids) {
+  async findManyById(ids, startPoint, limit) {
     try {
-      let products = await this.productModel.find({ _id: { $in: ids } });
+      let products = await this.productModel
+        .find({ _id: { $in: ids } })
+        .limit(limit)
+        .skip(startPoint);
+      let total = await this.productModel.count({ _id: { $in: ids } });
       if (products.length <= 0) throw "Product not found";
-      return this.productMapper.toManyEntity(products);
+      return {
+        products: this.productMapper.toManyEntity(products),
+        total: total,
+      };
     } catch (err) {
       return null;
     }

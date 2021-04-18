@@ -85,9 +85,9 @@ const Header = ({ triggerForms }) => {
               </button>
               {cartList && (
                 <div className="cartDropdown">
-                  {cartItems.map((item) => {
+                  {cartItems.map((item, i) => {
                     return (
-                      <div className="cartDowpdownItem cartItems">
+                      <div key={i} className="cartDowpdownItem cartItems">
                         <div className="cartImg"></div>
                         <div className="cartInfo">
                           <Text

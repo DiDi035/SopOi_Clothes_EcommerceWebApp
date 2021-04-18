@@ -2,18 +2,22 @@ class GetProducts {
   constructor({ productGateway }) {
     this.productGateway = productGateway;
   }
-  async execute(data, condition) {
-    let product;
+  async execute(data, condition, startPoint, limit) {
+    let result;
     switch (condition) {
       case "types":
-        product = await this.productGateway.findByType(data);
+        result = await this.productGateway.findByType(data, startPoint, limit);
         break;
       case "ids":
-        product = await this.productGateway.findManyById(data);
+        result = await this.productGateway.findManyById(
+          data,
+          startPoint,
+          limit
+        );
         break;
       default:
     }
-    return product ? product : null;
+    return result ? result : null;
   }
 }
 

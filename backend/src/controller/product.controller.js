@@ -7,22 +7,31 @@ class ProductController {
   }
 
   async get(req, res) {
-    const { page } = req.params;
-    const { data, condition } = req.body;
-    const pageNum = parseInt(page) * 15;
-    const products = await this.getProductService.execute(data, condition);
+    const { condition } = req.params;
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+    const { data } = req.body;
+    const startPoint = parseInt(page) * 15;
+    const result = await this.getProductService.execute(
+      data,
+      condition,
+      startPoint,
+      limit
+    );
     try {
-      if (!products) throw new Error("Product not found");
+      if (!result) throw new Error("Product not found");
       res.status(200).json({
-        products: products.slice(pageNum, pageNum + 15),
+        products: result.products,
         valid: true,
         message: "success",
+        total: result.total,
       });
     } catch (err) {
       res.status(400).json({
         message: err.message,
         products: null,
         valid: false,
+        total: 0,
       });
     }
   }

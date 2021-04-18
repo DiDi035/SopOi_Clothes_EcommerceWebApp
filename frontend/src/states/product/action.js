@@ -7,14 +7,17 @@ export const fetchProduct = (data, page, condition) => {
     try {
       dispatch({ type: ProductTypes.FETCH_START });
       const resp = await Fetch.post(
-        `${Common.DOMAIN}${Common.PORT}/product/${page}`,
-        { data, condition }
+        `${Common.DOMAIN}${Common.PORT}/product/${condition}?page=${page}&limit=${Common.PAGE_LIMIT}`,
+        { data }
       );
       if (!resp || !resp.data || !resp.data.valid) throw "data not found";
-      console.log(resp);
+      // console.log(resp);
       dispatch({
         type: ProductTypes.FETCH_PRODUCT_SUCCES,
-        payload: resp.data.products,
+        payload: {
+          products: resp.data.products,
+          totalPage: resp.data.total,
+        },
       });
     } catch (error) {
       dispatch({ type: ProductTypes.FETCH_FAIL, error });

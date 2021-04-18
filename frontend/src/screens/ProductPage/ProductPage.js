@@ -43,60 +43,33 @@ const ProductPage = ({}) => {
     setQuantity((prev) => (prev > 0 ? prev - 1 : prev));
   };
   const handleAddToCart = () => {
-    let check = true;
     for (let i = 0; i < cartItems.length; ++i) {
-      if (cartItems[i].id == products[0].id) {
-        check = false;
-        break;
+      if (
+        cartItems[i].id == id &&
+        cartItems[i].color == color &&
+        cartItems[i].size == size
+      ) {
+        dispatch(CartActions.UpdateCart(quantity, i));
+        return;
       }
     }
-    if (check)
-      dispatch(
-        CartActions.AddToCart(id, {
-          color,
-          size,
-          quantity,
-          name: products[0].name,
-          price: products[0].price,
-          typeCustomer: typeCustomer,
-          typeClothes: typeClothes,
-          types: types,
-        })
-      );
+    dispatch(
+      CartActions.AddToCart(id, {
+        color,
+        size,
+        quantity,
+        name: products[0].name,
+        price: products[0].price,
+        typeCustomer: typeCustomer,
+        typeClothes: typeClothes,
+        types: types,
+      })
+    );
   };
   React.useEffect(() => {
     if (firstTimeFetch) {
       dispatch(ProductActions.fetchProduct(id, 0, "ids"));
       setFirstTimeFetch(false);
-    }
-    if (!isFetching && isFetchingSuccess && cartItems.length > 0) {
-      for (let i = 0; i < cartItems.length; ++i) {
-        if (cartItems[i].id === id) {
-          dispatch(
-            CartActions.UpdateCart(
-              id,
-              {
-                color,
-                size,
-                quantity,
-                name: products[0].name,
-                price: products[0].price,
-                typeCustomer: typeCustomer,
-                typeClothes: typeClothes,
-                types: types,
-              },
-              i
-            )
-          );
-          if (firstTimeUpdate) {
-            setColor(cartItems[i].color);
-            setSize(cartItems[i].size);
-            setQuantity(cartItems[i].quantity);
-            setFirstTimeUpdate(false);
-            break;
-          }
-        }
-      }
     }
     if (color != "" && size != "" && quantity > 0) setDisable(false);
     else setDisable(true);
