@@ -6,3 +6,5 @@ export const getError = (state) => state.product.error;
 export const isFetchingCateSuccess = (state) =>
   state.product.isFetchingCateSuccess;
 export const getPage = (state) => state.product.page;
+export const getIsFetchingFilterSuccess = (state) =>
+  state.product.isFetchingFilterSuccess;

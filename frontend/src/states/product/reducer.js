@@ -5,9 +5,11 @@ const initState = {
   isFetching: false,
   isFetchingSuccess: false,
   isFetchingCateSuccess: false,
+  isFetchingFilterSuccess: false,
   fetchingError: undefined,
   products: [],
   categories: [],
+  filters: [],
   page: 0,
   totalPage: 0,
 };
@@ -38,6 +40,12 @@ const productReducer = (state = initState, action) => {
         isFetching: false,
         isFetchingCateSuccess: true,
         categories: action.payload,
+      });
+    case ProductTypes.FETCH_FILTER_SUCCESS:
+      return ReduxUtils.updateObject(state, {
+        isFetching: false,
+        isFetchingFilterSuccess: true,
+        filters: action.payload,
       });
     case ProductTypes.INC_PAGE:
     case ProductTypes.DEC_PAGE:

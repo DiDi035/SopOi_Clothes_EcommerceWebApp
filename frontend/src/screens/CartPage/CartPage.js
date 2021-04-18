@@ -15,6 +15,7 @@ const CartPage = () => {
   const handleRemoveFromCart = (id) => {
     dispatch(CartActions.RemoveFromCart(id));
   };
+  const handleSubmitCart = () => {};
   return (
     <div
       style={{
@@ -148,7 +149,11 @@ const CartPage = () => {
                 </div>
               </div>
             </div>
-            <PrimaryButton width="330px" bgColor="#ff5f6d">
+            <PrimaryButton
+              width="330px"
+              bgColor="#ff5f6d"
+              onClick={handleSubmitCart}
+            >
               Check out
             </PrimaryButton>
           </div>

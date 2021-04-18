@@ -1,9 +1,9 @@
 class GetCategories {
-  constructor({ productGateway }) {
-    this.productGateway = productGateway;
+  constructor({ categoryGateway }) {
+    this.categoryGateway = categoryGateway;
   }
   async execute() {
-    const categories = await this.productGateway.getAllCategories();
+    const categories = await this.categoryGateway.getAllCategories();
     return categories ? categories : null;
   }
 }

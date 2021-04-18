@@ -1,6 +1,6 @@
 const Category = require("../entities/category.entity");
 
-module.exports = class ProductMapper {
+module.exports = class CategoryMapper {
   constructor() {}
   toManyEntity(dbItem) {
     let listOfEntities = [];

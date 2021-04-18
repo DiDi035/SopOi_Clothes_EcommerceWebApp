@@ -1,4 +1,6 @@
 import * as CartTypes from "./type";
+import * as Fetch from "../../utils/Fetch";
+import * as Common from "../../common/index";
 
 export const AddToCart = (id, data) => {
   return {
@@ -18,5 +20,12 @@ export const UpdateCart = (data, index) => {
       update: data,
       index: index,
     },
+  };
+};
+
+export const submitCart = () => {
+  return async (dispatch) => {
+    try {
+    } catch (error) {}
   };
 };

@@ -3,6 +3,9 @@ import * as CartTypes from "./type";
 
 const initState = {
   items: [],
+  isSubmiting: false,
+  submitingSuccess: false,
+  error: undefined,
 };
 
 const cartReducer = (state = initState, action) => {

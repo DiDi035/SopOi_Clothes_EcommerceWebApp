@@ -11,8 +11,9 @@ mongoose.connect(config.Database.connectionString, {
 mongoose.connection.once("open", () => {
   // eslint@disable@next@line no@console
   console.log("moongose is running");
-  insertMany(fakeData);
-  getAllProducts();
+  insertProduct(fakeData);
+  // "Casual dresses"
+  insertCateAndFilter("Rompers-Jumpsuits");
 });
 
 const fakeData = [
@@ -108,23 +109,20 @@ const fakeData = [
   },
 ];
 
-const insertMany = async (fakeData) => {
+const insertProduct = async (fakeData) => {
   await Product.insertMany(fakeData);
   console.log("insert done");
 };
 
-const getAllProducts = async () => {
-  const name = ["Rompers-Jumpsuits", "Casual dresses"];
-  let count = 0;
+const insertCateAndFilter = async (typeName) => {
   const products = await Product.find({});
   const categories = [];
   products.map(async (item) => {
     const cate = new Category({
       type: "Dresses",
-      name: `${count % 2 !== 0 ? "Casual dresses" : "Rompers-Jumpsuits"}`,
+      name: typeName,
       productId: item._id,
     });
     await cate.save();
-    count++;
   });
 };

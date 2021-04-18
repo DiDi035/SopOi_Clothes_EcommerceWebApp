@@ -1,12 +1,14 @@
 class ProductController {
-  constructor({ getProductService, getCategoriesService }) {
+  constructor({ getProductService, getCategoriesService, getStockService }) {
     this.getProductService = getProductService;
     this.getCategoriesService = getCategoriesService;
-    this.get = this.get.bind(this);
+    this.getStockService = getStockService;
+    this.getProducts = this.getProducts.bind(this);
     this.getAllCategories = this.getAllCategories.bind(this);
+    this.getStock = this.getStock.bind(this);
   }
 
-  async get(req, res) {
+  async getProducts(req, res) {
     const { condition } = req.params;
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
@@ -44,6 +46,18 @@ class ProductController {
         .json({ categories: result, valid: true, message: "success" });
     } catch (err) {
       res.status(400).json({ categories: {}, valid: false, message: err });
+    }
+  }
+  async getStock(req, res) {
+    const { productId } = req.body;
+    try {
+      const result = await this.getStockService.execute(productId);
+      if (!result) throw new Error("Filter not found");
+      res
+        .status(200)
+        .json({ filters: result, valid: true, message: "success" });
+    } catch (err) {
+      res.status(400).json({ filter: null, valid: false, message: err });
     }
   }
 }

@@ -24,9 +24,9 @@ const ProductPage = ({}) => {
   const [color, setColor] = React.useState("");
   const [quantity, setQuantity] = React.useState(0);
   const [firstTimeFetch, setFirstTimeFetch] = React.useState(true);
-  const [firstTimeUpdate, setFirstTimeUpdate] = React.useState(true);
   const dispatch = useDispatch();
   const cartItems = useSelector(CartStates.getItems);
+  const filters = useSelector(ProductStates.getIsFetchingFilterSuccess);
   const [disable, setDisable] = React.useState(true);
   const handleClickSize = (clickSize) => {
     setSize(clickSize);
@@ -37,7 +37,16 @@ const ProductPage = ({}) => {
     setQuantity(0);
   };
   const inc = () => {
-    setQuantity((prev) => prev + 1);
+    let check = true;
+    for (let i = 0; i < filters.length; ++i) {
+      if (filters[i].color == color && filters[i].size == size) {
+        if (filters[i].quantity <= quantity) {
+          check = false;
+          break;
+        }
+      }
+    }
+    if (check) setQuantity((prev) => prev + 1);
   };
   const dec = () => {
     setQuantity((prev) => (prev > 0 ? prev - 1 : prev));
@@ -69,6 +78,7 @@ const ProductPage = ({}) => {
   React.useEffect(() => {
     if (firstTimeFetch) {
       dispatch(ProductActions.fetchProduct(id, 0, "ids"));
+      dispatch(ProductActions.fetchFilters(id));
       setFirstTimeFetch(false);
     }
     if (color != "" && size != "" && quantity > 0) setDisable(false);
