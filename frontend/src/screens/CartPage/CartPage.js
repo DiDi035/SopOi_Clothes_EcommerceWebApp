@@ -13,7 +13,6 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(CartStates.getItems);
   const handleRemoveFromCart = (i) => {
-    console.log("asdasdadsa");
     dispatch(CartActions.RemoveFromCart(i));
   };
   const handleSubmitCart = () => {};

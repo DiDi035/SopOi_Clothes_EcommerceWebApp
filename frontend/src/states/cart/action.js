@@ -24,13 +24,19 @@ export const UpdateCart = (data, index) => {
   };
 };
 
-export const submitCart = () => {
+export const submitCart = (cartItems, userId) => {
   return async (dispatch) => {
     try {
+      dispatch(CartTypes.SUBMITING_START);
       const resp = await Fetch.post(
-        `${Common.DOMAIN}${Common.PORT}/submit`,
-        {}
+        `${Common.DOMAIN}${Common.PORT}/order/new`,
+        { orders: cartItems, userId: userId }
       );
-    } catch (error) {}
+      if (!resp || !resp.data || !resp.data.valid)
+        throw new Error(resp.data.message);
+      dispatch(CartTypes.SUBMITING_SUCCESS);
+    } catch (error) {
+      dispatch(CartTypes.SUBMITING_FAILED);
+    }
   };
 };
