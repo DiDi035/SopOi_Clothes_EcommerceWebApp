@@ -1,11 +1,15 @@
 import React from "react";
 import Text from "../Text/Text";
+import * as Common from "../../common/index";
 import "./Card.css";
 
-const Card = ({ name, price, onClick }) => {
+const Card = ({ name, price, onClick, img }) => {
   return (
     <div className="cardCon">
-      <div className="proImg">
+      <div
+        className="proImg"
+        style={{ backgroundImage: `url(${Common.DOMAIN}${Common.PORT}${img})` }}
+      >
         <div onClick={onClick} className="popup">
           <Text color="white" fontSize="14px">
             + Quick shop

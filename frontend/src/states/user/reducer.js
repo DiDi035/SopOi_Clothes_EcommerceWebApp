@@ -5,6 +5,7 @@ let initState = {
   isLoading: false,
   isSuccess: false,
   userId: null,
+  ava: null,
   error: undefined,
 };
 
@@ -21,6 +22,7 @@ const userReducer = (state = initState, action) => {
         isLoading: false,
         isSuccess: true,
         userId: action.payload.userId,
+        ava: action.payload.ava,
       });
     case types.LOGIN_FAIL:
       return ReduxUtils.updateObject(state, {

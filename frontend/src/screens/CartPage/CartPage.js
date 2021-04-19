@@ -12,8 +12,9 @@ import * as CartActions from "../../states/cart/action";
 const CartPage = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(CartStates.getItems);
-  const handleRemoveFromCart = (id) => {
-    dispatch(CartActions.RemoveFromCart(id));
+  const handleRemoveFromCart = (i) => {
+    console.log("asdasdadsa");
+    dispatch(CartActions.RemoveFromCart(i));
   };
   const handleSubmitCart = () => {};
   return (
@@ -60,7 +61,7 @@ const CartPage = () => {
                 </Text>
               </div>
             </div>
-            {cartItems.map((item) => {
+            {cartItems.map((item, i) => {
               return (
                 <div>
                   <hr
@@ -80,7 +81,7 @@ const CartPage = () => {
                           >
                             Change
                           </Link>
-                          <Link onClick={() => handleRemoveFromCart(item.id)}>
+                          <Link onClick={() => handleRemoveFromCart(i)}>
                             Remove
                           </Link>
                         </div>
@@ -102,7 +103,7 @@ const CartPage = () => {
                       style={{ paddingTop: "6px" }}
                     >
                       <Text fontSize="15px" color="dark-grey">
-                        ${item.price}
+                        ${item.price * item.quantity}
                       </Text>
                     </div>
                   </div>
@@ -131,7 +132,7 @@ const CartPage = () => {
                 </div>
                 <div className="totalTableRowRight">
                   <Text fontSize="14px" color="dark-grey">
-                    ${cartItems.reduce((a, b) => a + b.price, 0)}
+                    ${cartItems.reduce((a, b) => a + b.price * b.quantity, 0)}
                   </Text>
                 </div>
               </div>
@@ -144,7 +145,7 @@ const CartPage = () => {
                 </div>
                 <div className="totalTableRowRight">
                   <Text fontSize="14px" fontWeight="bold" color="dark-grey">
-                    ${cartItems.reduce((a, b) => a + b.price, 0)}
+                    ${cartItems.reduce((a, b) => a + b.price * b.quantity, 0)}
                   </Text>
                 </div>
               </div>

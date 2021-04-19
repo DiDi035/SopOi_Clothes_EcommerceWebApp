@@ -14,12 +14,13 @@ export const authenCurUser = (email, password) => {
         }
       );
       if (!res || !res.data || !res.data.valid) throw "Login INVALID";
+      console.log(res);
       const token = res.headers["auth-token"];
       localStorage.setItem("auth-token", token);
       localStorage.setItem("user-id", res.data.userId);
       dispatch({
         type: types.LOGIN_SUCCESS,
-        payload: { userId: res.data.userId },
+        payload: { userId: res.data.userId, ava: res.data.ava },
       });
     } catch (error) {
       dispatch({ type: types.LOGIN_FAIL, payload: { error } });
@@ -36,11 +37,6 @@ export const logout = () => {
 export const checkValidUser = () => {
   return (dispatch) => {
     const token = localStorage.getItem("auth-token");
-    console.log(token);
     if (!token) dispatch(logout());
-    else {
-      const id = localStorage.getItem("user-id");
-      dispatch({ type: types.LOGIN_SUCCESS, payload: { userId: id } });
-    }
   };
 };

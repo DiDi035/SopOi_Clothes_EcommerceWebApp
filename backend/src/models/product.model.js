@@ -5,10 +5,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  stock: {
-    type: Number,
-    required: true,
-  },
   price: {
     type: Number,
     required: true,
@@ -26,7 +22,7 @@ const productSchema = mongoose.Schema({
   },
   img: {
     type: String,
-    default: "day la cai hinh",
+    default: "/images/defaultProduct.jpg",
   },
 });
 

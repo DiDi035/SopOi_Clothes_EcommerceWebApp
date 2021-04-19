@@ -6,3 +6,5 @@ class Filter {
     this.productId = productId;
   }
 }
+
+module.exports = Filter;

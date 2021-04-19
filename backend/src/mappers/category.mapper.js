@@ -8,6 +8,7 @@ module.exports = class CategoryMapper {
       const { type, name, productId } = item;
       listOfEntities.push(new Category(type, name, productId));
     });
+    console.log(listOfEntities);
     return listOfEntities;
   }
 

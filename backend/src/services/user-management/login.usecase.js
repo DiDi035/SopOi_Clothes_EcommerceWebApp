@@ -14,6 +14,7 @@ class Login {
         valid: true,
         token: this.authentication.sign(stringUser),
         userId: user.id,
+        ava: user.ava,
       };
     }
     return { valid: false, curUser: {} };

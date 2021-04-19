@@ -47,8 +47,6 @@ const productReducer = (state = initState, action) => {
         isFetchingFilterSuccess: true,
         filters: action.payload,
       });
-    case ProductTypes.INC_PAGE:
-    case ProductTypes.DEC_PAGE:
     default:
       return state;
   }

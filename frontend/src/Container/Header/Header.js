@@ -12,6 +12,7 @@ import * as UserStates from "../../states/user/states";
 import * as UserActions from "../../states/user/action";
 import * as CartStates from "../../states/cart/states";
 import Text from "../../components/Text/Text";
+import * as Common from "../../common/index";
 
 const Header = ({ triggerForms }) => {
   const handleOpenDropDown = () => {
@@ -28,6 +29,7 @@ const Header = ({ triggerForms }) => {
   const isLogin = useSelector(UserStates.getIsSuccess);
   const cartItems = useSelector(CartStates.getItems);
   const [cartList, setCartList] = React.useState(false);
+  const ava = useSelector(UserStates.getUserAva);
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -66,7 +68,13 @@ const Header = ({ triggerForms }) => {
               )}
               {isLogin && (
                 <div>
-                  <div className="ava" onClick={handleOpenDropDown}></div>
+                  <div
+                    className="ava"
+                    style={{
+                      backgroundImage: `url(${Common.DOMAIN}${Common.PORT}${ava})`,
+                    }}
+                    onClick={handleOpenDropDown}
+                  ></div>
                   {openDropdown && (
                     <div className="dropdown">
                       <div className="dowpdownItem">Account setting</div>
@@ -79,7 +87,7 @@ const Header = ({ triggerForms }) => {
               )}
               <button className=" cartBtn" onClick={handleCartClick}>
                 <span class="icon-cart"></span>
-                {cartItems.length > 0 && (
+                {cartItems.length > 0 && isLogin && (
                   <div className="oval">{cartItems.length}</div>
                 )}
               </button>

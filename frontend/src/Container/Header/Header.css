@@ -112,7 +112,6 @@ button {
 }
 
 .ava {
-  background-image: url("../../assets/images/avatar.png");
   background-position: center;
   background-size: contain;
   border-radius: 90px;

@@ -17,6 +17,7 @@ class UserController {
       res.header("auth-token", result.token).send({
         valid: result.valid,
         userId: result.userId,
+        ava: result.ava,
       });
     } catch (err) {
       res.send({ valid: false, userId: null });

@@ -9,8 +9,9 @@ export const AddToCart = (id, data) => {
   };
 };
 
-export const RemoveFromCart = (id) => {
-  return { type: CartTypes.REMOVE_FROM_CART, payload: id };
+export const RemoveFromCart = (i) => {
+  console.log(i);
+  return { type: CartTypes.REMOVE_FROM_CART, payload: i };
 };
 
 export const UpdateCart = (data, index) => {
@@ -26,6 +27,10 @@ export const UpdateCart = (data, index) => {
 export const submitCart = () => {
   return async (dispatch) => {
     try {
+      const resp = await Fetch.post(
+        `${Common.DOMAIN}${Common.PORT}/submit`,
+        {}
+      );
     } catch (error) {}
   };
 };

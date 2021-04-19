@@ -12,7 +12,6 @@ import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import * as ProductActions from "../../states/product/action";
 import * as CartActions from "../../states/cart/action";
 import * as CartStates from "../../states/cart/states";
-
 const ProductPage = ({}) => {
   const { id, typeCustomer, typeClothes, types } = useParams();
   const products = useSelector(ProductStates.getProducts);
@@ -26,8 +25,8 @@ const ProductPage = ({}) => {
   const [firstTimeFetch, setFirstTimeFetch] = React.useState(true);
   const dispatch = useDispatch();
   const cartItems = useSelector(CartStates.getItems);
-  const filters = useSelector(ProductStates.getIsFetchingFilterSuccess);
   const [disable, setDisable] = React.useState(true);
+  const filters = useSelector(ProductStates.getFilters);
   const handleClickSize = (clickSize) => {
     setSize(clickSize);
     setQuantity(0);
@@ -40,7 +39,7 @@ const ProductPage = ({}) => {
     let check = true;
     for (let i = 0; i < filters.length; ++i) {
       if (filters[i].color == color && filters[i].size == size) {
-        if (filters[i].quantity <= quantity) {
+        if (filters[i].stock <= quantity) {
           check = false;
           break;
         }
@@ -87,7 +86,9 @@ const ProductPage = ({}) => {
   return (
     <div className="proCon">
       <div className="breadCon">
-        <Breadcrumb cumbs={[typeCustomer, typeClothes, products[0].name]} />
+        {!isFetching && (
+          <Breadcrumb cumbs={[typeCustomer, typeClothes, products[0].name]} />
+        )}
       </div>
       <div className="detailCon">
         <div className="picture">

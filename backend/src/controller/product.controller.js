@@ -48,6 +48,7 @@ class ProductController {
       res.status(400).json({ categories: {}, valid: false, message: err });
     }
   }
+
   async getStock(req, res) {
     const { productId } = req.body;
     try {

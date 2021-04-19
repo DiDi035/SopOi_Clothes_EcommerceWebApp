@@ -17,8 +17,10 @@ const cartReducer = (state = initState, action) => {
       });
     }
     case CartTypes.REMOVE_FROM_CART: {
-      const id = action.payload;
-      const newItems = state.items.filter((item) => item.id !== id);
+      const index = action.payload;
+      console.log(index);
+      const newItems = [...state.items];
+      newItems.splice(index, 1);
       return ReduxUtils.updateObject(state, {
         items: newItems,
       });

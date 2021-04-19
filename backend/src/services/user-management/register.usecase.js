@@ -17,7 +17,7 @@ class Register {
       email,
       password,
       type,
-      "day la cai hinh"
+      "/images/defaultAva.png"
     );
     const dbItem = await this.userMapper.toDatabase(entity);
     const user = await this.userGateway.insert(dbItem);

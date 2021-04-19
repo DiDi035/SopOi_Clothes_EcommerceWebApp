@@ -6,14 +6,14 @@ import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 import { filters, categories } from "../../common/index";
 import { useHistory } from "react-router-dom";
 
-const MenuItems = ({ children, chosen, onClick }) => {
+const MenuItems = ({ children, chosen, onClick, href }) => {
   return (
     <div className="mt-2 mb-3" onClick={onClick}>
       <Link
         fontWeight="normal"
         fontSize="14px"
         color={chosen ? "bright-orange" : "greyish-brown"}
-        linkTo="#"
+        linkTo={href}
         pointerEvent="visible"
       >
         {children}
@@ -41,8 +41,11 @@ const StickySideBar = ({ typeCustomer, typeClothes, types }) => {
           {categories[typeCustomer][typeClothes].map((item, index) => {
             return (
               <MenuItems
+                href={`/${typeCustomer}/${typeClothes}/${item.replace(
+                  " ",
+                  "."
+                )}`}
                 key={index}
-                onClick={() => handleOnLickCategory(item)}
                 chosen={
                   types === undefined ? false : item == types.replace(".", " ")
                 }

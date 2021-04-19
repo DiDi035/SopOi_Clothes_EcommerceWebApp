@@ -7,7 +7,9 @@ class FilterGateway {
   }
   async getStock(productId) {
     try {
-      const filters = await this.filterModel.find({ productId });
+      const filters = await this.filterModel.find({
+        productId: new mongoose.Types.ObjectId(productId),
+      });
       if (filters.length === 0) throw new Error("FIlter not found");
       return this.filterMapper.toManyEntity(filters);
     } catch (err) {

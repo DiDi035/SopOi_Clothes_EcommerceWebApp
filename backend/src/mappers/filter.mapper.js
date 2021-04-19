@@ -6,7 +6,7 @@ module.exports = class FilterMapper {
     let listOfEntities = [];
     dbItem.map((item) => {
       const { color, size, productId, stock } = item;
-      listOfEntities.push(new Category(color, size, stock, productId));
+      listOfEntities.push(new Filter(color, size, stock, productId));
     });
     return listOfEntities;
   }

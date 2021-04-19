@@ -19,10 +19,7 @@ const userSchema = mongoose.Schema({
   },
   ava: {
     type: String,
-    default: "day la cai hinh"
-  },
-  _id: {
-    type: mongoose.ObjectId,
+    default: "/images/defaultAva.png",
   },
 });
 

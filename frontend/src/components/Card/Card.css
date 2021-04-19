@@ -13,7 +13,6 @@
 .proImg {
   width: 100%;
   height: 78%;
-  background-image: url("../../assets/images/listingItem.jpg");
   display: flex;
   background-size: cover;
   background-position: center;

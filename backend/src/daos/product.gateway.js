@@ -30,7 +30,7 @@ class ProductGateway {
         .find({ _id: { $in: ids } })
         .limit(limit)
         .skip(startPoint);
-      let total = await this.productModel.count({ _id: { $in: ids } });
+      let total = await this.productModel.countDocuments({ _id: { $in: ids } });
       if (products.length <= 0) throw "Product not found";
       return {
         products: this.productMapper.toManyEntity(products),

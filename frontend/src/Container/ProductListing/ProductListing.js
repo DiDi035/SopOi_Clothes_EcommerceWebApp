@@ -29,14 +29,12 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
   const dispatch = useDispatch();
   const products = useSelector(ProductStates.getProducts);
   const categories = useSelector(ProductStates.getCategories);
-  const curPage = useSelector(ProductStates.getPage);
   const [page, setPage] = React.useState(0);
   const [sort, setSort] = React.useState("Popularity");
   const isFetching = useSelector(ProductStates.getIsFetching);
+  const totalPage = useSelector(ProductStates.getTotalPage);
   const handleIncPage = () => {
-    setPage((prev) =>
-      prev < Math.trunc(products.length / 15) ? prev + 1 : prev
-    );
+    setPage((prev) => (prev < Math.trunc(totalPage / 15) ? prev + 1 : prev));
   };
   const handleDecPage = () => {
     setPage((prev) => (prev > 0 ? prev - 1 : prev));
@@ -45,12 +43,18 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
     history.push(`/${typeCustomer}/${typeClothes}/${types}/${id}`);
   };
   React.useEffect(() => {
-    if (types === undefined)
-      dispatch(ProductActions.fetchProduct(typeCustomer, page, "types"));
-    else {
+    if (types === undefined) {
       let ids = [];
       for (let i = 0; i < categories.length; ++i) {
-        if (categories[i].name == types) ids.push(categories[i].productId);
+        if (categories[i].type == typeClothes)
+          ids.push(categories[i].productId);
+      }
+      dispatch(ProductActions.fetchProduct(ids, page, "ids"));
+    } else {
+      let ids = [];
+      for (let i = 0; i < categories.length; ++i) {
+        if (categories[i].name == types.replace(".", " "))
+          ids.push(categories[i].productId);
       }
       dispatch(ProductActions.fetchProduct(ids, page, "ids"));
     }
@@ -78,8 +82,8 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
           <Pagination
             inc={handleIncPage}
             dec={handleDecPage}
-            totalPage={Math.trunc(products.length / 15)}
-            currentPage={curPage}
+            totalPage={Math.trunc(totalPage / 15)}
+            currentPage={page}
           />
         </div>
       </div>
@@ -92,6 +96,7 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
                   onClick={() => handleItemClick(item.id)}
                   name={item.name}
                   price={item.price}
+                  img={item.img}
                 />
               </div>
             );
@@ -109,8 +114,8 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
           <Pagination
             inc={handleIncPage}
             dec={handleDecPage}
-            currentPage={curPage}
-            totalPage={Math.trunc(products.length / 15)}
+            currentPage={page}
+            totalPage={Math.trunc(totalPage / 15)}
           />
         </div>
       </div>
