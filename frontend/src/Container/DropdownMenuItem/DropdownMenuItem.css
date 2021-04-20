@@ -18,9 +18,9 @@
 }
 
 .filterBtn {
-  background: white;
-  /* text-align: left; */
-  width: 180px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .filterBtn:hover {
@@ -36,10 +36,11 @@
   opacity: 0.8;
 }
 
-.filter {
+.menuDropdownEle {
   width: 90%;
+  padding-top: 0.2rem;
 }
 
 .iconCon {
-  padding-top: 0.2rem;
+  padding-top: 0.4rem;
 }

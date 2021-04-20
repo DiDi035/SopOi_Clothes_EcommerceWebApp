@@ -5,10 +5,10 @@ import { sortMenuTitle } from "../../common/index";
 import Card from "../../components/Card/Card";
 import Pagination from "../../components/Pagination/Pagination";
 import Text from "../../components/Text/Text";
+import * as ProductActions from "../../states/product/action";
 import * as ProductStates from "../../states/product/states";
 import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
 import "./ProductListing.css";
-import * as ProductActions from "../../states/product/action";
 
 const sortMenu = () => {
   return (
@@ -63,6 +63,7 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
     <div>
       <div className="sortCon">
         <DropdownMenuItem
+          paddingLeft="0.5rem"
           subMenu={sortMenu}
           borderColor="white-four"
           fontSize="12px"
@@ -70,7 +71,10 @@ const ProductListing = ({ typeCustomer, typeClothes, types }) => {
           backgroundColor="white-five"
           focusBold={false}
         >
-          Sort by asdas
+          Sort By: &nbsp;
+          <Text fontWeight="bold" color="dark-grey" fontSize="12px">
+            {sort}
+          </Text>
         </DropdownMenuItem>
         <div
           style={{

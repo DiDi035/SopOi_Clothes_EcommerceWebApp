@@ -13,6 +13,7 @@ const DropdownMenuItem = ({
   backgroundColor,
   borderColor,
   focusBold = true,
+  paddingLeft,
 }) => {
   const [openSubMenu, setOpenSubMenu] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState("normal");
@@ -28,16 +29,16 @@ const DropdownMenuItem = ({
   return (
     <div>
       <div
-        className="filterBtn d-flex flex-row justify-content-start"
+        className="filterBtn"
         style={{
           width: width,
           background: Colors[backgroundColor],
           border: `1px solid ${Colors[borderColor]}`,
-          paddingLeft: "5%",
+          paddingLeft: `${paddingLeft ? paddingLeft : ""}`,
         }}
         onClick={handleOpenSubMenu}
       >
-        <div className="filter">
+        <div className="menuDropdownEle">
           <Text
             color="greyish-brown"
             fontWeight={fontWeight}

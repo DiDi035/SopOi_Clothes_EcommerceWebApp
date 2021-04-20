@@ -16,6 +16,17 @@ class FilterGateway {
       return null;
     }
   }
+  async updateStock(productId, color, size, updateStock) {
+    try {
+      const filter = await this.filterModel.findOne({ productId, color, size });
+      if (!filter) throw new Error("Filter not found");
+      filter.stock += updateStock;
+      await filter.save();
+      return filter;
+    } catch (err) {
+      return null;
+    }
+  }
 }
 
 module.exports = FilterGateway;

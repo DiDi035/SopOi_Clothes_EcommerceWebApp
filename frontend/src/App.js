@@ -12,6 +12,7 @@ import * as UserActions from "./states/user/action";
 import * as ProductActions from "./states/product/action";
 import { useEffect } from "react";
 import CartPage from "./screens/CartPage/CartPage";
+import AdminDashboard from "./screens/AdminDashboard/AdminDashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,28 +22,45 @@ function App() {
   });
   return (
     <Router>
-      <HeaderAndForm />
       <Switch>
-        <Route path="/homepage" exact={true} component={HomePage} />
-        <Route
-          path="/:typeCustomer/:typeClothes/:types"
-          exact={true}
-          component={ListingScreen}
-        />
-        <Route
-          path="/:typeCustomer/:typeClothes"
-          exact={true}
-          component={ListingScreen}
-        />
-        <Route
-          path="/:typeCustomer/:typeClothes/:types/:id"
-          exact={true}
-          component={ProductPage}
-        />
-        <Route path="/cart" exact={true} component={CartPage} />
+        <Route path="/admin" exact={true} component={Admin} />
+        <Route component={Customer} />
       </Switch>
     </Router>
   );
 }
+
+const Admin = () => {
+  return (
+    <div>
+      <Route component={AdminDashboard} />
+    </div>
+  );
+};
+
+const Customer = () => {
+  return (
+    <div>
+      <HeaderAndForm />
+      <Route path="/homepage" exact={true} component={HomePage} />
+      <Route
+        path="/:typeCustomer/:typeClothes/:types"
+        exact={true}
+        component={ListingScreen}
+      />
+      <Route
+        path="/:typeCustomer/:typeClothes"
+        exact={true}
+        component={ListingScreen}
+      />
+      <Route
+        path="/:typeCustomer/:typeClothes/:types/:id"
+        exact={true}
+        component={ProductPage}
+      />
+      <Route path="/cart" exact={true} component={CartPage} />
+    </div>
+  );
+};
 
 export default App;

@@ -1,0 +1,39 @@
+@import "../../assets/fonts/Fonts.css";
+@import "../../assets/colors/Colors.css";
+
+.dbItem {
+  width: 220px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dbItem:hover {
+  cursor: pointer;
+}
+
+.dbItem:hover span {
+  color: var(--primary) !important;
+}
+
+.dbItem:hover .lg {
+  color: var(--primary);
+}
+
+.lg {
+  transition: 0.2s ease;
+}
+
+.dbItem > span {
+  margin-left: 1.5rem;
+  color: var(--charcoal-grey);
+  transition: 0.2s ease;
+}
+
+.initRect {
+  width: 5.9px;
+  height: 48px;
+  background-color: var(--white-two);
+  transition: linear 0.1s;
+}

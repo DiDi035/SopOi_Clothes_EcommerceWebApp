@@ -31,8 +31,10 @@
   display: inline-block;
 }
 
-.icon-downArrow:hover {
+.arrowLeft:hover,
+.arrowRight:hover {
   background-color: var(--white-four);
+  cursor: pointer;
 }
 
 .icon-downArrow {

@@ -7,6 +7,7 @@ let initState = {
   userId: null,
   ava: null,
   error: undefined,
+  type: "customer",
 };
 
 const userReducer = (state = initState, action) => {

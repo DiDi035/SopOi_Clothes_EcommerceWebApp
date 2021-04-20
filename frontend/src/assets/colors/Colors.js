@@ -13,6 +13,8 @@ const Colors = {
   "brown-grey": "#979797",
   "bright-orange": "#ff6900",
   "pinkish-grey": "#cccccc",
+  "charcoal-grey": "#3d3d3f",
+  greyish: "#acacac",
 };
 
 export default Colors;

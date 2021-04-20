@@ -1,6 +1,7 @@
 class NewOrder {
-  constructor({ orderGateway }) {
+  constructor({ orderGateway, filterGateway }) {
     this.orderGateway = orderGateway;
+    this.filterGateway = filterGateway;
   }
 
   async execute(orders, userId) {
@@ -17,8 +18,18 @@ class NewOrder {
           price: item.quantity * item.price,
         });
       });
-      const result = this.orderGateway.insertOrder(orderItems);
+      const result = await this.orderGateway.insertOrder(orderItems);
       if (!result) throw new Error("create orders failed");
+      orderItems.map(async (item) => {
+        const { productId, color, size, quantity } = item;
+        const update = await this.filterGateway.updateStock(
+          productId,
+          color,
+          size,
+          -quantity
+        );
+        if (!update) throw new Error("update filter failed");
+      });
       return result;
     } catch (err) {
       return null;
