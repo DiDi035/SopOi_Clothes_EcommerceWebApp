@@ -36,16 +36,24 @@ const ProductPage = ({}) => {
     setQuantity(0);
   };
   const inc = () => {
-    let check = true;
-    for (let i = 0; i < filters.length; ++i) {
+    let i = 0,
+      j = 0;
+    for (; i < filters.length; ++i) {
       if (filters[i].color == color && filters[i].size == size) {
-        if (filters[i].stock <= quantity) {
-          check = false;
-          break;
-        }
+        break;
       }
     }
-    if (check) setQuantity((prev) => prev + 1);
+    for (; j < cartItems.length; ++j) {
+      if (cartItems[j].color == color && cartItems[j].size == size) {
+        break;
+      }
+    }
+    if (j < cartItems.length) {
+      if (filters[i].stock > cartItems[j].quantity + quantity)
+        setQuantity((prev) => prev + 1);
+    } else {
+      if (filters[i].stock > quantity) setQuantity((prev) => prev + 1);
+    }
   };
   const dec = () => {
     setQuantity((prev) => (prev > 0 ? prev - 1 : prev));
@@ -58,6 +66,9 @@ const ProductPage = ({}) => {
         cartItems[i].size == size
       ) {
         dispatch(CartActions.UpdateCart(quantity, i));
+        setSize("");
+        setColor("");
+        setQuantity(0);
         return;
       }
     }
@@ -73,6 +84,9 @@ const ProductPage = ({}) => {
         types: types,
       })
     );
+    setSize("");
+    setColor("");
+    setQuantity(0);
   };
   React.useEffect(() => {
     if (firstTimeFetch) {
@@ -174,9 +188,7 @@ const ProductPage = ({}) => {
               Color
             </Text>
             <div className="colorBtns">
-              <ColorBtn color="#ff5f6d" />
               <ColorBtn
-                marginLeft="1rem"
                 color="rgba(255, 195, 113, 0.5)"
                 chosenColor={color}
                 onClick={() => handleColorClick("rgba(255, 195, 113, 0.5)")}

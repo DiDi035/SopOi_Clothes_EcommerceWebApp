@@ -8,14 +8,20 @@ import QuantitySelector from "../../components/QuantitySelector/QuantitySelector
 import * as CartStates from "../../states/cart/states";
 import { useSelector, useDispatch } from "react-redux";
 import * as CartActions from "../../states/cart/action";
+import * as UserState from "../../states/user/states";
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(CartStates.getItems);
+  const isSubmiting = useSelector(CartStates.getIsSubmiting);
+  const submitingSuccess = useSelector(CartStates.getSubmitingSuccess);
+  const userId = useSelector(UserState.getUserId);
   const handleRemoveFromCart = (i) => {
     dispatch(CartActions.RemoveFromCart(i));
   };
-  const handleSubmitCart = () => {};
+  const handleSubmitCart = () => {
+    dispatch(CartActions.submitCart(cartItems, userId));
+  };
   return (
     <div
       style={{
@@ -62,7 +68,7 @@ const CartPage = () => {
             </div>
             {cartItems.map((item, i) => {
               return (
-                <div>
+                <div key={i}>
                   <hr
                     className="totalLineBreak"
                     style={{ width: "805px", marginLeft: "0" }}

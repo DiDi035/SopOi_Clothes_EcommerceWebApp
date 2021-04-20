@@ -27,16 +27,16 @@ export const UpdateCart = (data, index) => {
 export const submitCart = (cartItems, userId) => {
   return async (dispatch) => {
     try {
-      dispatch(CartTypes.SUBMITING_START);
+      dispatch({ type: CartTypes.SUBMITING_START });
       const resp = await Fetch.post(
         `${Common.DOMAIN}${Common.PORT}/order/new`,
         { orders: cartItems, userId: userId }
       );
       if (!resp || !resp.data || !resp.data.valid)
         throw new Error(resp.data.message);
-      dispatch(CartTypes.SUBMITING_SUCCESS);
+      dispatch({ type: CartTypes.SUBMITING_SUCCESS });
     } catch (error) {
-      dispatch(CartTypes.SUBMITING_FAILED);
+      dispatch({ type: CartTypes.SUBMITING_FAILED, payload: error });
     }
   };
 };

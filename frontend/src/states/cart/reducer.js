@@ -32,6 +32,19 @@ const cartReducer = (state = initState, action) => {
         items: newItems,
       });
     }
+    case CartTypes.SUBMITING_START:
+      return ReduxUtils.updateObject(state, { isSubmiting: true });
+    case CartTypes.SUBMITING_SUCCESS:
+      return ReduxUtils.updateObject(state, {
+        submitingSuccess: true,
+        isSubmiting: false,
+        items: [],
+      });
+    case CartTypes.SUBMITING_FAILED:
+      return ReduxUtils.updateObject(state, {
+        isSubmiting: false,
+        error: action.payload,
+      });
     default:
       return state;
   }
