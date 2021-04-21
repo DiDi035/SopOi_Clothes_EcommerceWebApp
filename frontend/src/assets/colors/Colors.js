@@ -15,6 +15,8 @@ const Colors = {
   "pinkish-grey": "#cccccc",
   "charcoal-grey": "#3d3d3f",
   greyish: "#acacac",
+  "pea-green": "#82bf11",
+  cancele: "#f05d62",
 };
 
 export default Colors;

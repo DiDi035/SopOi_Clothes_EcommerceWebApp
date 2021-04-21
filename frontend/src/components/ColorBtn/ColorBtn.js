@@ -2,7 +2,7 @@ import React from "react";
 import "./ColorBtn.css";
 import Colors from "../../assets/colors/Colors";
 
-const ColorBtn = ({ color, marginLeft, onClick, chosenColor }) => {
+const ColorBtn = ({ color, marginLeft, onClick, chosenColor, size }) => {
   return (
     <div
       onClick={onClick}
@@ -11,6 +11,8 @@ const ColorBtn = ({ color, marginLeft, onClick, chosenColor }) => {
         backgroundColor: color,
         marginLeft: marginLeft,
         border: `${color === chosenColor ? "2px solid " + Colors.primary : ""}`,
+        width: size,
+        height: size,
       }}
     ></div>
   );

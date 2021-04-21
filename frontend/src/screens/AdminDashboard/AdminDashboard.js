@@ -3,14 +3,30 @@ import "./AdminDashboard.css";
 import Brand from "../../assets/images/logo.svg";
 import DashboardMenuItem from "../../components/DashboardMenuItem/DashboardMenuItem";
 import Text from "../../components/Text/Text";
+import ListOrders from "../../Container/ListOrders/ListOrders";
+import { useSelector, useDispatch } from "react-redux";
+import * as OrderStates from "../../states/order/states";
+import * as OrderActions from "../../states/order/action";
+import { ORDER_LIMIT } from "../../common/index";
+import Pagination from "../../components/Pagination/Pagination";
+
+const OrderPagination = ({ num }) => {
+  return <div className="orderPagNum">{num}</div>;
+};
 
 const AdminDashboard = () => {
   const menuIcon = ["icon-orders-dark", "icon-products-orange"];
   const menu = ["Orders", "Products"];
   const [selected, setSelected] = React.useState(0);
+  const page = useSelector(OrderStates.getPage);
+  const totalPage = useSelector(OrderStates.getTotalPage);
+  const isFetching = useSelector(OrderStates.getIsFetching);
+  const orders = useSelector(OrderStates.getOrders);
   const handleSelect = (i) => {
     setSelected(i);
   };
+  const handleIncPage = () => {};
+  const handleDecPage = () => {};
   return (
     <div className="dashboardCon">
       <div className="menuBar">
@@ -20,6 +36,7 @@ const AdminDashboard = () => {
         <div className="menuSection">
           {menu.map((item, i) => (
             <DashboardMenuItem
+              key={i}
               onClick={() => handleSelect(i)}
               logo={menuIcon[i]}
               chosen={selected === i ? true : false}
@@ -38,37 +55,49 @@ const AdminDashboard = () => {
         </div>
         <div className="dashboardOption"></div>
         <div className="dashbaordCOntent">
-          <div
-            className="orderRow"
-            style={{ borderBottom: "1px solid #ededed", height: "64px" }}
-          >
-            <div className="orderId">
-              <Text color="greyish" fontSize="12px" fontWeight="bold">
-                ORDER ID
-              </Text>
-            </div>
-            <div className="orderDate">
-              <Text color="greyish" fontSize="12px" fontWeight="bold">
-                ORDERED DATE
-              </Text>
-            </div>
-            <div className="orderDetail">
-              <Text color="greyish" fontSize="12px" fontWeight="bold">
-                DETAIL
-              </Text>
-            </div>
-            <div className="orderTotal">
-              <Text color="greyish" fontSize="12px" fontWeight="bold">
-                TOTAL ($)
-              </Text>
-            </div>
-            <div className="orderStatus">
-              <Text color="greyish" fontSize="12px" fontWeight="bold">
-                STATUS
-              </Text>
-            </div>
-            <div className="orderAction"></div>
+          <div style={{ width: "100%", height: "85%" }}>
+            <ListOrders />
           </div>
+          {!isFetching && (
+            <div className="orderPag">
+              <div
+                style={{
+                  paddingLeft: "2rem",
+                  height: "100%",
+                  flex: "0 1 30%",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  color="charcoal-grey"
+                  fontSize="14px"
+                  fontWeight="500"
+                >{`Show ${page + 1} to ${
+                  orders.length
+                } of ${totalPage} entries`}</Text>
+              </div>
+              <div
+                style={{
+                  height: "100%",
+                  flex: "0 1 15%",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Pagination
+                  inc={handleIncPage}
+                  dec={handleDecPage}
+                  totalPage={
+                    totalPage % ORDER_LIMIT == 0
+                      ? totalPage / ORDER_LIMIT
+                      : Math.trunc(totalPage / ORDER_LIMIT) + 1
+                  }
+                  currentPage={page}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -16,10 +16,10 @@ const DropdownMenuItem = ({
   paddingLeft,
 }) => {
   const [openSubMenu, setOpenSubMenu] = React.useState(false);
-  const [fontWeight, setFontWeight] = React.useState("normal");
+  const [fontWeight, setFontWeight] = React.useState("500");
   const handleOpenSubMenu = () => {
     setOpenSubMenu((prev) => {
-      if (prev) setFontWeight("normal");
+      if (prev) setFontWeight("500");
       else {
         if (focusBold) setFontWeight("bold");
       }

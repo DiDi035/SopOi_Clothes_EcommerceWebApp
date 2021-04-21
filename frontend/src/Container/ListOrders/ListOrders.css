@@ -1,0 +1,41 @@
+.actionsCon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 193px;
+  height: 88px;
+  border-radius: 2px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: white;
+  position: absolute;
+  z-index: 100 !important;
+}
+
+.actionsItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  width: 193px;
+  height: 44px;
+}
+
+.actionsItem:hover {
+  cursor: pointer;
+  background-color: var(--white-five);
+}
+
+.actionOption {
+  display: flex;
+  flex-direction: row;
+}
+
+.actionOption:hover {
+  cursor: pointer;
+}
+
+.iconCon:hover {
+  cursor: pointer;
+}

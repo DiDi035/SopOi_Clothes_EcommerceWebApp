@@ -31,7 +31,12 @@ const orderSchema = mongoose.Schema({
   },
   date: {
     type: String,
-    default: new Date().toString(),
+    default: new Date().toString().substring(0, 21),
+  },
+  status: {
+    type: String,
+    enum: ["Completed", "Canceled", "Pending"],
+    default: "Pending",
   },
 });
 

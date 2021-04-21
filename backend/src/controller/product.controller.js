@@ -13,7 +13,7 @@ class ProductController {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
     const { data } = req.body;
-    const startPoint = parseInt(page) * 15;
+    const startPoint = parseInt(page) * limit;
     const result = await this.getProductService.execute(
       data,
       condition,

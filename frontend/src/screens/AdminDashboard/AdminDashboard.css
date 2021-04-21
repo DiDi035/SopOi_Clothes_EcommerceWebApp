@@ -68,6 +68,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .brandLogo {
@@ -100,6 +103,7 @@
   flex-direction: row;
   justify-content: space-around;
   padding-left: 1rem;
+  margin-bottom: 0px;
 }
 
 .orderRow > div {
@@ -114,7 +118,7 @@
 }
 
 .orderDate {
-  flex: 0 1 15%;
+  flex: 0 1 17%;
 }
 
 .orderTotal {
@@ -125,8 +129,37 @@
 }
 .orderAction {
   flex: 0 1 10%;
+  display: flex;
+  flex-direction: column;
 }
 
 .orderDetail {
-  flex: 0 1 39%;
+  flex: 0 1 35%;
+}
+
+.orderPag {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderPagNum {
+  width: 32px;
+  height: 32px;
+  padding: 4px 13px;
+  border: solid 1px var(--white-two);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  transition: 0.2s ease;
+}
+
+.orderPagNum:hover {
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
 }

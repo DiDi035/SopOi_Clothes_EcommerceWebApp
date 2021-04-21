@@ -13,6 +13,7 @@ import * as ProductActions from "./states/product/action";
 import { useEffect } from "react";
 import CartPage from "./screens/CartPage/CartPage";
 import AdminDashboard from "./screens/AdminDashboard/AdminDashboard";
+import Footer from "./Container/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ const Customer = () => {
         component={ProductPage}
       />
       <Route path="/cart" exact={true} component={CartPage} />
+      <Footer />
     </div>
   );
 };

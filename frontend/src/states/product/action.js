@@ -34,7 +34,6 @@ export const fetchCategories = () => {
         `${Common.DOMAIN}${Common.PORT}/category`,
         {}
       );
-      console.log(resp);
       if (!resp || !resp.data || !resp.data.valid)
         throw new Error("data not found");
       dispatch({

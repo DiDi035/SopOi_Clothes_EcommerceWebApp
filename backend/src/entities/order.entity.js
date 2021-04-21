@@ -1,5 +1,16 @@
 class Order {
-  constructor(id, name, userId, productId, color, size, quantity, price, date) {
+  constructor(
+    id,
+    name,
+    userId,
+    productId,
+    color,
+    size,
+    quantity,
+    price,
+    date,
+    status
+  ) {
     this.id = id;
     this.name = name;
     this.userId = userId;
@@ -9,6 +20,7 @@ class Order {
     this.quantity = quantity;
     this.price = price;
     this.date = date;
+    this.status = status;
   }
 }
 

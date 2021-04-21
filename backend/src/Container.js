@@ -12,6 +12,8 @@ const getProductService = require("./services/product-management/getProducts.use
 const getCategoriesService = require("./services/product-management/getCategories.usecase");
 const getStockService = require("./services/product-management/getStock.usecase");
 const newOrderService = require("./services/order-management/newOrder.usecase");
+const getAllOrderService = require("./services/order-management/getAllOrder.usecase");
+const updateOrderService = require("./services/order-management/updateOrder.usecase");
 // Routes
 const userRouter = require("./routes/user.route");
 const authRouter = require("./routes/auth.route");
@@ -60,6 +62,8 @@ container.register({
   getCategoriesService: awilix.asClass(getCategoriesService),
   getStockService: awilix.asClass(getStockService),
   newOrderService: awilix.asClass(newOrderService),
+  getAllOrderService: awilix.asClass(getAllOrderService),
+  updateOrderService: awilix.asClass(updateOrderService),
 
   // routes
   userRouter: awilix.asFunction(userRouter),
