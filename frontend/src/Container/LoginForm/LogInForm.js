@@ -85,7 +85,7 @@ const LogInForm = ({ triggerFunc, trigger }) => {
             Log In
           </Text>
         </div>
-        {!isSuccess && error ? (
+        {!isSuccess && error != undefined ? (
           <div class="mb-1 d-flex flex-row justify-content-center">
             <Text
               fontFam="Montserrat"

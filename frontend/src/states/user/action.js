@@ -6,6 +6,8 @@ export const authenCurUser = (email, password) => {
   return async (dispatch) => {
     try {
       dispatch({ type: types.START_LOGIN });
+      localStorage.removeItem("auth-token");
+      localStorage.removeItem("user-id");
       const res = await Fetch.post(
         `${Common.DOMAIN}${Common.PORT}/auth/login`,
         {
@@ -14,13 +16,16 @@ export const authenCurUser = (email, password) => {
         }
       );
       if (!res || !res.data || !res.data.valid) throw "Login INVALID";
-      console.log(res);
       const token = res.headers["auth-token"];
       localStorage.setItem("auth-token", token);
       localStorage.setItem("user-id", res.data.userId);
       dispatch({
         type: types.LOGIN_SUCCESS,
-        payload: { userId: res.data.userId, ava: res.data.ava },
+        payload: {
+          userId: res.data.userId,
+          ava: res.data.ava,
+          type: res.data.type,
+        },
       });
     } catch (error) {
       dispatch({ type: types.LOGIN_FAIL, payload: { error } });

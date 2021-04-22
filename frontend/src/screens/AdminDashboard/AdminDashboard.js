@@ -18,15 +18,26 @@ const AdminDashboard = () => {
   const menuIcon = ["icon-orders-dark", "icon-products-orange"];
   const menu = ["Orders", "Products"];
   const [selected, setSelected] = React.useState(0);
-  const page = useSelector(OrderStates.getPage);
+  const [currPage, setCurrPage] = React.useState(0);
   const totalPage = useSelector(OrderStates.getTotalPage);
   const isFetching = useSelector(OrderStates.getIsFetching);
   const orders = useSelector(OrderStates.getOrders);
   const handleSelect = (i) => {
     setSelected(i);
   };
-  const handleIncPage = () => {};
-  const handleDecPage = () => {};
+  const handleIncPage = () => {
+    setCurrPage((prev) => {
+      const total =
+        totalPage % ORDER_LIMIT == 0
+          ? totalPage / ORDER_LIMIT
+          : Math.trunc(totalPage / ORDER_LIMIT) + 1;
+      if (prev + 1 < total) return prev + 1;
+      return prev;
+    });
+  };
+  const handleDecPage = () => {
+    setCurrPage((prev) => (prev > 0 ? prev - 1 : prev));
+  };
   return (
     <div className="dashboardCon">
       <div className="menuBar">
@@ -55,10 +66,12 @@ const AdminDashboard = () => {
         </div>
         <div className="dashboardOption"></div>
         <div className="dashbaordCOntent">
-          <div style={{ width: "100%", height: "85%" }}>
-            <ListOrders />
-          </div>
-          {!isFetching && (
+          {selected == 0 && (
+            <div style={{ width: "100%", height: "85%" }}>
+              <ListOrders page={currPage} />
+            </div>
+          )}
+          {!isFetching && selected == 0 && (
             <div className="orderPag">
               <div
                 style={{
@@ -73,8 +86,8 @@ const AdminDashboard = () => {
                   color="charcoal-grey"
                   fontSize="14px"
                   fontWeight="500"
-                >{`Show ${page + 1} to ${
-                  orders.length
+                >{`Show ${currPage * ORDER_LIMIT + 1} to ${
+                  currPage * ORDER_LIMIT + orders.length
                 } of ${totalPage} entries`}</Text>
               </div>
               <div
@@ -93,7 +106,7 @@ const AdminDashboard = () => {
                       ? totalPage / ORDER_LIMIT
                       : Math.trunc(totalPage / ORDER_LIMIT) + 1
                   }
-                  currentPage={page}
+                  currentPage={currPage}
                 />
               </div>
             </div>

@@ -47,3 +47,7 @@
   border: 2px var(--strawberry) solid !important;
   background-color: rgba(246, 63, 69, 0.04) !important;
 }
+
+.errorInputAdmin {
+  border: 2px var(--strawberry) solid !important;
+}

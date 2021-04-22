@@ -35,11 +35,10 @@ const Actions = ({ index, completed, canceled }) => {
   );
 };
 
-const ListOrders = () => {
+const ListOrders = ({ page }) => {
   const [action, setAction] = React.useState([]);
   const dispatch = useDispatch();
   const [firsttime, setFirsttime] = React.useState(true);
-  const page = useSelector(OrderStates.getPage);
   const orders = useSelector(OrderStates.getOrders);
   const isFetching = useSelector(OrderStates.getIsFetching);
   const openActions = (index) => {
@@ -63,11 +62,8 @@ const ListOrders = () => {
     openActions(index);
   };
   React.useEffect(() => {
-    if (firsttime) {
-      dispatch(OrderActions.fetchOrders(page));
-      setFirsttime(false);
-    }
-  });
+    dispatch(OrderActions.fetchOrders(page));
+  }, [page]);
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <div

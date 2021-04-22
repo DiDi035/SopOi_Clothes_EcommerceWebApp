@@ -24,6 +24,18 @@ module.exports = class Authentication {
     });
   }
 
+  verifyAdmin(req, res, next) {
+    const token = req.header("auth-token");
+    if (!token) return res.status(401).send("Acess denined");
+    return jwt.verify(token, config.Server.SECRET_KEY, (err, decoded) => {
+      if (err) return res.status(401).send("Invalid token");
+      if (decoded.type != "seller")
+        return res.status(401).send("Acess denined");
+      req.curUser = decoded;
+      return next();
+    });
+  }
+
   async isMatched(password, data) {
     const result = await this.passwordHasher.isMatched(password, data);
     return result;

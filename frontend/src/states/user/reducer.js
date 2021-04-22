@@ -7,7 +7,7 @@ let initState = {
   userId: null,
   ava: null,
   error: undefined,
-  type: "customer",
+  type: "",
 };
 
 const userReducer = (state = initState, action) => {
@@ -18,12 +18,13 @@ const userReducer = (state = initState, action) => {
         isSuccess: false,
       });
     case types.LOGIN_SUCCESS:
-      console.log(action.type);
       return ReduxUtils.updateObject(state, {
         isLoading: false,
         isSuccess: true,
         userId: action.payload.userId,
         ava: action.payload.ava,
+        error: undefined,
+        type: action.payload.type,
       });
     case types.LOGIN_FAIL:
       return ReduxUtils.updateObject(state, {
@@ -37,6 +38,7 @@ const userReducer = (state = initState, action) => {
         isSuccess: false,
         isLoading: false,
         userId: null,
+        error: undefined,
       });
     default:
       return state;

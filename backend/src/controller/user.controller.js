@@ -18,6 +18,7 @@ class UserController {
         valid: result.valid,
         userId: result.userId,
         ava: result.ava,
+        type: result.type,
       });
     } catch (err) {
       res.send({ valid: false, userId: null });
