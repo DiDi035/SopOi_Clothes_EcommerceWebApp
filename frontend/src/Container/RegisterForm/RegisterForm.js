@@ -208,11 +208,11 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
           </p>
           <p>
             <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
-              <Link color={Colors.primary} linkTo="#">
+              <Link fontWeight="bold" color={Colors.primary} linkTo="#">
                 Terms of Service
               </Link>{" "}
               and{" "}
-              <Link color={Colors.primary} linkTo="#">
+              <Link fontWeight="bold" color={Colors.primary} linkTo="#">
                 Privacy Policy
               </Link>
             </Text>
@@ -227,7 +227,12 @@ const RegisterForm = ({ trigger, triggerFunc }) => {
           <p>
             <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
               Do you have an account?{" "}
-              <Link underlined={true} linkTo="#" color={Colors.primary}>
+              <Link
+                fontWeight="bold"
+                underlined={true}
+                linkTo="#"
+                color={Colors.primary}
+              >
                 Log In
               </Link>
             </Text>

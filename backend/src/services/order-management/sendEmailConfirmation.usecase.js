@@ -4,5 +4,7 @@ const nodemailer = require("nodemailer");
 class SendEmailConfirmation {
   constructor() {}
 
-  async execute() {}
+  async execute(userEmail) {}
 }
+
+module.exports = SendEmailConfirmation;

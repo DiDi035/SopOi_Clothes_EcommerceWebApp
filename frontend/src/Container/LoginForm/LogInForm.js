@@ -179,7 +179,12 @@ const LogInForm = ({ triggerFunc, trigger }) => {
           <p>
             <Text fontFam="Montserrat" color={Colors["greyish-brown"]}>
               Don't have an account?{" "}
-              <Link underlined={true} linkTo="#" color={Colors.primary}>
+              <Link
+                underlined={true}
+                fontWeight="bold"
+                linkTo="#"
+                color={Colors.primary}
+              >
                 Register
               </Link>
             </Text>
