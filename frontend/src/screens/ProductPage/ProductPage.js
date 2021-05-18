@@ -12,6 +12,11 @@ import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import * as ProductActions from "../../states/product/action";
 import * as CartActions from "../../states/cart/action";
 import * as CartStates from "../../states/cart/states";
+import * as Common from "../../common/index";
+import image1 from "../../assets/images/homePg_item_1.jpg";
+import image2 from "../../assets/images/homePg_item_2.jpg";
+import image3 from "../../assets/images/homePg_item_3.jpg";
+import image4 from "../../assets/images/homePg_item_4.jpg";
 const ProductPage = ({}) => {
   const { id, typeCustomer, typeClothes, types } = useParams();
   const products = useSelector(ProductStates.getProducts);
@@ -106,13 +111,18 @@ const ProductPage = ({}) => {
       </div>
       <div className="detailCon">
         <div className="picture">
-          <div className="minorPicture">
+          {/* <div className="minorPicture">
             <div className="minorItem"></div>
             <div className="minorItem"></div>
             <div className="minorItem"></div>
             <div className="minorItem"></div>
-          </div>
-          <div className="mainPicture"></div>
+          </div> */}
+          <div
+            style={{
+              backgroundImage: `url(${Common.DOMAIN}${Common.PORT}${products[0].img})`,
+            }}
+            className="mainPicture"
+          ></div>
         </div>
         <div className="filter">
           <div>
@@ -264,10 +274,30 @@ const ProductPage = ({}) => {
             </div>
           </div>
           <div className="recomendImg">
-            <div className="recomendImgItem"></div>
-            <div className="recomendImgItem"></div>
-            <div className="recomendImgItem"></div>
-            <div className="recomendImgItem"></div>
+            <div
+              style={{
+                backgroundImage: `url(${image4})`,
+              }}
+              className="recomendImgItem"
+            ></div>
+            <div
+              style={{
+                backgroundImage: `url(${image1})`,
+              }}
+              className="recomendImgItem"
+            ></div>
+            <div
+              style={{
+                backgroundImage: `url(${image4})`,
+              }}
+              className="recomendImgItem"
+            ></div>
+            <div
+              style={{
+                backgroundImage: `url(${image1})`,
+              }}
+              className="recomendImgItem"
+            ></div>
           </div>
         </div>
       </div>

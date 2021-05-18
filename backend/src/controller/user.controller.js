@@ -11,6 +11,7 @@ class UserController {
 
   async login(req, res) {
     const { email, password } = req.body;
+    console.log(email, password);
     const result = await this.loginService.execute(email, password);
     try {
       if (!result.valid) throw new Error("Cant find this user");

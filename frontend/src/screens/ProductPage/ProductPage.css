@@ -79,7 +79,6 @@
 
 .mainPicture {
   flex: 4;
-  background-image: url("../../assets/images/homePg_item_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -93,7 +92,7 @@
 
 .recomendImgItem {
   flex: 0 1 20%;
-  background-image: url("../../assets/images/homePg_item_2.jpg");
+  background-image: url("../../assets/images/homePg_item_1.jpg");
   width: 80px;
   background-size: cover;
   background-repeat: no-repeat;
