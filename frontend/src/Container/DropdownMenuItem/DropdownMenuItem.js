@@ -29,7 +29,7 @@ const DropdownMenuItem = ({
   return (
     <div>
       <div
-        className="filterBtn"
+        className = "filterBtn"
         style={{
           width: width,
           background: Colors[backgroundColor],

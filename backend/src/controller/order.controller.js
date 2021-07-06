@@ -7,6 +7,7 @@ class OrderController {
     this.getAllOrder = this.getAllOrder.bind(this);
     this.updateOrder = this.updateOrder.bind(this);
   }
+
   async createOrder(req, res) {
     try {
       const { orders, userId } = req.body;

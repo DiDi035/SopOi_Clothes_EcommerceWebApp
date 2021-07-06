@@ -42,7 +42,7 @@ const Customer = () => {
   return (
     <div>
       <HeaderAndForm />
-      <Route path="/homepage" exact={true} component={HomePage} />
+      <Route path="/" exact={true} component={HomePage} />
       <Route
         path="/:typeCustomer/:typeClothes/:types"
         exact={true}

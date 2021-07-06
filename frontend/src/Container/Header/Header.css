@@ -195,7 +195,7 @@ button {
 .cartImg {
   height: 100%;
   flex: 0 1 25%;
-  background-image: url("../../assets/images/homePg_item_4.jpg");
+  background-image: url("../../assets/images/homePg_item_2.jpg");
   background-size: cover;
   background-position: center;
 }
